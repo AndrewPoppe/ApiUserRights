@@ -1,0 +1,25 @@
+{
+    "name": "API User Rights",
+    "namespace": "YaleREDCap\\ApiUserRights",
+    "description": "TBD",
+    "authors": [
+        {
+            "name": "Andrew Poppe",
+            "email": "andrew.poppe@yale.edu",
+            "institution": "Yale Center for Clinical Investigation"
+        }
+    ],
+    "system-settings": [],
+    "links": {},
+    "no-auth-pages": [],
+    "auth-ajax-actions": [],
+    "framework-version": 12,
+    "compatibility": {
+        "php-version-min": "7.3.0",
+        "php-version-max": "",
+        "redcap-version-min": "13.1.27",
+        "redcap-version-max": ""
+    },
+    "enable-no-auth-logging": true,
+    "enable-every-page-hooks-on-system-pages": true
+}
