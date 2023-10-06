@@ -1,6 +1,10 @@
 <?php
 namespace YaleREDCap\ApiUserRights;
 
+/**
+ * @property \ExternalModules\Framework $framework
+ * @see Framework
+ */
 class ApiUserRights extends \ExternalModules\AbstractExternalModule
 {
 
@@ -400,27 +404,10 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
         $user = $this->getApiUser($_POST);
 
-        $methodAllowed = $this->isMethodAllowed($method, $user);
-        
+        //$methodAllowed = $this->isMethodAllowed($method, $user);
 
-        // // API
-        // if ( PAGE === 'api/index.php' ) {
-        //     $api = new APIHandler($this, $_POST);
-        //     if ( !$api->shouldProcess() ) {
-        //         return;
-        //     }
+        $this->framework->log('ok', [ 'user' => $user, 'method' => $method['method'] ]);
 
-        //     $api->handleRequest();
-        //     if ( !$api->shouldAllowImport() ) {
-        //         $badRights = $api->getBadRights();
-        //         http_response_code(401);
-        //         echo json_encode($badRights);
-        //         $this->exitAfterHook();
-        //     } else {
-        //         $api->logApi();
-        //     }
-        //     return;
-        // }
     }
 
     public function determineApiMethod(array $data)
@@ -439,11 +426,18 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         });
     }
 
-    private getApiUser(array $data)
+    private function getApiUser(array $data)
     {
-        $token = $this->framework->sanitize($data['username']);
-        $user     = $this->framework->getUser($username);
+        $token = $this->framework->sanitizeAPIToken($data['token']);
+        if ( empty($token) ) {
+            return null;
+        }
+        $sql = "SELECT username FROM redcap_user_rights WHERE api_token = ?";
+        $q   = $this->framework->query($sql, [ $token ]);
+        if ( $q->num_rows === 0 ) {
+            return null;
+        }
 
-        return $user;
+        return $q->fetch_assoc()['username'];
     }
 }
