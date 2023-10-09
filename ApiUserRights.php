@@ -8,6 +8,16 @@ namespace YaleREDCap\ApiUserRights;
 class ApiUserRights extends \ExternalModules\AbstractExternalModule
 {
 
+    /**
+     * All API methods
+     * @var array<int, array{
+     * area: string,
+     * method: string,
+     * content: string,
+     * action: string,
+     * data: string|bool
+     * }>
+     */
     static array $methods = [
         [
             "area"    => "Arms",
@@ -424,7 +434,6 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         try {
             $post   = $this->framework->escape($_POST);
             $method = $this->determineApiMethod($post);
-            $method = reset($method);
 
             if ( !$method || empty($method) ) {
                 return;
@@ -438,6 +447,8 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
             if ( !$methodAllowed ) {
                 $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ]);
+                http_response_code(403);
+                echo 'You do not have permission to use this API method.';
                 $this->framework->exitAfterHook();
             }
         } catch ( \Throwable $e ) {
@@ -457,9 +468,10 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     private function getMethod($content, $action, $dataIsSet)
     {
-        return array_filter(ApiUserRights::$methods, function ($method) use ($content, $action, $dataIsSet) {
+        $result = array_filter(ApiUserRights::$methods, function ($method) use ($content, $action, $dataIsSet) {
             return $method['content'] === $content && $method['action'] === $action && $method['data'] === $dataIsSet;
         });
+        return reset($result);
     }
 
     private function getApiUser(array $data)

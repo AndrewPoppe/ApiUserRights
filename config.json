@@ -1,7 +1,7 @@
 {
     "name": "API User Rights",
     "namespace": "YaleREDCap\\ApiUserRights",
-    "description": "TBD",
+    "description": "This external module allows users with User Rights permission in a project to control access to individual API methods. For example, you can allow a user to access the <code>Export Reports</code> method, but not the <code>Import Records</code> endpoint.",
     "authors": [
         {
             "name": "Andrew Poppe",
@@ -27,7 +27,7 @@
     ],
     "framework-version": 12,
     "compatibility": {
-        "php-version-min": "7.3.0",
+        "php-version-min": "7.4.0",
         "php-version-max": "",
         "redcap-version-min": "13.1.27",
         "redcap-version-max": ""

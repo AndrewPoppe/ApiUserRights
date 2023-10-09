@@ -13,8 +13,8 @@ $headerInfo = $module->getTableHeader();
         API User Rights
     </span>
 </div>
-<div class="container" style="width: 75vw !important; display: inline-block;">
-    <table id="api_user_rights" class="table compact scroll-border">
+<div class="table-container">
+    <table id="api_user_rights" class="table scroll-border">
         <?= $headerInfo["header"] ?>
         <tbody></tbody>
     </table>
@@ -126,8 +126,18 @@ $headerInfo = $module->getTableHeader();
     });
 </script>
 <style>
+    div.table-container {
+        width: 75vw !important;
+        display: inline-block;
+        margin-right: 20px;
+    }
+
     table.scroll-border tbody td:first-child {
         border-left: none !important;
+    }
+
+    table.scroll-border tbody td:nth-child(2) {
+        border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
     }
 
     table.scroll-border tbody td {
@@ -146,6 +156,11 @@ $headerInfo = $module->getTableHeader();
         border-left: none !important;
     }
 
+    table.scroll-border thead tr:first-child th:nth-child(2),
+    table.scroll-border thead tr:nth-child(2) th:first-child {
+        border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
+    }
+
     table.scroll-border thead th {
         border-left: 1px solid #dee2e6;
     }
@@ -159,7 +174,7 @@ $headerInfo = $module->getTableHeader();
     }
 
     div.dataTables_scroll {
-        border: 1px solid #aaa;
+        border: 1px solid rgba(0, 0, 0, 0.3);
     }
 
     div.dataTables_scrollBody {
