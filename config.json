@@ -10,9 +10,21 @@
         }
     ],
     "system-settings": [],
-    "links": {},
+    "links": {
+        "project": [
+            {
+                "name": "API User Rights",
+                "url": "api_user_rights",
+                "icon": "fas fa-laptop-code",
+                "show-header-and-footer": true
+            }
+        ]
+    },
     "no-auth-pages": [],
-    "auth-ajax-actions": [],
+    "auth-ajax-actions": [
+        "getApiUserRights",
+        "saveApiUserRights"
+    ],
     "framework-version": 12,
     "compatibility": {
         "php-version-min": "7.3.0",

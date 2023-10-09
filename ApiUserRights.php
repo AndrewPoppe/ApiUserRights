@@ -381,9 +381,35 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "data"    => ""
         ]
     ];
-    public function redcap_user_rights($project_id)
-    {
 
+    public function redcap_module_ajax($action, $payload, $project_id, $record, $instrument, $event_id, $repeat_instance, $survey_hash, $response_id, $survey_queue_hash, $page, $page_full, $user_id, $group_id)
+    {
+        try {
+            $user   = $this->framework->getUser();
+            $rights = $user->getRights();
+            if ( $rights['user_rights'] != '1' ) {
+                return null;
+            }
+            if ( $action === 'getApiUserRights' ) {
+                return $this->getAllUsers($project_id);
+            } elseif ( $action === 'saveApiUserRights' ) {
+                $userToSet = $payload['user'];
+                $rights    = $payload['rights'];
+                $this->saveRights($userToSet, $rights, $project_id);
+            }
+        } catch ( \Throwable $e ) {
+            $this->framework->log('Ajax error', [ 'error' => $e->getMessage() ]);
+        }
+    }
+
+    public function redcap_module_link_check_display($project_id, $link)
+    {
+        $user   = $this->framework->getUser();
+        $rights = $user->getRights();
+        if ( $rights['user_rights'] != '1' ) {
+            return null;
+        }
+        return $link;
     }
 
     public function redcap_every_page_before_render() : void
@@ -395,18 +421,28 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         ) {
             return;
         }
-        $method = $this->determineApiMethod($_POST);
-        $method = reset($method);
+        try {
+            $post   = $this->framework->escape($_POST);
+            $method = $this->determineApiMethod($post);
+            $method = reset($method);
 
-        if ( !$method || empty($method) ) {
-            return;
+            if ( !$method || empty($method) ) {
+                return;
+            }
+
+            $user     = $this->getApiUser($post);
+            $username = $user['username'];
+            $pid      = $user['project_id'];
+
+            $methodAllowed = $this->isMethodAllowed($method, $username, $pid);
+
+            if ( !$methodAllowed ) {
+                $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ]);
+                $this->framework->exitAfterHook();
+            }
+        } catch ( \Throwable $e ) {
+            $this->framework->log('error', [ 'error' => $e->getMessage() ]);
         }
-
-        $user = $this->getApiUser($_POST);
-
-        //$methodAllowed = $this->isMethodAllowed($method, $user);
-
-        $this->framework->log('ok', [ 'user' => $user, 'method' => $method['method'] ]);
 
     }
 
@@ -432,12 +468,105 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         if ( empty($token) ) {
             return null;
         }
-        $sql = "SELECT username FROM redcap_user_rights WHERE api_token = ?";
+        $sql = "SELECT username, project_id, api_export, api_import FROM redcap_user_rights WHERE api_token = ?";
         $q   = $this->framework->query($sql, [ $token ]);
         if ( $q->num_rows === 0 ) {
             return null;
         }
 
-        return $q->fetch_assoc()['username'];
+        return $q->fetch_assoc();
+    }
+
+    private function isMethodAllowed(array $method, $username, $pid)
+    {
+        $allowedMethods = $this->getAllowedMethods($username, $pid);
+        if ( empty($allowedMethods) ) {
+            return false;
+        }
+        return $allowedMethods[$method['method']] === true;
+    }
+
+    private function getAllowedMethods($username, $pid)
+    {
+        $settingKey = 'allowed-api-methods-' . $username;
+        return $this->framework->getProjectSetting($settingKey, $pid) ?? $this->getBlankApiRights();
+    }
+
+
+
+    public function getAllUsers($pid)
+    {
+        $settings = $this->framework->getProjectSettings($pid);
+        $users    = $this->framework->getProject($pid)->getUsers();
+
+        $userRights = [];
+        foreach ( $users as $user ) {
+            $username           = $user->getUsername();
+            $result             = $settings['allowed-api-methods-' . $username] ?? $this->getBlankApiRights();
+            $result['username'] = $username;
+            $result['name']     = $this->getFullName($username);
+            $userRights[]       = $result;
+        }
+        return $userRights;
+    }
+
+    public function getFullName($username)
+    {
+        try {
+            $sql = 'SELECT user_firstname, user_lastname FROM redcap_user_information WHERE username = ?';
+            $q   = $this->framework->query($sql, [ $username ]);
+            if ( $q->num_rows === 0 ) {
+                return null;
+            }
+            $result = $q->fetch_assoc();
+            return $result['user_firstname'] . ' ' . $result['user_lastname'];
+        } catch ( \Throwable $e ) {
+            $this->framework->log('Error getting full name', [ 'error' => $e->getMessage() ]);
+            return null;
+        }
+    }
+
+    private function getBlankApiRights() : array
+    {
+        $blankRights = [];
+        foreach ( ApiUserRights::$methods as $method ) {
+            $blankRights[$method['method']] = false;
+        }
+        return $blankRights;
+    }
+
+    public function getTableHeader()
+    {
+        $header     = "<thead><tr><th rowspan='2'>Username</th>";
+        $header2    = "";
+        $sections   = [];
+        $allMethods = [];
+        $even       = true;
+        foreach ( ApiUserRights::$methods as $method ) {
+            $sections[$method['area']][] = $method;
+        }
+        foreach ( $sections as $section => $methods ) {
+            $thisClass = $even ? 'even' : 'odd';
+            $even      = !$even;
+            $header .= "<th colspan='" . count($methods) . "' class='" . $thisClass . "'>" . $section . "</th>";
+            foreach ( $methods as $method ) {
+                $allMethods[] = $method['method'];
+                $header2 .= "<th class='" . $thisClass . " dt-center'>" . $method['method'] . "</th>";
+            }
+        }
+        $header .= "</tr><tr>";
+        $header .= $header2;
+        $header .= "</tr></thead>";
+        return [
+            "header"      => $header,
+            "methodOrder" => $allMethods,
+            "sections"    => $sections
+        ];
+    }
+
+    private function saveRights($userToSet, $rights, $project_id)
+    {
+        $settingKey = 'allowed-api-methods-' . $userToSet;
+        $this->framework->setProjectSetting($settingKey, $rights, $project_id);
     }
 }
