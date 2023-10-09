@@ -15,3 +15,9 @@ Install through the REDCap Repo
 ## Configuration
 No system or project configuration is required. Once installed, users with User Rights permission will see a project link called `API User Rights`. This links to a page that allows them to select which API methods they want to allow users to access.
 
+## Changelog
+
+Version | Release Date | Description
+----|----|----
+1.0.0| 2023-10-09 | Initial release
+
