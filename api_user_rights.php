@@ -7,6 +7,10 @@ namespace YaleREDCap\ApiUserRights;
 $pid = $module->framework->getProjectId();
 $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
+
+foreach ( ApiUserRights::$contentUsed as $content ) {
+    $module->getMethod($content, "", "");
+}
 ?>
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>

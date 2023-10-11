@@ -23,7 +23,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Arms",
             "method"  => "Export Arms",
             "content" => "arm",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -44,7 +44,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Data Access Groups",
             "method"  => "Export DAGs",
             "content" => "dag",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -72,7 +72,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Data Access Groups",
             "method"  => "Export User-DAG Assignment",
             "content" => "userDagMapping",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -80,13 +80,13 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "method"  => "Import User-DAG Assignment",
             "content" => "userDagMapping",
             "action"  => "import",
-            "data"    => ""
+            "data"    => true
         ],
         [
             "area"    => "Events",
             "method"  => "Export Events",
             "content" => "event",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -107,7 +107,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Field Names",
             "method"  => "Export List of Export Field Names",
             "content" => "exportFieldNames",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -170,91 +170,91 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Instruments",
             "method"  => "Export Instruments (Data Entry Forms)",
             "content" => "instrument",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Instruments",
             "method"  => "Export PDF file of Instruments",
             "content" => "pdf",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Instruments",
             "method"  => "Export Instrument-Event Mappings",
             "content" => "formEventMapping",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Instruments",
             "method"  => "Import Instrument-Event Mappings",
             "content" => "formEventMapping",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
             "area"    => "Logging",
             "method"  => "Export Logging",
             "content" => "log",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Metadata",
             "method"  => "Export Metadata (Data Dictionary)",
             "content" => "metadata",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Metadata",
             "method"  => "Import Metadata (Data Dictionary)",
             "content" => "metadata",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
             "area"    => "Projects",
             "method"  => "Create Project",
             "content" => "project",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
             "area"    => "Projects",
             "method"  => "Import Project Info",
             "content" => "project_settings",
-            "action"  => "",
-            "data"    => true
+            "action"  => "import",
+            "data"    => ""
         ],
         [
             "area"    => "Projects",
             "method"  => "Export Project Info",
             "content" => "project",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Projects",
             "method"  => "Export Project XML",
             "content" => "project_xml",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Records",
             "method"  => "Export Records",
             "content" => "record",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Records",
             "method"  => "Import Records",
             "content" => "record",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
@@ -275,77 +275,77 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "Records",
             "method"  => "Generate Next Record Name",
             "content" => "generateNextRecordName",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Repeating Instruments and Events",
             "method"  => "Export Repeating Instruments and Events",
             "content" => "repeatingFormsEvents",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Repeating Instruments and Events",
             "method"  => "Import Repeating Instruments and Events",
             "content" => "repeatingFormsEvents",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
             "area"    => "Reports",
             "method"  => "Export Reports",
             "content" => "report",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "REDCap",
             "method"  => "Export REDCap Version",
             "content" => "version",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Surveys",
             "method"  => "Export a Survey Link",
             "content" => "surveyLink",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Surveys",
             "method"  => "Export Survey Participants",
             "content" => "participantList",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Surveys",
             "method"  => "Export a Survey Queue Link",
             "content" => "surveyQueueLink",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Surveys",
             "method"  => "Export a Survey Return Code",
             "content" => "surveyReturnCode",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Users & User Privileges",
             "method"  => "Export Users",
             "content" => "user",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "Users & User Privileges",
             "method"  => "Import Users",
             "content" => "user",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
@@ -359,14 +359,14 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "User Roles",
             "method"  => "Export User Roles",
             "content" => "userRole",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
             "area"    => "User Roles",
             "method"  => "Import User Roles",
             "content" => "userRole",
-            "action"  => "",
+            "action"  => "import",
             "data"    => true
         ],
         [
@@ -380,7 +380,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "area"    => "User Roles",
             "method"  => "Export User-Role Assignment",
             "content" => "userRoleMapping",
-            "action"  => "",
+            "action"  => "export",
             "data"    => ""
         ],
         [
@@ -388,8 +388,85 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "method"  => "Import User-Role Assignment",
             "content" => "userRoleMapping",
             "action"  => "import",
-            "data"    => ""
+            "data"    => true
         ]
+    ];
+
+    /**
+     *
+     * All valid content values for REDCap API
+     * @var array
+     */
+    static array $content = [
+        'record',
+        'metadata',
+        'file',
+        'fileRepository',
+        'filesize',
+        'fileinfo',
+        'repeatingFormsEvents',
+        'instrument',
+        'event',
+        'arm',
+        'user',
+        'project_settings',
+        'report',
+        'authkey',
+        'version',
+        'pdf',
+        'surveyLink',
+        'surveyQueueLink',
+        'surveyReturnCode',
+        'participantList',
+        'exportFieldNames',
+        'appRightsCheck',
+        'formEventMapping',
+        'fieldValidation',
+        'attachment',
+        'project',
+        'generateNextRecordName',
+        'project_xml',
+        'dag',
+        'userDagMapping',
+        'log',
+        'tableau',
+        'mycap',
+        'userRole',
+        'userRoleMapping'
+    ];
+
+    /**
+     * All content values actually used in standard API methods
+     * @var array
+     */
+    static array $contentUsed = [
+        'record',
+        'metadata',
+        'file',
+        'fileRepository',
+        'repeatingFormsEvents',
+        'instrument',
+        'event',
+        'arm',
+        'user',
+        'project_settings',
+        'report',
+        'version',
+        'pdf',
+        'surveyLink',
+        'surveyQueueLink',
+        'surveyReturnCode',
+        'participantList',
+        'exportFieldNames',
+        'formEventMapping',
+        'project',
+        'generateNextRecordName',
+        'project_xml',
+        'dag',
+        'userDagMapping',
+        'log',
+        'userRole',
+        'userRoleMapping'
     ];
 
     public function redcap_module_ajax($action, $payload, $project_id, $record, $instrument, $event_id, $repeat_instance, $survey_hash, $response_id, $survey_queue_hash, $page, $page_full, $user_id, $group_id)
@@ -422,7 +499,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return $link;
     }
 
-    public function redcap_every_page_before_render() : void
+    public function redcap_every_page_before_render($project_id) : void
     {
         // Only run on the pages we're interested in
         if (
@@ -432,24 +509,60 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             return;
         }
         try {
-            $post   = $this->framework->escape($_POST);
-            $method = $this->determineApiMethod($post);
+            $post = $this->framework->escape($_POST);
 
-            if ( !$method || empty($method) ) {
+            // If content is not valid, let REDCap handle it
+            $contentValid = $this->validateContent($post);
+            if ( !$contentValid ) {
                 return;
             }
 
-            $user     = $this->getApiUser($post);
+            $user = $this->getApiUser($post);
+
+            // Invalid token, let REDCap handle it
+            if ( empty($user) || empty($user['username'] || empty($user['$project_id'])) ) {
+                return;
+            }
+
             $username = $user['username'];
             $pid      = $user['project_id'];
 
-            $methodAllowed = $this->isMethodAllowed($method, $username, $pid);
+            // Module is not enabled for this project, don't do anything
+            if ( !in_array($pid, $this->getProjectsWithModuleEnabledIncludingByDefault()) ) {
+                return;
+            }
 
+            // Check for exceptions - situations where we want to allow the request to proceed
+            // even if the method is not defined in the API
+            $exempt = $this->checkForExceptions($post, $user);
+
+            // This is an exempt method, let REDCap handle it
+            if ( $exempt ) {
+                return;
+            }
+
+            // Try to determine the API method
+            $method = $this->determineApiMethod($post);
+
+            // Not a valid API method and not exempt, you shall not pass
+            if ( (!$method || empty($method)) ) {
+                http_response_code(400);
+                header('Content-Type: application/json');
+                // TODO: Send in the requested return format instead of always json
+                echo json_encode([ 'error' => 'Invalid request.' ]);
+                $this->framework->exitAfterHook();
+                return;
+            }
+
+            // Check if the user has permission to use this method
+            $methodAllowed = $this->isMethodAllowed($method, $username, $pid);
             if ( !$methodAllowed ) {
                 $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ]);
                 http_response_code(403);
-                echo 'You do not have permission to use this API method.';
+                header('Content-Type: application/json');
+                echo json_encode([ 'error' => 'You do not have permissions to use this API method.' ]);
                 $this->framework->exitAfterHook();
+                return;
             }
         } catch ( \Throwable $e ) {
             $this->framework->log('error', [ 'error' => $e->getMessage() ]);
@@ -463,15 +576,82 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $action    = strtolower($data['action'] ?? '');
         $dataIsSet = isset($data['data']) ? true : '';
 
-        return $this->getMethod($content, $action, $dataIsSet);
+        $result    = $this->getMethod($content, $action, $dataIsSet);
+        $methodArr = array_filter(self::$methods, function ($method) use ($result) {
+            return $method['content'] === $result["content"] && $method['action'] === $result["action"];
+        });
+        return reset($methodArr);
     }
 
-    private function getMethod($content, $action, $dataIsSet)
+    /**
+     * Find situations in which non-standard requests should be allowed to progress
+     * @param array $data
+     * @return bool whether or not the request should be allowed to progress due to an exemption
+     */
+    private function checkForExceptions($data, $user)
     {
-        $result = array_filter(ApiUserRights::$methods, function ($method) use ($content, $action, $dataIsSet) {
-            return $method['content'] === $content && $method['action'] === $action && $method['data'] === $dataIsSet;
-        });
-        return reset($result);
+        return false;
+    }
+
+    /**
+     * Get the requested content and action based on parameters
+     * 
+     * Note: REDCap's own API code does not properly handle several combinations here, resulting in undefined behavior.
+     * These are listed here:
+     * 
+     * fileRepository:      switch is allowed as an action, but there is no associated method
+     * instrument:          import is allowed as an action, but there is no associated method 
+     * event:               switch is allowed as an action, but there is no associated method
+     * event:               createFolder is allowed as an action, but there is no associated method
+     * event:               list is allowed as an action, but there is no associated method
+     * arm:                 switch is allowed as an action, but there is no associated method
+     * arm:                 createFolder is allowed as an action, but there is no associated method
+     * arm:                 list is allowed as an action, but there is no associated method
+     * user:                switch is allowed as an action, but there is no associated method
+     * user:                createFolder is allowed as an action, but there is no associated method
+     * user:                list is allowed as an action, but there is no associated method
+     * project_settings:    export is allowed as an action, but there is no associated method
+     * ... I stopped counting... there are a lot of these
+     */
+    public function getMethod($content, $action, $dataIsSet)
+    {
+
+        if ( !in_array($content, self::$content) ) {
+            return null;
+        }
+
+        // If invalid settings, return null
+        if ( in_array($content, [ 'file' ]) && !in_array($action, [ 'export', 'import', 'import_app', 'delete' ]) ) {
+            return null;
+        }
+
+        if ( $content == 'project' && $dataIsSet ) {
+            return null;
+        }
+
+        // Set action as needed
+        if ( in_array($content, [ 'version', 'event', 'arm', 'repeatingFormsEvents', 'dag', 'user', 'userRole', 'userRoleMapping' ]) && empty($action) ) {
+            $action = 'export';
+        }
+        if ( in_array($content, [ 'user', 'userRole', 'userRoleMapping' ]) && $action != 'delete' && $dataIsSet ) {
+            $action = 'import';
+        }
+        if ( in_array($content, [ 'fileRepository', 'file', 'event', 'arm', 'dag', 'user', 'userRole' ]) ) {
+            if ( !in_array($action, [ 'export', 'import', 'delete', 'import_app', 'switch', 'createFolder', 'list' ]) ) {
+                return null;
+            }
+        } elseif ( !($content == 'record' && in_array($action, [ 'delete', 'rename' ])) ) {
+            $action = (!$dataIsSet || $content == 'version') ? 'export' : 'import';
+        }
+
+        return [
+            'content' => $content,
+            'action'  => $action
+        ];
+        // $possibleMethods = array_filter(self::$methods, function ($method) use ($content, $action) {
+        //     return $method['action'] === $action;
+        // });
+        // return reset($possibleMethods);
     }
 
     private function getApiUser(array $data)
@@ -480,12 +660,8 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         if ( empty($token) ) {
             return null;
         }
-        $sql = "SELECT username, project_id, api_export, api_import FROM redcap_user_rights WHERE api_token = ?";
+        $sql = "SELECT username, project_id, api_export, api_import, mobile_app FROM redcap_user_rights WHERE api_token = ?";
         $q   = $this->framework->query($sql, [ $token ]);
-        if ( $q->num_rows === 0 ) {
-            return null;
-        }
-
         return $q->fetch_assoc();
     }
 
@@ -580,5 +756,57 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $settingKey = 'allowed-api-methods-' . $userToSet;
         $this->framework->setProjectSetting($settingKey, $rights, $project_id);
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getProjectsWithModuleEnabledIncludingByDefault()
+    {
+        if ( !$this->getSystemSetting('enabled') ) {
+            return $this->framework->getProjectsWithModuleEnabled();
+        }
+
+        $possibleProjectsResults = $this->query(
+            "SELECT CAST(p.project_id AS CHAR) AS project_id
+            FROM redcap_projects p
+            WHERE p.date_deleted IS NULL
+            AND p.status IN (0,1)
+            AND p.completed_time IS NULL",
+            []
+        );
+
+        $disabledProjectsResults = $this->query(
+            "SELECT CAST(s.project_id AS CHAR) AS project_id
+		    FROM redcap_external_modules m
+            JOIN redcap_external_module_settings s
+            ON m.external_module_id = s.external_module_id
+            JOIN redcap_projects p
+            ON s.project_id = p.project_id
+            WHERE m.directory_prefix = ?
+            AND s.value = 'false'
+            AND s.key = ?",
+            [ $this->PREFIX, \ExternalModules\ExternalModules::KEY_ENABLED ]
+        );
+
+        $disabledPids = [];
+        while ( $row = $disabledProjectsResults->fetch_assoc() ) {
+            $disabledPids[] = $row['project_id'];
+        }
+
+        $pids = [];
+        while ( $row = $possibleProjectsResults->fetch_assoc() ) {
+            $pid = $row['project_id'];
+            if ( !in_array($pid, $disabledPids, true) ) {
+                $pids[] = $pid;
+            }
+        }
+        return $pids;
+    }
+
+    private function validateContent($data)
+    {
+        return isset($data['content']) && in_array($data['content'], ApiUserRights::$contentUsed);
     }
 }
