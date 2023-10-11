@@ -13,7 +13,7 @@ This external module allows users with User Rights permission in a project to co
 Install through the REDCap Repo
 
 ## Configuration
-No system or project configuration is required. Once installed, users with User Rights permission will see a project link called `API User Rights`. This links to a page that allows them to select which API methods they want to allow users to access.
+No system or project configuration is required. Once installed and enabled in a project, users with User Rights permission will see a project link called `API User Rights`. This links to a page that allows them to select which API methods they want to allow users to access.
 
 ## Changelog
 
