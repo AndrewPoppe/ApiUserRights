@@ -499,12 +499,12 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return $link;
     }
 
-    public function redcap_every_page_before_render($project_id) : void
+    public function redcap_every_page_before_render($project_id = null) : void
     {
         // Only run on the pages we're interested in
         if (
-            $_SERVER['REQUEST_METHOD'] !== 'POST' ||
-            PAGE !== 'api/index.php'
+            ($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' ||
+            (PAGE ?? '') !== 'api/index.php'
         ) {
             return;
         }
@@ -545,7 +545,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             $method = $this->determineApiMethod($post);
 
             // Not a valid API method and not exempt, you shall not pass
-            if ( (!$method || empty($method)) ) {
+            if ( !$method || empty($method) ) {
                 http_response_code(400);
                 header('Content-Type: application/json');
                 // TODO: Send in the requested return format instead of always json
@@ -595,12 +595,12 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     /**
      * Get the requested content and action based on parameters
-     * 
+     *
      * Note: REDCap's own API code does not properly handle several combinations here, resulting in undefined behavior.
      * These are listed here:
-     * 
+     *
      * fileRepository:      switch is allowed as an action, but there is no associated method
-     * instrument:          import is allowed as an action, but there is no associated method 
+     * instrument:          import is allowed as an action, but there is no associated method
      * event:               switch is allowed as an action, but there is no associated method
      * event:               createFolder is allowed as an action, but there is no associated method
      * event:               list is allowed as an action, but there is no associated method
@@ -648,10 +648,6 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             'content' => $content,
             'action'  => $action
         ];
-        // $possibleMethods = array_filter(self::$methods, function ($method) use ($content, $action) {
-        //     return $method['action'] === $action;
-        // });
-        // return reset($possibleMethods);
     }
 
     private function getApiUser(array $data)
@@ -779,7 +775,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
         $disabledProjectsResults = $this->query(
             "SELECT CAST(s.project_id AS CHAR) AS project_id
-		    FROM redcap_external_modules m
+            FROM redcap_external_modules m
             JOIN redcap_external_module_settings s
             ON m.external_module_id = s.external_module_id
             JOIN redcap_projects p

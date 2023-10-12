@@ -1,0 +1,3530 @@
+[
+  {
+    "content": "record",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "delete"
+  },
+  {
+    "content": "record",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "delete"
+  },
+  {
+    "content": "record",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "rename"
+  },
+  {
+    "content": "record",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "rename"
+  },
+  {
+    "content": "record",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "record",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "record",
+    "resultAction": "import"
+  },
+  {
+    "content": "record",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "record",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "metadata",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "metadata",
+    "resultAction": "import"
+  },
+  {
+    "content": "metadata",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "metadata",
+    "resultAction": "export"
+  },
+  {
+    "content": "file",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "file",
+    "resultAction": "export"
+  },
+  {
+    "content": "file",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "file",
+    "resultAction": "export"
+  },
+  {
+    "content": "file",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "file",
+    "resultAction": "import"
+  },
+  {
+    "content": "file",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "file",
+    "resultAction": "import"
+  },
+  {
+    "content": "file",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "file",
+    "resultAction": "delete"
+  },
+  {
+    "content": "file",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "file",
+    "resultAction": "delete"
+  },
+  {
+    "content": "file",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "file",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "export"
+  },
+  {
+    "content": "fileRepository",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "export"
+  },
+  {
+    "content": "fileRepository",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "import"
+  },
+  {
+    "content": "fileRepository",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "import"
+  },
+  {
+    "content": "fileRepository",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "switch"
+  },
+  {
+    "content": "fileRepository",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "switch"
+  },
+  {
+    "content": "fileRepository",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "delete"
+  },
+  {
+    "content": "fileRepository",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "delete"
+  },
+  {
+    "content": "fileRepository",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "fileRepository",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "fileRepository",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "fileRepository",
+    "resultAction": "list"
+  },
+  {
+    "content": "fileRepository",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "fileRepository",
+    "resultAction": "list"
+  },
+  {
+    "content": "fileRepository",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "fileRepository",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "import"
+  },
+  {
+    "content": "repeatingFormsEvents",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "repeatingFormsEvents",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "instrument",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "instrument",
+    "resultAction": "import"
+  },
+  {
+    "content": "instrument",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "instrument",
+    "resultAction": "export"
+  },
+  {
+    "content": "event",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "export"
+  },
+  {
+    "content": "event",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "export"
+  },
+  {
+    "content": "event",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "import"
+  },
+  {
+    "content": "event",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "import"
+  },
+  {
+    "content": "event",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "switch"
+  },
+  {
+    "content": "event",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "switch"
+  },
+  {
+    "content": "event",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "delete"
+  },
+  {
+    "content": "event",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "delete"
+  },
+  {
+    "content": "event",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "event",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "event",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "event",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "event",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "list"
+  },
+  {
+    "content": "event",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "list"
+  },
+  {
+    "content": "event",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "event",
+    "resultAction": "export"
+  },
+  {
+    "content": "event",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "event",
+    "resultAction": "export"
+  },
+  {
+    "content": "event",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "event",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "arm",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "export"
+  },
+  {
+    "content": "arm",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "export"
+  },
+  {
+    "content": "arm",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "import"
+  },
+  {
+    "content": "arm",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "import"
+  },
+  {
+    "content": "arm",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "switch"
+  },
+  {
+    "content": "arm",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "switch"
+  },
+  {
+    "content": "arm",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "delete"
+  },
+  {
+    "content": "arm",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "delete"
+  },
+  {
+    "content": "arm",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "arm",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "arm",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "arm",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "arm",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "list"
+  },
+  {
+    "content": "arm",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "list"
+  },
+  {
+    "content": "arm",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "arm",
+    "resultAction": "export"
+  },
+  {
+    "content": "arm",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "arm",
+    "resultAction": "export"
+  },
+  {
+    "content": "arm",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "arm",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "user",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "export"
+  },
+  {
+    "content": "user",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "switch"
+  },
+  {
+    "content": "user",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "delete"
+  },
+  {
+    "content": "user",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "delete"
+  },
+  {
+    "content": "user",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "user",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "user",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "list"
+  },
+  {
+    "content": "user",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "user",
+    "resultAction": "export"
+  },
+  {
+    "content": "user",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "user",
+    "resultAction": "import"
+  },
+  {
+    "content": "user",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project_settings",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_settings",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "project_settings",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_settings",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "project_settings",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "report",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "report",
+    "resultAction": "import"
+  },
+  {
+    "content": "report",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "report",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "version",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "version",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "pdf",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "pdf",
+    "resultAction": "import"
+  },
+  {
+    "content": "pdf",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "pdf",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyLink",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "surveyLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyLink",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "surveyLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyQueueLink",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "surveyQueueLink",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "import"
+  },
+  {
+    "content": "surveyReturnCode",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "surveyReturnCode",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "participantList",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "participantList",
+    "resultAction": "import"
+  },
+  {
+    "content": "participantList",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "participantList",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "import"
+  },
+  {
+    "content": "exportFieldNames",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "exportFieldNames",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "formEventMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "formEventMapping",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "formEventMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "project",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "project",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "project",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "import"
+  },
+  {
+    "content": "generateNextRecordName",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "generateNextRecordName",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "project_xml",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "project_xml",
+    "resultAction": "import"
+  },
+  {
+    "content": "project_xml",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "project_xml",
+    "resultAction": "export"
+  },
+  {
+    "content": "dag",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "export"
+  },
+  {
+    "content": "dag",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "export"
+  },
+  {
+    "content": "dag",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "import"
+  },
+  {
+    "content": "dag",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "import"
+  },
+  {
+    "content": "dag",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "switch"
+  },
+  {
+    "content": "dag",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "switch"
+  },
+  {
+    "content": "dag",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "delete"
+  },
+  {
+    "content": "dag",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "delete"
+  },
+  {
+    "content": "dag",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "dag",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "dag",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "dag",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "dag",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "list"
+  },
+  {
+    "content": "dag",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "list"
+  },
+  {
+    "content": "dag",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "dag",
+    "resultAction": "export"
+  },
+  {
+    "content": "dag",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "dag",
+    "resultAction": "export"
+  },
+  {
+    "content": "dag",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "dag",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "userDagMapping",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "userDagMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userDagMapping",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "userDagMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "log",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "log",
+    "resultAction": "import"
+  },
+  {
+    "content": "log",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "log",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRole",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRole",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "switch"
+  },
+  {
+    "content": "userRole",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "delete"
+  },
+  {
+    "content": "userRole",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "delete"
+  },
+  {
+    "content": "userRole",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "createFolder"
+  },
+  {
+    "content": "userRole",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "userRole",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "list"
+  },
+  {
+    "content": "userRole",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "userRole",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRole",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "userRole",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRole",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "import"
+  },
+  {
+    "content": "userRoleMapping",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "userRoleMapping",
+    "resultAction": "export"
+  },
+  {
+    "content": "invalid",
+    "action": "export",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "export",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "import",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "import",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "switch",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "switch",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "delete",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "delete",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "createFolder",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "createFolder",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "rename",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "rename",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "list",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "list",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "invalid",
+    "hasData": "TRUE",
+    "resultContent": "",
+    "resultAction": ""
+  },
+  {
+    "content": "invalid",
+    "action": "invalid",
+    "hasData": "FALSE",
+    "resultContent": "",
+    "resultAction": ""
+  }
+]
