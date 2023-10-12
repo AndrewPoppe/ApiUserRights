@@ -19,5 +19,5 @@ No system or project configuration is required. Once installed and enabled in a 
 
 Version | Release Date | Description
 ----|----|----
-1.0.0| 2023-10-09 | Initial release
+1.0.0| 2023-10-12 | Initial release
 
