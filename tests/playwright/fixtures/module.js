@@ -288,6 +288,9 @@ export class Module {
 
     async enableModule(pid) {
         await this.page.goto(`${this.url}/ExternalModules/manager/project.php?pid=${pid}`, { waitUntil: 'domcontentloaded' });
+        if (await this.page.locator(`table#external-modules-enabled tr[data-module="${this.settings.module.name}"]`).isVisible()) {
+            return;
+        }
         await this.page.locator('button#external-modules-enable-modules-button').click();
         await this.page.locator(`tr[data-module="${this.settings.module.name}"] button.enable-button`).click();
         await this.page.locator(`table#external-modules-enabled tr[data-module="${this.settings.module.name}"]`).waitFor({ state: 'visible' });
@@ -295,6 +298,9 @@ export class Module {
 
     async disableModule(pid) {
         await this.page.goto(`${this.url}/ExternalModules/manager/project.php?pid=${pid}`, { waitUntil: 'domcontentloaded' });
+        if (!await this.page.locator(`table#external-modules-enabled tr[data-module="${this.settings.module.name}"]`).isVisible()) {
+            return;
+        }
         await this.page.locator(`tr[data-module="${this.settings.module.name}"] button.external-modules-disable-button`).click();
         await this.page.locator('div#external-modules-disable-confirm-modal button#external-modules-disable-button-confirmed').click();
         await this.page.reload({ waitUntil: 'domcontentloaded' });
@@ -449,23 +455,35 @@ export class Module {
         return await this.page.locator('input#apiTokenId').inputValue();
     }
 
-    async visitProjectStatusPage(pid) {
-        await this.page.goto(`${this.url}/ExternalModules/?prefix=${this.settings.module.name}&page=project-status&pid=${pid}`, { waitUntil: 'domcontentloaded' });
+    // API User Rights EM - Specific Functions
+
+    async visitApiUserRightsProjectPage(pid) {
+        const url = `${this.url}/ExternalModules/?prefix=api_user_rights&page=api_user_rights&pid=${pid}`;
+        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
     }
 
-    async visitRegisterPage(pid) {
-        await this.page.goto(`${this.url}/ExternalModules/?prefix=${this.settings.module.name}&page=src%2Fregister&pid=${pid}`, { waitUntil: 'domcontentloaded' });
+    async grantAllApiUserRights(pid, username) {
+        await this.visitApiUserRightsProjectPage(pid);
+        await this.page.locator(`td#aur_${username}`).click();
+        await this.page.locator('form#editorForm').waitFor({ state: 'visible' });
+        const checkboxes = this.page.locator('form#editorForm input[type="checkbox"]');
+        const checkboxes_count = await checkboxes.count();
+        for (let checkbox_index = 0; checkbox_index < checkboxes_count; checkbox_index++) {
+            await checkboxes.nth(checkbox_index).check();
+        }
+        await this.page.locator('button#saveRightsButton').click();
     }
 
-    async changeEmailForExistingParticipant(email) {
-        await this.visitSystemParticipantsPage();
-        await this.page.locator('tr', { hasText: email }).locator('a[title="Change Email Address"]').click();
-        await this.page.locator('div.swal2-popup input.swal2-input').fill('fakeemail_' + Math.random().toString(16).substring(2) + '@example.com');
-        await this.page.locator('div.swal2-popup button.swal2-confirm').click();
-    }
-
-    async visitSystemParticipantsPage() {
-        await this.page.goto(`${this.url}/ExternalModules/?prefix=${this.settings.module.name}&page=src%2Fcc_participants`, { waitUntil: 'domcontentloaded' });
+    async grantNoApiUserRights(pid, username) {
+        await this.visitApiUserRightsProjectPage(pid);
+        await this.page.locator(`td#aur_${username}`).click();
+        await this.page.locator('form#editorForm').waitFor({ state: 'visible' });
+        const checkboxes = this.page.locator('form#editorForm input[type="checkbox"]');
+        const checkboxes_count = await checkboxes.count();
+        for (let checkbox_index = 0; checkbox_index < checkboxes_count; checkbox_index++) {
+            await checkboxes.nth(checkbox_index).uncheck();
+        }
+        await this.page.locator('button#saveRightsButton').click();
     }
 
 }

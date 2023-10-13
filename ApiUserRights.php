@@ -474,14 +474,14 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         try {
             $user   = $this->framework->getUser();
             $rights = $user->getRights();
-            if ( $rights['user_rights'] != '1' ) {
+            if ( ($rights['user_rights'] ?? '') != '1' ) {
                 return null;
             }
             if ( $action === 'getApiUserRights' ) {
                 return $this->getAllUsers($project_id);
             } elseif ( $action === 'saveApiUserRights' ) {
-                $userToSet = $payload['user'];
-                $rights    = $payload['rights'];
+                $userToSet = $payload['user'] ?? '';
+                $rights    = $payload['rights'] ?? [];
                 $this->saveRights($userToSet, $rights, $project_id);
             }
         } catch ( \Throwable $e ) {
@@ -493,7 +493,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $user   = $this->framework->getUser();
         $rights = $user->getRights();
-        if ( $rights['user_rights'] != '1' ) {
+        if ( ($rights['user_rights'] ?? '') != '1' ) {
             return null;
         }
         return $link;
@@ -509,7 +509,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             return;
         }
         try {
-            $post = $this->framework->escape($_POST);
+            $post = $this->framework->escape($_POST) ?? [];
 
             // If content is not valid, let REDCap handle it
             $contentValid = $this->validateContent($post);
@@ -528,7 +528,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             $pid      = $user['project_id'];
 
             // Module is not enabled for this project, don't do anything
-            if ( !in_array($pid, $this->getProjectsWithModuleEnabledIncludingByDefault()) ) {
+            if ( !in_array($pid, $this->getProjectsWithModuleEnabledIncludingByDefault() ?? []) ) {
                 return;
             }
 
@@ -557,7 +557,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             // Check if the user has permission to use this method
             $methodAllowed = $this->isMethodAllowed($method, $username, $pid);
             if ( !$methodAllowed ) {
-                $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ]);
+                $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ?? '' ]);
                 http_response_code(403);
                 header('Content-Type: application/json');
                 echo json_encode([ 'error' => 'You do not have permissions to use this API method.' ]);
@@ -572,13 +572,14 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function determineApiMethod(array $data)
     {
-        $content   = strtolower($data['content']);
-        $action    = strtolower($data['action'] ?? '');
+        $content   = $data['content'] ?? '';
+        $action    = $data['action'] ?? '';
         $dataIsSet = isset($data['data']) ? true : '';
 
-        $result    = $this->getMethod($content, $action, $dataIsSet);
+        $result    = $this->getMethod($content, $action, $dataIsSet) ?? [];
         $methodArr = array_filter(self::$methods, function ($method) use ($result) {
-            return $method['content'] === $result["content"] && $method['action'] === $result["action"];
+            return ($method['content'] ?? '') === ($result["content"] ?? '')
+                && ($method['action'] ?? '') === ($result["action"] ?? '');
         });
         return reset($methodArr);
     }
@@ -621,7 +622,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         }
 
         // If invalid settings, return null
-        if ( in_array($content, [ 'file' ]) && !in_array($action, [ 'export', 'import', 'import_app', 'delete' ]) ) {
+        if ( in_array($content, [ 'file' ]) && in_array($action, [ 'export', 'import', 'import_app', 'delete' ]) === false ) {
             return null;
         }
 
@@ -652,7 +653,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     private function getApiUser(array $data)
     {
-        $token = $this->framework->sanitizeAPIToken($data['token']);
+        $token = $this->framework->sanitizeAPIToken($data['token'] ?? '');
         if ( empty($token) ) {
             return null;
         }
@@ -667,7 +668,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         if ( empty($allowedMethods) ) {
             return false;
         }
-        return $allowedMethods[$method['method']] === true;
+        return $allowedMethods[$method['method'] ?? ''] === true;
     }
 
     private function getAllowedMethods($username, $pid)
@@ -686,7 +687,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $userRights = [];
         foreach ( $users as $user ) {
             $username           = $user->getUsername();
-            $result             = $settings['allowed-api-methods-' . $username] ?? $this->getBlankApiRights();
+            $result             = $settings['allowed-api-methods-' . $username] ?? $this->getBlankApiRights() ?? [];
             $result['username'] = $username;
             $result['name']     = $this->getFullName($username);
             $userRights[]       = $result;
@@ -703,7 +704,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 return null;
             }
             $result = $q->fetch_assoc();
-            return $result['user_firstname'] . ' ' . $result['user_lastname'];
+            $fname  = $result['user_firstname'] ?? '';
+            $lname  = $result['user_lastname'] ?? '';
+            return $fname . ' ' . $lname;
         } catch ( \Throwable $e ) {
             $this->framework->log('Error getting full name', [ 'error' => $e->getMessage() ]);
             return null;
@@ -714,7 +717,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $blankRights = [];
         foreach ( ApiUserRights::$methods as $method ) {
-            $blankRights[$method['method']] = false;
+            $blankRights[$method['method'] ?? ''] = false;
         }
         return $blankRights;
     }
@@ -793,7 +796,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
         $pids = [];
         while ( $row = $possibleProjectsResults->fetch_assoc() ) {
-            $pid = $row['project_id'];
+            $pid = $row['project_id'] ?? '';
             if ( !in_array($pid, $disabledPids, true) ) {
                 $pids[] = $pid;
             }
@@ -803,6 +806,6 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     private function validateContent($data)
     {
-        return isset($data['content']) && in_array($data['content'], ApiUserRights::$contentUsed);
+        return isset($data['content']) && in_array($data['content'] ?? '', ApiUserRights::$contentUsed);
     }
 }
