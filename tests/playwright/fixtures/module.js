@@ -55,6 +55,17 @@ export class Module {
         await this.page.waitForTimeout(3000);
     }
 
+    async disableModuleSystemWide() {
+        await this.visitExternalModuleConfigurationPage();
+        const enabledModuleRow = this.page.locator(`table#external-modules-enabled tr[data-module="${this.settings.module.name}"]`);
+        if (!await enabledModuleRow.isVisible()) {
+            return;
+        }
+        await enabledModuleRow.locator('button.external-modules-disable-button').click();
+        await this.page.locator('div#external-modules-disable-confirm-modal button#external-modules-disable-button-confirmed').click();
+        await this.page.waitForTimeout(3000);
+    }
+
     async openModuleSystemConfiguration() {
         if (this.page.url() !== `${this.url}/ExternalModules/manager/control_center.php`) {
             await this.visitExternalModuleConfigurationPage();
