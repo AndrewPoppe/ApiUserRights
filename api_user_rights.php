@@ -9,6 +9,7 @@ $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
+<script src="https://kit.fontawesome.com/d4d763bcf0.js?v2" crossorigin="anonymous"></script>
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>
         API User Rights
@@ -20,14 +21,21 @@ $headerInfo = $module->getTableHeader();
         <tbody></tbody>
     </table>
 </div>
-<div class="modal" id="editor">
+<div class="modal" data-backdrop="static" data-keyboard="false" id="editor">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #e9e9e9;">
-                <h5 class="modal-title"></h5>
-                <div class="d-flex justify-content-end w-75">
-                    <input class="form-control form-control-sm search" type="search" placeholder="Filter methods"
-                        aria-label="Filter API Methods" id="aur-filter-methods">
+            <div class="modal-header" style="background-color: #aaa;">
+                <h5 class="modal-title nowrap"></h5>
+                <div class="d-flex justify-content-end w-100">
+                    <div class="input-group input-group-sm mb-1 w-50">
+                        <input class="form-control form-control-sm search" type="search" placeholder="Filter methods"
+                            aria-label="Filter API Methods" id="aur-filter-methods">
+                        <div class="input-group-append">
+                            <span class="input-group-text filter-icon">
+                                <i class="fa-light fa-filter"></i>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -58,6 +66,7 @@ $headerInfo = $module->getTableHeader();
                 </form>
             </div>
             <div class="modal-footer">
+                <span class="changeInfo"></span>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" id="saveRightsButton"
                     onclick="API_USER_RIGHTS.submitForm()">Save changes</button>
@@ -68,12 +77,16 @@ $headerInfo = $module->getTableHeader();
 <script>
 const API_USER_RIGHTS = <?= $module->framework->getJavascriptModuleObjectName() ?>;
 API_USER_RIGHTS.openRightsEditor = function(username) {
+    $("#aur-filter-methods").val('').trigger('keyup');
     const data = JSON.parse($('#aur_' + username).data('rights'));
     $('#editorForm').find('input[type="checkbox"]').each(function(i, el) {
-        $(el).prop('checked', data[$(el).attr('name')] ? true : false);
+        const checked = data[$(el).attr('name')] ? true : false;
+        $(el).prop('checked', checked);
+        $(el).data('origChecked', checked);
     });
     $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
     $('#editor form#editorForm').data('user', username);
+    $('#saveRightsButton').attr('disabled', true);
     $('#editor').modal('show');
 }
 
@@ -138,17 +151,46 @@ $(document).ready(function() {
         ],
         scrollX: true,
     });
+    $('input.form-check-input').on('change', function() {
+        const changed = $('input.form-check-input').filter(function() {
+            return this.checked != $(this).data('origChecked');
+        });
+        if (changed.length == 0) {
+            $('.changeInfo').text('');
+            $('#saveRightsButton').attr('disabled', true);
+        } else {
+            $('#saveRightsButton').attr('disabled', false);
+            const n = changed.length;
+            $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
+        }
+    });
     $("#aur-filter-methods").on("keyup", function() {
+        const input = this;
         const value = $(this).val().toLowerCase().trim();
         if (value == '') {
+            $('.filter-icon').removeClass('active');
+            $('.filter-icon i').removeClass('fa-filter-circle-xmark');
+            $('.filter-icon i').addClass('fa-filter');
             $('#editorForm label').each((i, el) => {
                 $(el).html($(el).text());
             });
             $('#editorForm .card-header').each((i, el) => {
                 $(el).html($(el).text());
             });
+            $("#editorForm .form-check").filter(function() {
+                $(this).toggle(true);
+            });
+            $('#editorForm .card').each(function(i, el) {
+                $(el).toggle(true);
+            });
             return;
         }
+        $('.filter-icon').addClass('active');
+        $('.filter-icon i').addClass('fa-filter-circle-xmark');
+        $('.filter-icon i').removeClass('fa-filter');
+        $('.filter-icon').one('click', function() {
+            $(input).val('').trigger('keyup');
+        });
         $("#editorForm .form-check").filter(function() {
             const toToggleSelf = $(this).text().toLowerCase().indexOf(value) > -1;
             const toToggleHeader = $(this).closest('.card').find('.card-header').text()
@@ -173,6 +215,20 @@ $(document).ready(function() {
 <style>
 mark {
     padding: 0;
+}
+
+.changeInfo {
+    font-size: small;
+    color: tomato;
+    margin-right: 10px;
+}
+
+.filter-icon.active {
+    cursor: pointer;
+}
+
+.filter-icon.active i {
+    color: red;
 }
 
 div.table-container {
