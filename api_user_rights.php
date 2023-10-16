@@ -43,24 +43,26 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-body">
                 <form id="editorForm">
-                    <div class="card-columns">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
-                        <div class="card mb-3">
-                            <h5 class="card-header" style="background-color:#00000017;">
-                                <?= $section ?>
-                            </h5>
-                            <div class="card-body">
-                                <?php foreach ( $methods as $method ) { ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1"
-                                        id="<?= $method["method"] ?>" name="<?= $method["method"] ?>">
-                                    <label class="form-check-label mb-2" for="<?= $method["method"] ?>">
-                                        <?= $method["method"] ?>
-                                    </label>
+                            <div class="col card-container">
+                                <div class="card mb-3">
+                                    <h5 class="card-header" style="background-color:#00000017;">
+                                        <?= $section ?>
+                                    </h5>
+                                    <div class="card-body">
+                                        <?php foreach ( $methods as $method ) { ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1"
+                                                    id="<?= $method["method"] ?>" name="<?= $method["method"] ?>">
+                                                <label class="form-check-label mb-2" for="<?= $method["method"] ?>">
+                                                    <?= $method["method"] ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                                <?php } ?>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
                 </form>
@@ -75,232 +77,214 @@ $headerInfo = $module->getTableHeader();
     </div>
 </div>
 <script>
-const API_USER_RIGHTS = <?= $module->framework->getJavascriptModuleObjectName() ?>;
-API_USER_RIGHTS.openRightsEditor = function(username) {
-    $("#aur-filter-methods").val('').trigger('keyup');
-    const data = JSON.parse($('#aur_' + username).data('rights'));
-    $('#editorForm').find('input[type="checkbox"]').each(function(i, el) {
-        const checked = data[$(el).attr('name')] ? true : false;
-        $(el).prop('checked', checked);
-        $(el).data('origChecked', checked);
-    });
-    $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
-    $('#editor form#editorForm').data('user', username);
-    $('#saveRightsButton').attr('disabled', true);
-    $('#editor').modal('show');
-}
+    const API_USER_RIGHTS = <?= $module->framework->getJavascriptModuleObjectName() ?>;
+    API_USER_RIGHTS.openRightsEditor = function (username) {
+        $("#aur-filter-methods").val('').trigger('keyup');
+        const data = JSON.parse($('#aur_' + username).data('rights'));
+        $('#editorForm').find('input[type="checkbox"]').each(function (i, el) {
+            const checked = data[$(el).attr('name')] ? true : false;
+            $(el).prop('checked', checked);
+            $(el).data('origChecked', checked);
+        });
+        $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
+        $('#editor form#editorForm').data('user', username);
+        $('#saveRightsButton').attr('disabled', true);
+        $('#editor').modal('show');
+    }
 
-API_USER_RIGHTS.submitForm = function() {
-    const formData = {};
-    $('form#editorForm input:checkbox').each((i, el) => {
-        formData[el.name] = el.checked;
-    });
-    API_USER_RIGHTS.ajax('saveApiUserRights', {
+    API_USER_RIGHTS.submitForm = function () {
+        const formData = {};
+        $('form#editorForm input:checkbox').each((i, el) => {
+            formData[el.name] = el.checked;
+        });
+        API_USER_RIGHTS.ajax('saveApiUserRights', {
             user: $('form#editorForm').data('user'),
             rights: formData
         })
-        .then(response => {
-            $('#editor').modal('hide');
-            Swal.fire({
-                title: 'Successfully updated API user rights',
-                icon: 'success'
+            .then(response => {
+                $('#editor').modal('hide');
+                Swal.fire({
+                    title: 'Successfully updated API user rights',
+                    icon: 'success'
+                });
+                $('#api_user_rights').DataTable().ajax.reload();
+            })
+            .catch(error => {
+                console.error(error);
             });
-            $('#api_user_rights').DataTable().ajax.reload();
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
+    }
 
-$(document).ready(function() {
-    let table = $('#api_user_rights').DataTable({
-        processing: true,
-        deferRender: true,
-        ajax: function(data, callback, settings) {
-            API_USER_RIGHTS.ajax('getApiUserRights', {})
-                .then(response => {
-                    console.log(response)
-                    callback({
-                        data: response
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                })
-        },
-        columns: [{
-                data: function(row, type, val, meta) {
+    $(document).ready(function () {
+        let table = $('#api_user_rights').DataTable({
+            processing: true,
+            deferRender: true,
+            ajax: function (data, callback, settings) {
+                API_USER_RIGHTS.ajax('getApiUserRights', {})
+                    .then(response => {
+                        console.log(response)
+                        callback({
+                            data: response
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            },
+            columns: [{
+                data: function (row, type, val, meta) {
                     if (type === 'display') {
                         return '<a href="javascript:void(0)" onclick="API_USER_RIGHTS.openRightsEditor(\'' +
                             row["username"] +
                             '\');"><span style="white-space: nowrap;"><strong>' + row[
-                                "username"] + '</strong> (' + row['name'] + ')</span></a>';
+                            "username"] + '</strong> (' + row['name'] + ')</span></a>';
                     }
                     return row["username"];
                 },
-                createdCell: function(cell, cellData, rowData, rowIndex, colIndex) {
+                createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
                     $(cell).data('rights', JSON.stringify(rowData));
                     $(cell).attr('id', 'aur_' + rowData['username']);
                 }
             },
-            <?php
+                <?php
                 foreach ( $headerInfo["methodOrder"] as $method ) {
                     echo "{ data: function (row, type, val, meta) { return row['" . $method . "'] ? '<i class=\"fas fa-check fa-xl text-success\"></i>' : '<i class=\"fas fa-xmark fa-sm text-danger\"></i>';}, className: 'dt-center' },";
                 }
                 ?>
-        ],
-        scrollX: true,
-    });
-    $('input.form-check-input').on('change', function() {
-        const changed = $('input.form-check-input').filter(function() {
-            return this.checked != $(this).data('origChecked');
+            ],
+            scrollX: true,
         });
-        if (changed.length == 0) {
-            $('.changeInfo').text('');
-            $('#saveRightsButton').attr('disabled', true);
-        } else {
-            $('#saveRightsButton').attr('disabled', false);
-            const n = changed.length;
-            $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
-        }
-    });
-    $("#aur-filter-methods").on("keyup", function() {
-        const input = this;
-        const value = $(this).val().toLowerCase().trim();
-        if (value == '') {
-            $('.filter-icon').removeClass('active');
-            $('.filter-icon i').removeClass('fa-filter-circle-xmark');
-            $('.filter-icon i').addClass('fa-filter');
+        $('input.form-check-input').on('change', function () {
+            const changed = $('input.form-check-input').filter(function () {
+                return this.checked != $(this).data('origChecked');
+            });
+            if (changed.length == 0) {
+                $('.changeInfo').text('');
+                $('#saveRightsButton').attr('disabled', true);
+            } else {
+                $('#saveRightsButton').attr('disabled', false);
+                const n = changed.length;
+                $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
+            }
+        });
+        $("#aur-filter-methods").on("keyup", function () {
+            const input = this;
+            const value = $(this).val().toLowerCase().trim();
+            if (value == '') {
+                $('.filter-icon').removeClass('active');
+                $('.filter-icon i').removeClass('fa-filter-circle-xmark');
+                $('.filter-icon i').addClass('fa-filter');
+                $('#editorForm label').each((i, el) => {
+                    $(el).html($(el).text());
+                });
+                $('#editorForm .card-header').each((i, el) => {
+                    $(el).html($(el).text());
+                });
+                $("#editorForm .form-check").filter(function () {
+                    $(this).toggle(true);
+                });
+                $('#editorForm .card-container').each(function (i, el) {
+                    $(el).toggle(true);
+                });
+                return;
+            }
+            $('.filter-icon').addClass('active');
+            $('.filter-icon i').addClass('fa-filter-circle-xmark');
+            $('.filter-icon i').removeClass('fa-filter');
+            $('.filter-icon').one('click', function () {
+                $(input).val('').trigger('keyup');
+            });
+            $("#editorForm .form-check").filter(function () {
+                const toToggleSelf = $(this).text().toLowerCase().indexOf(value) > -1;
+                const toToggleHeader = $(this).closest('.card').find('.card-header').text()
+                    .toLowerCase().indexOf(value) > -1;
+                const toToggle = toToggleSelf || toToggleHeader;
+                $(this).toggleClass('shown', toToggle);
+                $(this).toggle(toToggle);
+            });
+            $('#editorForm .card-container').each(function (i, el) {
+                $(el).toggle($(el).find('.form-check.shown').length > 0);
+            });
+            const regex = new RegExp(`(${value})`, 'gi');
             $('#editorForm label').each((i, el) => {
-                $(el).html($(el).text());
+                $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
             });
             $('#editorForm .card-header').each((i, el) => {
-                $(el).html($(el).text());
+                $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
             });
-            $("#editorForm .form-check").filter(function() {
-                $(this).toggle(true);
-            });
-            $('#editorForm .card').each(function(i, el) {
-                $(el).toggle(true);
-            });
-            return;
-        }
-        $('.filter-icon').addClass('active');
-        $('.filter-icon i').addClass('fa-filter-circle-xmark');
-        $('.filter-icon i').removeClass('fa-filter');
-        $('.filter-icon').one('click', function() {
-            $(input).val('').trigger('keyup');
-        });
-        $("#editorForm .form-check").filter(function() {
-            const toToggleSelf = $(this).text().toLowerCase().indexOf(value) > -1;
-            const toToggleHeader = $(this).closest('.card').find('.card-header').text()
-                .toLowerCase().indexOf(value) > -1;
-            const toToggle = toToggleSelf || toToggleHeader;
-            $(this).toggleClass('shown', toToggle);
-            $(this).toggle(toToggle);
-        });
-        $('#editorForm .card').each(function(i, el) {
-            $(el).toggle($(el).find('.form-check.shown').length > 0);
-        });
-        const regex = new RegExp(`(${value})`, 'gi');
-        $('#editorForm label').each((i, el) => {
-            $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
-        });
-        $('#editorForm .card-header').each((i, el) => {
-            $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
         });
     });
-});
 </script>
 <style>
-mark {
-    padding: 0;
-}
-
-.changeInfo {
-    font-size: small;
-    color: tomato;
-    margin-right: 10px;
-}
-
-.filter-icon.active {
-    cursor: pointer;
-}
-
-.filter-icon.active i {
-    color: red;
-}
-
-div.table-container {
-    width: 75vw !important;
-    display: inline-block;
-    margin-right: 20px;
-}
-
-table.scroll-border tbody td:first-child {
-    border-left: none !important;
-}
-
-table.scroll-border tbody td:nth-child(2) {
-    border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
-}
-
-table.scroll-border tbody td {
-    border-left: 1px solid #dee2e6;
-}
-
-table.scroll-border tbody tr:first-child td {
-    border-top: none !important;
-}
-
-table.scroll-border thead tr th {
-    border-top: none !important;
-}
-
-table.scroll-border thead th:first-child {
-    border-left: none !important;
-}
-
-table.scroll-border thead tr:first-child th:nth-child(2),
-table.scroll-border thead tr:nth-child(2) th:first-child {
-    border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
-}
-
-table.scroll-border thead th {
-    border-left: 1px solid #dee2e6;
-}
-
-table.scroll-border thead th.even {
-    background-color: #eeeeee;
-}
-
-table.scroll-border thead th.odd {
-    background-color: #fcfef5;
-}
-
-div.dataTables_scroll {
-    border: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-div.dataTables_scrollBody {
-    border: none !important;
-}
-
-@media (min-width: 768px) {
-    .card-columns {
-        column-count: 1;
+    mark {
+        padding: 0;
     }
-}
 
-@media (min-width: 992px) {
-    .card-columns {
-        column-count: 2;
+    .changeInfo {
+        font-size: small;
+        color: tomato;
+        margin-right: 10px;
     }
-}
 
-@media (min-width: 1200px) {
-    .card-columns {
-        column-count: 3;
+    .filter-icon.active {
+        cursor: pointer;
     }
-}
+
+    .filter-icon.active i {
+        color: red;
+    }
+
+    div.table-container {
+        width: 75vw !important;
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    table.scroll-border tbody td:first-child {
+        border-left: none !important;
+    }
+
+    table.scroll-border tbody td:nth-child(2) {
+        border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
+    }
+
+    table.scroll-border tbody td {
+        border-left: 1px solid #dee2e6;
+    }
+
+    table.scroll-border tbody tr:first-child td {
+        border-top: none !important;
+    }
+
+    table.scroll-border thead tr th {
+        border-top: none !important;
+    }
+
+    table.scroll-border thead th:first-child {
+        border-left: none !important;
+    }
+
+    table.scroll-border thead tr:first-child th:nth-child(2),
+    table.scroll-border thead tr:nth-child(2) th:first-child {
+        border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
+    }
+
+    table.scroll-border thead th {
+        border-left: 1px solid #dee2e6;
+    }
+
+    table.scroll-border thead th.even {
+        background-color: #eeeeee;
+    }
+
+    table.scroll-border thead th.odd {
+        background-color: #fcfef5;
+    }
+
+    div.dataTables_scroll {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    div.dataTables_scrollBody {
+        border: none !important;
+    }
 </style>
