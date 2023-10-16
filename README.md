@@ -20,9 +20,9 @@ No system or project configuration is required. Once installed and enabled in a 
 
 ## Changelog
 
-| Version | Release Date | Description                                |
-| ------- | ------------ | ------------------------------------------ |
-| 1.0.3   | 2023-10-17   | Aesthetic changes to the editor            |
-| 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor |
-| 1.0.0   | 2023-10-12   | Initial release                            |
+| Version | Release Date | Description                                 |
+| ------- | ------------ | ------------------------------------------- |
+| 1.0.3   | 2023-10-17   | Bug fix and aesthetic changes to the editor |
+| 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor  |
+| 1.0.0   | 2023-10-12   | Initial release                             |
 
