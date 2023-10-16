@@ -19,5 +19,6 @@ No system or project configuration is required. Once installed and enabled in a 
 
 Version | Release Date | Description
 ----|----|----
+1.0.2| 2023-10-16 | Added filter bar to API User Rights editor
 1.0.0| 2023-10-12 | Initial release
 
