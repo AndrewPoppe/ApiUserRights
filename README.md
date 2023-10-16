@@ -6,8 +6,11 @@ This external module allows users with User Rights permission in a project to co
 ![Example1](api_user_rights_project_page.png)
 *Example of the API User Rights link on the project page*
 
-![Example2](api_user_rights_editor.png)
+![Example2](api_user_rights_selecting_methods.gif)
 *API User Rights editor*
+
+![Example3](api_user_rights_filtering_methods.gif)
+*Filtering methods in the editor*
 
 ## Installation
 Install through the REDCap Repo
@@ -17,8 +20,9 @@ No system or project configuration is required. Once installed and enabled in a 
 
 ## Changelog
 
-Version | Release Date | Description
-----|----|----
-1.0.2| 2023-10-16 | Added filter bar to API User Rights editor
-1.0.0| 2023-10-12 | Initial release
+| Version | Release Date | Description                                |
+| ------- | ------------ | ------------------------------------------ |
+| 1.0.3   | 2023-10-17   | Aesthetic changes to the editor            |
+| 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor |
+| 1.0.0   | 2023-10-12   | Initial release                            |
 

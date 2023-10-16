@@ -24,7 +24,7 @@ $headerInfo = $module->getTableHeader();
     tabindex="-1" id="editor">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #aaa;">
+            <div class="modal-header bg-light">
                 <h5 class="modal-title nowrap"></h5>
                 <div class="d-flex justify-content-end w-100">
                     <div class="input-group input-group-sm mb-1 w-50">
@@ -49,7 +49,7 @@ $headerInfo = $module->getTableHeader();
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
                             <div class="col card-container px-2">
                                 <div class="card mb-3">
-                                    <h5 class="card-header" style="background-color:#00000017;">
+                                    <h5 class="card-header bg-light">
                                         <?= $section ?>
                                     </h5>
                                     <div class="card-body">
