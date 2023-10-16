@@ -9,7 +9,6 @@ $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
-<script src="https://kit.fontawesome.com/d4d763bcf0.js?v2" crossorigin="anonymous"></script>
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>
         API User Rights
@@ -28,13 +27,14 @@ $headerInfo = $module->getTableHeader();
                 <h5 class="modal-title nowrap"></h5>
                 <div class="d-flex justify-content-end w-100">
                     <div class="input-group input-group-sm mb-1 w-50">
-                        <input class="form-control form-control-sm search" type="search" placeholder="Filter methods"
+                        <input class="form-control form-control-sm search" type="text" placeholder="Filter methods"
                             aria-label="Filter API Methods" id="aur-filter-methods">
-                        <div class="input-group-append">
-                            <span class="input-group-text filter-icon">
-                                <i class="fa-light fa-filter"></i>
-                            </span>
-                        </div>
+                        <span class="input-group-text filter-icon fs12" id="filter-icon">
+                            <i class="fa-solid fa-filter fa-fw"></i>
+                        </span>
+                        <button class="btn btn-sm btn-secondary btn-filter-clear fs12 text-danger" type="button"
+                            title="Clear filter" id="filter-clear-button" style="display: none;">
+                            <i class="fa-solid fa-filter-circle-xmark fa-fw"></i>
                     </div>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -43,9 +43,9 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-body">
                 <form id="editorForm">
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
-                            <div class="col card-container">
+                            <div class="col card-container px-2">
                                 <div class="card mb-3">
                                     <h5 class="card-header" style="background-color:#00000017;">
                                         <?= $section ?>
@@ -170,9 +170,8 @@ $headerInfo = $module->getTableHeader();
             const input = this;
             const value = $(this).val().toLowerCase().trim();
             if (value == '') {
-                $('.filter-icon').removeClass('active');
-                $('.filter-icon i').removeClass('fa-filter-circle-xmark');
-                $('.filter-icon i').addClass('fa-filter');
+                $('#filter-icon').show();
+                $('#filter-clear-button').hide();
                 $('#editorForm label').each((i, el) => {
                     $(el).html($(el).text());
                 });
@@ -187,12 +186,8 @@ $headerInfo = $module->getTableHeader();
                 });
                 return;
             }
-            $('.filter-icon').addClass('active');
-            $('.filter-icon i').addClass('fa-filter-circle-xmark');
-            $('.filter-icon i').removeClass('fa-filter');
-            $('.filter-icon').one('click', function () {
-                $(input).val('').trigger('keyup');
-            });
+            $('#filter-icon').hide();
+            $('#filter-clear-button').show();
             $("#editorForm .form-check").filter(function () {
                 const toToggleSelf = $(this).text().toLowerCase().indexOf(value) > -1;
                 const toToggleHeader = $(this).closest('.card').find('.card-header').text()
@@ -217,6 +212,8 @@ $headerInfo = $module->getTableHeader();
 <style>
     mark {
         padding: 0;
+        color: white;
+        background-color: #007BFF;
     }
 
     .changeInfo {
@@ -225,12 +222,18 @@ $headerInfo = $module->getTableHeader();
         margin-right: 10px;
     }
 
-    .filter-icon.active {
-        cursor: pointer;
+    .btn-filter-clear {
+        background-color: #e9ecef;
+        border: 1px solid #ced4da;
+        padding: .25rem .5rem;
     }
 
-    .filter-icon.active i {
-        color: red;
+    .btn-filter-clear:hover {
+        color: white !important;
+    }
+
+    .filter-icon {
+        padding: .25rem .5rem;
     }
 
     div.table-container {
