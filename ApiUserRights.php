@@ -215,13 +215,13 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "action"  => "import",
             "data"    => true
         ],
-        [
-            "area"    => "Projects",
-            "method"  => "Create Project",
-            "content" => "project",
-            "action"  => "import",
-            "data"    => true
-        ],
+        // [
+        //     "area"    => "Projects",
+        //     "method"  => "Create Project",
+        //     "content" => "project",
+        //     "action"  => "import",
+        //     "data"    => true
+        // ],
         [
             "area"    => "Projects",
             "method"  => "Import Project Info",
