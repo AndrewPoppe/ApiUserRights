@@ -20,7 +20,8 @@ $headerInfo = $module->getTableHeader();
         <tbody></tbody>
     </table>
 </div>
-<div class="modal" data-backdrop="static" data-keyboard="false" id="editor">
+<div class="modal" data-backdrop="static" data-keyboard="false" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" id="editor">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #aaa;">
@@ -38,7 +39,7 @@ $headerInfo = $module->getTableHeader();
                             <i class="fa-solid fa-filter-circle-xmark fa-fw"></i>
                     </div>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -69,7 +70,7 @@ $headerInfo = $module->getTableHeader();
                 </form>
             </div>
             <div class="modal-footer">
-                <span class="changeInfo"></span>
+                <span id="changeInfo" class="changeInfo"></span>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" id="saveRightsButton"
                     onclick="API_USER_RIGHTS.submitForm()">Save changes</button>
@@ -86,6 +87,7 @@ $headerInfo = $module->getTableHeader();
             const checked = data[$(el).attr('name')] ? true : false;
             $(el).prop('checked', checked);
             $(el).data('origChecked', checked);
+            $(el).data('origText', $(el).siblings('label').eq(0).text());
         });
         $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
         $('#editor form#editorForm').data('user', username);
@@ -122,15 +124,18 @@ $headerInfo = $module->getTableHeader();
 
     API_USER_RIGHTS.updateChangeText = function () {
         const changed = $('input.form-check-input').filter(function () {
-            return this.checked != $(this).data('origChecked');
+            const thisChanged = this.checked != $(this).data('origChecked');
+            const label = $(this).siblings('label').eq(0);
+            label.toggleClass('text-danger', thisChanged);
+            return thisChanged;
         });
         if (changed.length == 0) {
-            $('.changeInfo').text('');
+            $('#changeInfo').text('');
             $('#saveRightsButton').attr('disabled', true);
         } else {
             $('#saveRightsButton').attr('disabled', false);
             const n = changed.length;
-            $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
+            $('#changeInfo').text('* ' + n + ' change' + (n == 1 ? '' : 's') + ' pending');
         }
     }
 
@@ -224,10 +229,10 @@ $headerInfo = $module->getTableHeader();
         background-color: #007BFF;
     }
 
-    .changeInfo {
+    #changeInfo {
         font-size: small;
-        color: tomato;
         margin-right: 10px;
+        color: var(--bs-danger, var(--danger));
     }
 
     .btn-filter-clear {
