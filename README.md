@@ -3,13 +3,13 @@
 ## Description
 This external module allows users with User Rights permission in a project to control access to individual API methods. For example, you can allow a user to access the `Export Reports` method, but not the `Import Records` endpoint.
 
-![Example1](api_user_rights_project_page.png)
+![Example1](images/api_user_rights_project_page.png)
 *Example of the API User Rights link on the project page*
 
-![Example2](api_user_rights_selecting_methods.gif)
+![Example2](images/api_user_rights_selecting_methods.gif)
 *API User Rights editor*
 
-![Example3](api_user_rights_filtering_methods.gif)
+![Example3](images/api_user_rights_filtering_methods.gif)
 *Filtering methods in the editor*
 
 ## Installation
