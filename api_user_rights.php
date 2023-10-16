@@ -33,7 +33,8 @@ $headerInfo = $module->getTableHeader();
                             <i class="fa-solid fa-filter fa-fw"></i>
                         </span>
                         <button class="btn btn-sm btn-secondary btn-filter-clear fs12 text-danger" type="button"
-                            title="Clear filter" id="filter-clear-button" style="display: none;">
+                            title="Clear filter" id="filter-clear-button" style="display: none;"
+                            onclick="API_USER_RIGHTS.clearFilter();">
                             <i class="fa-solid fa-filter-circle-xmark fa-fw"></i>
                     </div>
                 </div>
@@ -112,6 +113,10 @@ $headerInfo = $module->getTableHeader();
             .catch(error => {
                 console.error(error);
             });
+    }
+
+    API_USER_RIGHTS.clearFilter = function () {
+        $('#aur-filter-methods').val('').trigger('keyup');
     }
 
     $(document).ready(function () {
