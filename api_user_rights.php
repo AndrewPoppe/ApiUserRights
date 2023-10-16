@@ -90,6 +90,7 @@ $headerInfo = $module->getTableHeader();
         $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
         $('#editor form#editorForm').data('user', username);
         $('#saveRightsButton').attr('disabled', true);
+        API_USER_RIGHTS.updateChangeText();
         $('#editor').modal('show');
     }
 
@@ -117,6 +118,20 @@ $headerInfo = $module->getTableHeader();
 
     API_USER_RIGHTS.clearFilter = function () {
         $('#aur-filter-methods').val('').trigger('keyup');
+    }
+
+    API_USER_RIGHTS.updateChangeText = function () {
+        const changed = $('input.form-check-input').filter(function () {
+            return this.checked != $(this).data('origChecked');
+        });
+        if (changed.length == 0) {
+            $('.changeInfo').text('');
+            $('#saveRightsButton').attr('disabled', true);
+        } else {
+            $('#saveRightsButton').attr('disabled', false);
+            const n = changed.length;
+            $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
+        }
     }
 
     $(document).ready(function () {
@@ -158,19 +173,7 @@ $headerInfo = $module->getTableHeader();
             ],
             scrollX: true,
         });
-        $('input.form-check-input').on('change', function () {
-            const changed = $('input.form-check-input').filter(function () {
-                return this.checked != $(this).data('origChecked');
-            });
-            if (changed.length == 0) {
-                $('.changeInfo').text('');
-                $('#saveRightsButton').attr('disabled', true);
-            } else {
-                $('#saveRightsButton').attr('disabled', false);
-                const n = changed.length;
-                $('.changeInfo').text(n + ' change' + (n == 1 ? '' : 's') + ' pending');
-            }
-        });
+        $('input.form-check-input').on('change', API_USER_RIGHTS.updateChangeText);
         $("#aur-filter-methods").on("keyup", function () {
             const input = this;
             const value = $(this).val().toLowerCase().trim();
