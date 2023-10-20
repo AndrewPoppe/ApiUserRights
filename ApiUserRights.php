@@ -502,6 +502,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     public function redcap_every_page_before_render($project_id = null) : void
     {
         // Only run on the pages we're interested in
+        if (!defined(PAGE) || !isset($_SERVER) {
+            return;
+        }
         if (
             ($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' ||
             (PAGE ?? '') !== 'api/index.php'
