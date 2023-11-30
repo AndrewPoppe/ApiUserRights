@@ -22,12 +22,12 @@ $headerInfo = $module->getTableHeader();
 </div>
 <div class="modal" data-backdrop="static" data-keyboard="false" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" id="editor">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h5 class="modal-title nowrap"></h5>
                 <div class="d-flex justify-content-end w-100">
-                    <div class="input-group input-group-sm mb-1 w-50">
+                    <div class="input-group input-group-sm mb-1 w-auto">
                         <input class="form-control form-control-sm search" type="text" placeholder="Filter methods"
                             aria-label="Filter API Methods" id="aur-filter-methods">
                         <span class="input-group-text filter-icon fs12" id="filter-icon">
@@ -45,7 +45,7 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-body">
                 <form id="editorForm">
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+                    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
                             <div class="col card-container px-2">
                                 <div class="card mb-3">
@@ -250,9 +250,9 @@ $headerInfo = $module->getTableHeader();
     }
 
     div.table-container {
-        width: 75vw !important;
+        width: 100% !important;
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 5px;
     }
 
     table.scroll-border tbody td:first-child {
@@ -306,5 +306,11 @@ $headerInfo = $module->getTableHeader();
 
     div.dataTables_scrollBody {
         border: none !important;
+    }
+
+    div#api_user_rights_filter {
+        position: fixed;
+        right: 0;
+        margin-right: 5px;
     }
 </style>
