@@ -252,7 +252,7 @@ $headerInfo = $module->getTableHeader();
     div.table-container {
         width: 100% !important;
         display: inline-block;
-        margin-right: 5px;
+        padding-right: 5px;
     }
 
     table.scroll-border tbody td:first-child {
@@ -308,9 +308,9 @@ $headerInfo = $module->getTableHeader();
         border: none !important;
     }
 
-    div#api_user_rights_filter {
-        position: fixed;
-        right: 0;
-        margin-right: 5px;
+    @media screen and (min-width: 767px) {
+        div#center {
+            width: calc(100% - 305px);
+        }
     }
 </style>
