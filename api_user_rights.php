@@ -149,16 +149,17 @@ $headerInfo = $module->getTableHeader();
             ajax: function (data, callback, settings) {
                 API_USER_RIGHTS.ajax('getApiUserRights', {})
                     .then(response => {
-                        console.log(response)
+                        API_USER_RIGHTS.methodOrder = response.methodOrder;
                         callback({
-                            data: response
+                            data: response.users
                         });
                     })
                     .catch(error => {
                         console.error(error);
                     })
             },
-            columns: [{
+            columnDefs: [{
+                targets: 0,
                 data: function (row, type, val, meta) {
                     if (type === 'display') {
                         return '<a href="javascript:void(0)" onclick="API_USER_RIGHTS.openRightsEditor(\'' +
@@ -173,18 +174,44 @@ $headerInfo = $module->getTableHeader();
                     $(cell).attr('id', 'aur_' + rowData['username']);
                 }
             },
-                <?php
-                foreach ( $headerInfo["methodOrder"] as $method ) {
-                    echo "{ data: function (row, type, val, meta) { return row['" . $method . "'] ? '<i class=\"fas fa-check fa-xl text-success\"></i>' : '<i class=\"fas fa-xmark fa-sm text-danger\"></i>';}, className: 'dt-center' },";
+            {
+                targets: '_all',
+                className: 'dt-center',
+                data: function (row, type, val, meta) {
+                    const method = API_USER_RIGHTS.methodOrder[meta.col - 1];
+                    if (type === 'display') {
+                        return row[method] ? '<i class="fas fa-check fa-xl text-success"></i>' :
+                            '<i class="fas fa-xmark fa-sm text-danger"></i>';
+                    }
+                    return row[method];
+                },
+                createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
+                    $(cell).attr('data-value', cellData ? 1 : 0);
                 }
-                ?>
+            }
             ],
             scrollX: true,
-            scrollY: true,
             buttons: [
-                'csv'
+                {
+                    extend: 'csv',
+                    text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
+                    className: 'btn btn-sm btn-success mr-1',
+                    exportOptions: {
+                        format: {
+                            body: function (data, row, column, node) {
+                                if (column == 0) {
+                                    return $(node).text();
+                                }
+                                return $(node).data('value');
+                            }
+                        }
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    },
+                }
             ],
-            dom: 'Bt',
+            dom: 'Blfrtip',
         });
         $('input.form-check-input').on('change', API_USER_RIGHTS.updateChangeText);
         $("#aur-filter-methods").on("keyup", function () {

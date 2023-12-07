@@ -493,7 +493,12 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 return null;
             }
             if ( $action === 'getApiUserRights' ) {
-                return $this->getAllUsers($project_id);
+                $headerInfo = $this->getTableHeader();
+                $users      = $this->getAllUsers($project_id);
+                return [
+                    'methodOrder' => $headerInfo['methodOrder'],
+                    'users'       => $users
+                ];
             } elseif ( $action === 'saveApiUserRights' ) {
                 $userToSet = $payload['user'] ?? '';
                 $rights    = $payload['rights'] ?? [];
