@@ -9,6 +9,11 @@ $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
 <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.css" rel="stylesheet">
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
 <div class="projhdr">
@@ -17,6 +22,7 @@ $headerInfo = $module->getTableHeader();
     </span>
 </div>
 <div class="table-container">
+    <input type="file" accept="text/csv" class="form-control-file" id="importUsersFile" aria-hidden hidden>
     <table id="api_user_rights" class="table scroll-border">
         <?= $headerInfo["header"] ?>
         <tbody></tbody>
@@ -197,11 +203,137 @@ $headerInfo = $module->getTableHeader();
             header: header,
             rows: data
         };
-        API_USER_RIGHTS.saveCsv(csvData, 'test.csv');
+        const filename = 'API_User_Rights_PID' + pid + '_' + new Date().toISOString().slice(0, 10) + '.csv';
+        API_USER_RIGHTS.saveCsv(csvData, filename);
     }
 
+
+    API_USER_RIGHTS.importCsv = function () {
+        $('#importUsersFile').click();
+    }
+
+    API_USER_RIGHTS.handleImportError = function (errorData) {
+        let body = errorData.errors.join('<br>') + "<div class='container'>";
+        if (errorData.badUsers.length) {
+            body +=
+                "<div class='row justify-content-center m-2'>" +
+                `<table><thead><tr><th>Username</th></tr></thead><tbody>`;
+            errorData.badUsers.forEach((user) => {
+                body += `<tr><td>${user}</td></tr>`;
+            });
+            body += "</tbody></table></div>";
+        }
+        if (errorData.badMethods.length) {
+            body +=
+                "<div class='row justify-content-center m-2'>" +
+                `<table><thead><tr><th>API Method</th></tr></thead><tbody>`;
+            errorData.badMethods.forEach((method) => {
+                body += `<tr><td>${method}</td></tr>`;
+            });
+            body += "</tbody></table></div>";
+        }
+        body += "</div>";
+        Swal.fire({
+            title: 'Error',
+            html: body,
+            icon: 'error',
+            confirmButtonText: 'OK',
+        });
+    }
+
+    API_USER_RIGHTS.handleFiles = function () {
+        if (this.files.length !== 1) {
+            return;
+        }
+        const file = this.files[0];
+        this.value = null;
+
+        if (file.type !== "text/csv" && file.name.toLowerCase().indexOf('.csv') === -1) {
+            return;
+        }
+
+        Swal.fire({
+            title: 'Loading...',
+            onOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            API_USER_RIGHTS.csv_file_contents = e.target.result;
+            API_USER_RIGHTS.ajax('importRightsCsv', { data: API_USER_RIGHTS.csv_file_contents })
+                .then((result) => {
+                    Swal.close();
+                    console.log(result);
+                    if (result.status != 'error') {
+                        $(result.data).modal('show');
+                    } else {
+                        API_USER_RIGHTS.handleImportError(result.data);
+                    }
+                })
+                .catch((error) => {
+                    Swal.close();
+                    console.error(error);
+                });
+        };
+        reader.readAsText(file);
+    }
+
+    API_USER_RIGHTS.confirmImport = function () {
+        $('.modal').modal('hide');
+        if (!API_USER_RIGHTS.csv_file_contents || API_USER_RIGHTS.csv_file_contents === "") {
+            return;
+        }
+        API_USER_RIGHTS.ajax('importRightsCsv', { data: API_USER_RIGHTS.csv_file_contents, confirm: true })
+            .then((result) => {
+                if (result.status != 'error') {
+                    API_USER_RIGHTS.dt.ajax.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        html: 'Successfully imported API User Rights',
+                        customClass: {
+                            confirmButton: 'btn btn-primary',
+                        },
+                        buttonsStyling: false,
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        html: 'Error importing CSV'
+                    });
+                }
+            })
+            .catch((error) => {
+                Toast.fire({
+                    icon: 'error',
+                    html: 'Error importing CSV'
+                });
+                console.error(error);
+            });
+    }
+
+
+
     $(document).ready(function () {
-        let table = $('#api_user_rights').DataTable({
+
+        window.Toast = Swal.mixin({
+            toast: true,
+            position: 'middle',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast'
+            },
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+        });
+
+        const importFileElement = document.getElementById("importUsersFile");
+        importFileElement.addEventListener("change", API_USER_RIGHTS.handleFiles);
+
+        API_USER_RIGHTS.dt = $('#api_user_rights').DataTable({
             processing: true,
             deferRender: true,
             ajax: function (data, callback, settings) {
@@ -250,6 +382,16 @@ $headerInfo = $module->getTableHeader();
             ],
             scrollX: true,
             buttons: [
+                {
+                    text: '<i class="fa-solid fa-file-arrow-up"></i> Import CSV',
+                    className: 'btn btn-sm btn-primary',
+                    action: function () {
+                        API_USER_RIGHTS.importCsv();
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    },
+                },
                 {
                     extend: 'csv',
                     text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
@@ -309,6 +451,13 @@ $headerInfo = $module->getTableHeader();
     });
 </script>
 <style>
+    div#center,
+    .modal,
+    div.swal2-container,
+    a {
+        font-family: 'Atkinson Hyperlegible', sans-serif !important;
+    }
+
     mark {
         padding: 0;
         color: white;
