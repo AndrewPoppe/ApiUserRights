@@ -9,6 +9,8 @@ $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
+<link href="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>
         API User Rights
@@ -45,7 +47,8 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-body">
                 <form id="editorForm">
-                    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+                    <div
+                        class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
                             <div class="col card-container px-2">
                                 <div class="card mb-3">
@@ -177,6 +180,11 @@ $headerInfo = $module->getTableHeader();
                 ?>
             ],
             scrollX: true,
+            scrollY: true,
+            buttons: [
+                'csv'
+            ],
+            dom: 'Bt',
         });
         $('input.form-check-input').on('change', API_USER_RIGHTS.updateChangeText);
         $("#aur-filter-methods").on("keyup", function () {
@@ -312,5 +320,10 @@ $headerInfo = $module->getTableHeader();
         div#center {
             width: calc(100% - 305px);
         }
+    }
+
+    .form-check-input,
+    .form-check-label {
+        cursor: pointer;
     }
 </style>

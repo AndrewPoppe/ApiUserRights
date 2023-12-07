@@ -468,7 +468,22 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         'userRole',
         'userRoleMapping'
     ];
-
+    public function redcap_module_api_before($project_id, $content, $action)
+    {
+        $this->framework->log('API Before', [
+            'project_id'  => $project_id,
+            'project_id2' => $this->framework->getProjectId(),
+            'project_id3' => $this->framework->getProject()->getProjectId(),
+            'user_id'     => $this->framework->getUser()->getUsername(),
+            'content'     => $content,
+            'action'      => $action,
+        ]);
+        ob_start(function ($str) {
+            $this->framework->log('API After', [ 'response' => $str ]);
+            return $str;
+        }, 0, PHP_OUTPUT_HANDLER_FLUSHABLE);
+        //$this->framework->exitAfterHook();
+    }
     public function redcap_module_ajax($action, $payload, $project_id, $record, $instrument, $event_id, $repeat_instance, $survey_hash, $response_id, $survey_queue_hash, $page, $page_full, $user_id, $group_id)
     {
         try {
