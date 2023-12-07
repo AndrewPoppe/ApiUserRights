@@ -142,6 +142,64 @@ $headerInfo = $module->getTableHeader();
         }
     }
 
+    API_USER_RIGHTS.join = function (a, separator, boundary, escapeChar, reBoundary) {
+        let s = '';
+        for (let i = 0, ien = a.length; i < ien; i++) {
+            if (i > 0) {
+                s += separator;
+            }
+            s += boundary ?
+                boundary + ('' + a[i]).replace(reBoundary, escapeChar + boundary) + boundary :
+                a[i];
+        }
+        return s;
+    };
+
+    API_USER_RIGHTS.saveCsv = function (csvData, filename) {
+        const newLine = /Windows/.exec(navigator.userAgent) ? '\r\n' : '\n';
+        const escapeChar = '"';
+        const boundary = '"';
+        const separator = ',';
+        const reBoundary = new RegExp(boundary, 'g');
+        let charset = document.characterSet;
+        if (charset) {
+            charset = ';charset=' + charset;
+        }
+
+        const header = API_USER_RIGHTS.join(csvData.header, separator, boundary, escapeChar, reBoundary) + newLine;
+        const body = [];
+        for (let i = 0, ien = csvData.rows.length; i < ien; i++) {
+            body.push(API_USER_RIGHTS.join(csvData.rows[i], separator, boundary, escapeChar, reBoundary));
+        }
+
+        const result = {
+            str: header + body.join(newLine),
+            rows: body.length
+        };
+
+        const dataToSave = new Blob([result.str], {
+            type: 'text/csv' + charset
+        });
+        $.fn.dataTable.fileSave(dataToSave, filename, true);
+    }
+
+    API_USER_RIGHTS.saveUsersCsv = function () {
+        const data = $('#api_user_rights').DataTable().data().map((row, i) => {
+            const newRow = [];
+            newRow.push(row['username']);
+            API_USER_RIGHTS.methodOrder.forEach(method => {
+                newRow.push(row[method] ? 1 : 0);
+            });
+            return newRow;
+        });
+        const header = Array.concat(['username'], API_USER_RIGHTS.methodOrder);
+        const csvData = {
+            header: header,
+            rows: data
+        };
+        API_USER_RIGHTS.saveCsv(csvData, 'test.csv');
+    }
+
     $(document).ready(function () {
         let table = $('#api_user_rights').DataTable({
             processing: true,
@@ -196,15 +254,8 @@ $headerInfo = $module->getTableHeader();
                     extend: 'csv',
                     text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
                     className: 'btn btn-sm btn-success mr-1',
-                    exportOptions: {
-                        format: {
-                            body: function (data, row, column, node) {
-                                if (column == 0) {
-                                    return $(node).text();
-                                }
-                                return $(node).data('value');
-                            }
-                        }
+                    action: function () {
+                        API_USER_RIGHTS.saveUsersCsv();
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
