@@ -5,6 +5,8 @@ namespace YaleREDCap\ApiUserRights;
  * @property \ExternalModules\Framework $framework
  * @see Framework
  */
+
+require_once 'CsvImporter.php';
 class ApiUserRights extends \ExternalModules\AbstractExternalModule
 {
 
@@ -468,22 +470,22 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         'userRole',
         'userRoleMapping'
     ];
-    public function redcap_module_api_before($project_id, $content, $action)
-    {
-        $this->framework->log('API Before', [
-            'project_id'  => $project_id,
-            'project_id2' => $this->framework->getProjectId(),
-            'project_id3' => $this->framework->getProject()->getProjectId(),
-            'user_id'     => $this->framework->getUser()->getUsername(),
-            'content'     => $content,
-            'action'      => $action,
-        ]);
-        ob_start(function ($str) {
-            $this->framework->log('API After', [ 'response' => $str ]);
-            return $str;
-        }, 0, PHP_OUTPUT_HANDLER_FLUSHABLE);
-        //$this->framework->exitAfterHook();
-    }
+    // public function redcap_module_api_before($project_id, $content, $action)
+    // {
+    //     $this->framework->log('API Before', [
+    //         'project_id'  => $project_id,
+    //         'project_id2' => $this->framework->getProjectId(),
+    //         'project_id3' => $this->framework->getProject()->getProjectId(),
+    //         'user_id'     => $this->framework->getUser()->getUsername(),
+    //         'content'     => $content,
+    //         'action'      => $action,
+    //     ]);
+    //     ob_start(function ($str) {
+    //         $this->framework->log('API After', [ 'response' => $str ]);
+    //         return $str;
+    //     }, 0, PHP_OUTPUT_HANDLER_FLUSHABLE);
+    //     //$this->framework->exitAfterHook();
+    // }
     public function redcap_module_ajax($action, $payload, $project_id, $record, $instrument, $event_id, $repeat_instance, $survey_hash, $response_id, $survey_queue_hash, $page, $page_full, $user_id, $group_id)
     {
         try {
@@ -503,6 +505,33 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 $userToSet = $payload['user'] ?? '';
                 $rights    = $payload['rights'] ?? [];
                 $this->saveRights($userToSet, $rights, $project_id);
+            } elseif ( $action === 'importRightsCsv' ) {
+                $importer = new CsvImporter($this, $payload['data'] ?? '');
+                $importer->parseCsvString();
+
+                $contentsValid = $importer->contentsValid();
+                if ( $contentsValid !== true ) {
+                    return [
+                        'status' => 'error',
+                        'data'   => [
+                            'errors'     => $importer->errorMessages,
+                            'badUsers'   => $importer->badUsers,
+                            'badMethods' => $importer->badMethods
+                        ]
+                    ];
+                }
+
+                if ( filter_var($payload['confirm'], FILTER_VALIDATE_BOOL) ) {
+                    return [
+                        'status' => 'ok',
+                        'data'   => $importer->import()
+                    ];
+                } else {
+                    return [
+                        'status' => 'ok',
+                        'data'   => $importer->getUpdateTable()
+                    ];
+                }
             }
         } catch ( \Throwable $e ) {
             $this->framework->log('Ajax error', [ 'error' => $e->getMessage() ]);
@@ -513,7 +542,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $user   = $this->framework->getUser();
         $rights = $user->getRights();
-        if ( ($rights['user_rights'] ?? '') != '1' ) {
+        if ( ($rights['user_rights'] ?? '') != '1' && !$user->isSuperUser() ) {
             return null;
         }
         return $link;
@@ -774,7 +803,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         ];
     }
 
-    private function saveRights($userToSet, $rights, $project_id)
+    public function saveRights($userToSet, $rights, $project_id)
     {
         $settingKey = 'allowed-api-methods-' . $userToSet;
         $this->framework->setProjectSetting($settingKey, $rights, $project_id);

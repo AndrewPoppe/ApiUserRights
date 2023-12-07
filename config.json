@@ -23,7 +23,8 @@
     "no-auth-pages": [],
     "auth-ajax-actions": [
         "getApiUserRights",
-        "saveApiUserRights"
+        "saveApiUserRights",
+        "importRightsCsv"
     ],
     "framework-version": 12,
     "compatibility": {
