@@ -9,6 +9,8 @@ $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
+<link href="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>
         API User Rights
@@ -45,7 +47,8 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-body">
                 <form id="editorForm">
-                    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+                    <div
+                        class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
                         <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
                             <div class="col card-container px-2">
                                 <div class="card mb-3">
@@ -139,6 +142,64 @@ $headerInfo = $module->getTableHeader();
         }
     }
 
+    API_USER_RIGHTS.join = function (a, separator, boundary, escapeChar, reBoundary) {
+        let s = '';
+        for (let i = 0, ien = a.length; i < ien; i++) {
+            if (i > 0) {
+                s += separator;
+            }
+            s += boundary ?
+                boundary + ('' + a[i]).replace(reBoundary, escapeChar + boundary) + boundary :
+                a[i];
+        }
+        return s;
+    };
+
+    API_USER_RIGHTS.saveCsv = function (csvData, filename) {
+        const newLine = /Windows/.exec(navigator.userAgent) ? '\r\n' : '\n';
+        const escapeChar = '"';
+        const boundary = '"';
+        const separator = ',';
+        const reBoundary = new RegExp(boundary, 'g');
+        let charset = document.characterSet;
+        if (charset) {
+            charset = ';charset=' + charset;
+        }
+
+        const header = API_USER_RIGHTS.join(csvData.header, separator, boundary, escapeChar, reBoundary) + newLine;
+        const body = [];
+        for (let i = 0, ien = csvData.rows.length; i < ien; i++) {
+            body.push(API_USER_RIGHTS.join(csvData.rows[i], separator, boundary, escapeChar, reBoundary));
+        }
+
+        const result = {
+            str: header + body.join(newLine),
+            rows: body.length
+        };
+
+        const dataToSave = new Blob([result.str], {
+            type: 'text/csv' + charset
+        });
+        $.fn.dataTable.fileSave(dataToSave, filename, true);
+    }
+
+    API_USER_RIGHTS.saveUsersCsv = function () {
+        const data = $('#api_user_rights').DataTable().data().map((row, i) => {
+            const newRow = [];
+            newRow.push(row['username']);
+            API_USER_RIGHTS.methodOrder.forEach(method => {
+                newRow.push(row[method] ? 1 : 0);
+            });
+            return newRow;
+        });
+        const header = Array.concat(['username'], API_USER_RIGHTS.methodOrder);
+        const csvData = {
+            header: header,
+            rows: data
+        };
+        API_USER_RIGHTS.saveCsv(csvData, 'test.csv');
+    }
+
     $(document).ready(function () {
         let table = $('#api_user_rights').DataTable({
             processing: true,
@@ -146,16 +207,17 @@ $headerInfo = $module->getTableHeader();
             ajax: function (data, callback, settings) {
                 API_USER_RIGHTS.ajax('getApiUserRights', {})
                     .then(response => {
-                        console.log(response)
+                        API_USER_RIGHTS.methodOrder = response.methodOrder;
                         callback({
-                            data: response
+                            data: response.users
                         });
                     })
                     .catch(error => {
                         console.error(error);
                     })
             },
-            columns: [{
+            columnDefs: [{
+                targets: 0,
                 data: function (row, type, val, meta) {
                     if (type === 'display') {
                         return '<a href="javascript:void(0)" onclick="API_USER_RIGHTS.openRightsEditor(\'' +
@@ -170,13 +232,37 @@ $headerInfo = $module->getTableHeader();
                     $(cell).attr('id', 'aur_' + rowData['username']);
                 }
             },
-                <?php
-                foreach ( $headerInfo["methodOrder"] as $method ) {
-                    echo "{ data: function (row, type, val, meta) { return row['" . $method . "'] ? '<i class=\"fas fa-check fa-xl text-success\"></i>' : '<i class=\"fas fa-xmark fa-sm text-danger\"></i>';}, className: 'dt-center' },";
+            {
+                targets: '_all',
+                className: 'dt-center',
+                data: function (row, type, val, meta) {
+                    const method = API_USER_RIGHTS.methodOrder[meta.col - 1];
+                    if (type === 'display') {
+                        return row[method] ? '<i class="fas fa-check fa-xl text-success"></i>' :
+                            '<i class="fas fa-xmark fa-sm text-danger"></i>';
+                    }
+                    return row[method];
+                },
+                createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
+                    $(cell).attr('data-value', cellData ? 1 : 0);
                 }
-                ?>
+            }
             ],
             scrollX: true,
+            buttons: [
+                {
+                    extend: 'csv',
+                    text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
+                    className: 'btn btn-sm btn-success mr-1',
+                    action: function () {
+                        API_USER_RIGHTS.saveUsersCsv();
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    },
+                }
+            ],
+            dom: 'Blfrtip',
         });
         $('input.form-check-input').on('change', API_USER_RIGHTS.updateChangeText);
         $("#aur-filter-methods").on("keyup", function () {
@@ -312,5 +398,10 @@ $headerInfo = $module->getTableHeader();
         div#center {
             width: calc(100% - 305px);
         }
+    }
+
+    .form-check-input,
+    .form-check-label {
+        cursor: pointer;
     }
 </style>
