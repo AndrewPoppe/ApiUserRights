@@ -265,7 +265,6 @@ $headerInfo = $module->getTableHeader();
             API_USER_RIGHTS.ajax('importRightsCsv', { data: API_USER_RIGHTS.csv_file_contents })
                 .then((result) => {
                     Swal.close();
-                    console.log(result);
                     if (result.status != 'error') {
                         $(result.data).modal('show');
                     } else {

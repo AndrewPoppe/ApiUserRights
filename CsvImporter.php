@@ -158,21 +158,20 @@ class CsvImporter
         $result        = [];
         $currentRights = $this->module->getAllUsers($this->projectId);
         foreach ( $this->cleanContents as $row ) {
-            $thisResult        = [];
-            $user              = $this->module->framework->getUser($row['user']);
-            $username          = $user->getUsername();
-            $userFullname      = $this->module->getFullName($username);
-            $userCurrentRights = array_filter($currentRights, function ($row) use ($username) {
+            $thisResult             = [];
+            $user                   = $this->module->framework->getUser($row['user']);
+            $username               = $user->getUsername();
+            $userFullname           = $this->module->getFullName($username);
+            $userCurrentRightsArray = array_filter($currentRights, function ($row) use ($username) {
                 return $row['username'] === $username;
             });
-
-            $this->module->framework->log('ok', [ 'current' => json_encode($userCurrentRights, JSON_PRETTY_PRINT), 'proposed' => json_encode($row['permissions'], JSON_PRETTY_PRINT) ]);
+            $userCurrentRights      = reset($userCurrentRightsArray);
 
             $thisResult['user']        = $username;
             $thisResult['name']        = $userFullname;
             $thisResult['permissions'] = [];
             foreach ( $this->methods as $method ) {
-                $current  = (int) $userCurrentRights[0][$method];
+                $current  = (int) $userCurrentRights[$method];
                 $proposed = (int) $row['permissions'][$method];
                 if ( $current == $proposed ) {
                     $thisResult['permissions'][$method] = $proposed;

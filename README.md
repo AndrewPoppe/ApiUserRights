@@ -12,6 +12,9 @@ This external module allows users with User Rights permission in a project to co
 ![Example3](images/api_user_rights_filtering_methods.gif)
 *Filtering methods in the editor*
 
+![Example4](images/api_user_rights_csv_import.gif)
+*Importing a CSV file*
+
 ## Installation
 Install through the REDCap Repo
 
@@ -22,6 +25,8 @@ No system or project configuration is required. Once installed and enabled in a 
 
 | Version | Release Date | Description                                 |
 | ------- | ------------ | ------------------------------------------- |
+| 1.1.0   | 2023-12-07   | Added ability to import/export CSV files    |
+| 1.0.4   | 2023-12-04   | Bug fix and aesthetic changes to the editor |
 | 1.0.3   | 2023-10-17   | Bug fix and aesthetic changes to the editor |
 | 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor  |
 | 1.0.0   | 2023-10-12   | Initial release                             |
