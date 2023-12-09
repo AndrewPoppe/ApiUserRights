@@ -25,7 +25,8 @@
         "getApiUserRights",
         "saveApiUserRights",
         "importRightsCsv",
-        "saveApiUserRightsSnapshot"
+        "saveApiUserRightsSnapshot",
+        "getSnapshotsInfo"
     ],
     "framework-version": 12,
     "compatibility": {

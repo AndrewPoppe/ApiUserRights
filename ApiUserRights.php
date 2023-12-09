@@ -524,6 +524,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 }
 
                 if ( filter_var($payload['confirm'], FILTER_VALIDATE_BOOL) ) {
+                    $this->saveSnapshot($project_id);
                     return [
                         'status' => 'ok',
                         'data'   => $importer->import()
@@ -886,10 +887,10 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $this->framework->log('rights snapshot', [ 'rights' => json_encode($rights), 'username' => $username ]);
     }
 
-    private function formatDate($date)
+    private function formatDate(string $timestampString)
     {
-        $thing = new \DateTime($date);
-        return $thing->format('Y/m/d g:ia');
+        $dateTime = new \DateTime($timestampString);
+        return $dateTime->format('Y/m/d g:ia');
     }
 
     public function getLastSnapshotText()
@@ -916,14 +917,18 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function getSnapshotsInfo($pid)
     {
-        $sql       = "SELECT timestamp, username WHERE project_id = ? AND message = 'rights snapshot' ORDER BY timestamp DESC";
+        $sql       = "SELECT timestamp, username, log_id WHERE project_id = ? AND message = 'rights snapshot' ORDER BY timestamp DESC";
         $q         = $this->framework->queryLogs($sql, [ $pid ]);
         $snapshots = [];
         while ( $row = $q->fetch_assoc() ) {
+            $username    = $row['username'] ?? '';
+            $name        = $this->getFullName($username);
             $snapshots[] = [
                 'ts'          => $row['timestamp'],
                 'tsFormatted' => $this->formatDate($row['timestamp']),
-                'username'    => $row['username']
+                'username'    => $username,
+                'name'        => $name,
+                'id'          => $row['log_id']
             ];
         }
         return $snapshots;
