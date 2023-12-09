@@ -1,6 +1,8 @@
 <?php
 namespace YaleREDCap\ApiUserRights;
 
+use DateTimeRC;
+
 /**
  * @property \ExternalModules\Framework $framework
  * @see Framework
@@ -532,6 +534,22 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                         'data'   => $importer->getUpdateTable()
                     ];
                 }
+            } elseif ( $action === 'saveApiUserRightsSnapshot' ) {
+                try {
+                    $this->saveSnapshot($project_id);
+                    return [ "success" => true, "tstext" => $this->getLastSnapshotText() ];
+                } catch ( \Throwable $e ) {
+                    $this->framework->log('Error saving snapshot', [ 'error' => $e->getMessage() ]);
+                    return [ "success" => false ];
+                }
+            } elseif ( $action === 'getSnapshotsInfo' ) {
+                try {
+                    $snapshots = $this->getSnapshotsInfo($project_id);
+                    return [ "success" => true, "snapshots" => $snapshots ];
+                } catch ( \Throwable $e ) {
+                    $this->framework->log('Error getting snapshots', [ 'error' => $e->getMessage() ]);
+                    return [ "success" => false ];
+                }
             }
         } catch ( \Throwable $e ) {
             $this->framework->log('Ajax error', [ 'error' => $e->getMessage() ]);
@@ -859,5 +877,55 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     private function validateContent($data)
     {
         return isset($data['content']) && in_array($data['content'] ?? '', ApiUserRights::$contentUsed);
+    }
+
+    private function saveSnapshot($pid)
+    {
+        $rights   = $this->getAllUsers($pid);
+        $username = $this->framework->getUser()->getUsername();
+        $this->framework->log('rights snapshot', [ 'rights' => json_encode($rights), 'username' => $username ]);
+    }
+
+    private function formatDate($date)
+    {
+        $thing = new \DateTime($date);
+        return $thing->format('Y/m/d g:ia');
+    }
+
+    public function getLastSnapshotText()
+    {
+        $result = '';
+        try {
+            $pid    = $this->getProject()->getProjectId();
+            $sql    = "SELECT timestamp WHERE project_id = ? AND message = 'rights snapshot' ORDER BY timestamp DESC LIMIT 1";
+            $result = $this->framework->queryLogs($sql, [ $pid ]);
+
+            if ( $result->num_rows === 0 ) {
+                $result = 'never';
+            } else {
+                $snapshot = $result->fetch_assoc();
+                $result   = $this->formatDate($snapshot['timestamp']);
+            }
+        } catch ( \Throwable $e ) {
+            $this->framework->log('Error getting last snapshot', [ 'error' => $e->getMessage() ]);
+            $pid = null;
+        } finally {
+            return $result;
+        }
+    }
+
+    public function getSnapshotsInfo($pid)
+    {
+        $sql       = "SELECT timestamp, username WHERE project_id = ? AND message = 'rights snapshot' ORDER BY timestamp DESC";
+        $q         = $this->framework->queryLogs($sql, [ $pid ]);
+        $snapshots = [];
+        while ( $row = $q->fetch_assoc() ) {
+            $snapshots[] = [
+                'ts'          => $row['timestamp'],
+                'tsFormatted' => $this->formatDate($row['timestamp']),
+                'username'    => $row['username']
+            ];
+        }
+        return $snapshots;
     }
 }

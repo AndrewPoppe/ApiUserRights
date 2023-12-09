@@ -8,6 +8,8 @@ $pid = $module->framework->getProjectId();
 $module->framework->initializeJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
+var_dump($module->getSnapshotsInfo($pid));
+
 ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +24,29 @@ $headerInfo = $module->getTableHeader();
     </span>
 </div>
 <div class="table-container">
+    <div class="info">
+        <p>
+            This page allows you to manage API user rights for this project. You can edit rights for individual users
+            by clicking on their username. You can also import and export rights for all users in this project.
+        </p>
+        <div class="container m-0 g-0">
+            <div class="row align-items-center g-0">
+                <div class="col-auto">
+                    <button class="btn btn-xs btn-outline-secondary" onclick="API_USER_RIGHTS.saveSnapshot();">
+                        <i class="fa-solid fa-camera"></i> Save snapshot of API user rights
+                    </button>
+                </div>
+                <div class="col ml-1">
+                    <span style="font-size: smaller;">Last snapshot: <a id="snapshotModalLink" href="#"
+                            onclick="API_USER_RIGHTS.openSnapshotModal();">
+                            <?= $module->getLastSnapshotText(); ?>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
     <input type="file" accept="text/csv" class="form-control-file" id="importUsersFile" aria-hidden hidden>
     <table id="api_user_rights" class="table scroll-border">
         <?= $headerInfo["header"] ?>
@@ -90,6 +115,33 @@ $headerInfo = $module->getTableHeader();
 <script>
     const API_USER_RIGHTS = <?= $module->framework->getJavascriptModuleObjectName() ?>;
 
+    API_USER_RIGHTS.saveSnapshot = function () {
+        console.log('saving snapshot');
+        API_USER_RIGHTS.ajax('saveApiUserRightsSnapshot', {})
+            .then(response => {
+                if (response.success) {
+                    $('#snapshotModalLink').text(response.tstext);
+                } else {
+                    Swal.fire({
+                        title: 'Error saving snapshot',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error saving snapshot',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
+            });
+    }
+
+    API_USER_RIGHTS.openSnapshotModal = function () {
+        console.log('opening snapshot modal');
+    }
+
     API_USER_RIGHTS.encodeUsername = function (username) {
         return username.replace(/^[0-9-]|[^a-zA-Z0-9-_]/g, function (match) {
             return '\\' + match;
@@ -105,7 +157,7 @@ $headerInfo = $module->getTableHeader();
             $(el).data('origChecked', checked);
             $(el).data('origText', $(el).siblings('label').eq(0).text());
         });
-        $('#editor').find('.modal-title').html('<i class="fas fa-user-edit"></i> Editing ' + username);
+        $('#editor').find('.modal-title').html('<i class="fa-solid fa-user-edit"></i> Editing ' + username);
         $('#editor form#editorForm').data('user', username);
         $('#saveRightsButton').attr('disabled', true);
         API_USER_RIGHTS.updateChangeText();
@@ -376,8 +428,8 @@ $headerInfo = $module->getTableHeader();
                 data: function (row, type, val, meta) {
                     const method = API_USER_RIGHTS.methodOrder[meta.col - 1];
                     if (type === 'display') {
-                        return row[method] ? '<i class="fas fa-check fa-xl text-success"></i>' :
-                            '<i class="fas fa-xmark fa-sm text-danger"></i>';
+                        return row[method] ? '<i class="fa-solid fa-check fa-xl text-success"></i>' :
+                            '<i class="fa-solid fa-xmark fa-sm text-danger"></i>';
                     }
                     return row[method];
                 },
@@ -390,27 +442,29 @@ $headerInfo = $module->getTableHeader();
             buttons: [
                 {
                     text: '<i class="fa-solid fa-file-arrow-up"></i> Import CSV',
-                    className: 'btn btn-sm btn-primary',
+                    className: 'btn btn-xs btn-primary',
                     action: function () {
                         API_USER_RIGHTS.importCsv();
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
+                        $(node).css('margin-bottom', '-10px');
                     },
                 },
                 {
                     extend: 'csv',
                     text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
-                    className: 'btn btn-sm btn-success mr-1',
+                    className: 'btn btn-xs btn-success mr-2',
                     action: function () {
                         API_USER_RIGHTS.saveUsersCsv();
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
+                        $(node).css('margin-bottom', '-10px');
                     },
                 }
             ],
-            dom: 'Blfrtip',
+            dom: 'Blfrtip'
         });
         $('input.form-check-input').on('change', API_USER_RIGHTS.updateChangeText);
         $("#aur-filter-methods").on("keyup", function () {

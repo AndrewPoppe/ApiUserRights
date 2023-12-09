@@ -24,7 +24,8 @@
     "auth-ajax-actions": [
         "getApiUserRights",
         "saveApiUserRights",
-        "importRightsCsv"
+        "importRightsCsv",
+        "saveApiUserRightsSnapshot"
     ],
     "framework-version": 12,
     "compatibility": {
