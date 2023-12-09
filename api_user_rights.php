@@ -89,9 +89,16 @@ $headerInfo = $module->getTableHeader();
 </div>
 <script>
     const API_USER_RIGHTS = <?= $module->framework->getJavascriptModuleObjectName() ?>;
+
+    API_USER_RIGHTS.encodeUsername = function (username) {
+        return username.replace(/^[0-9-]|[^a-zA-Z0-9-_]/g, function (match) {
+            return '\\' + match;
+        });
+    }
+
     API_USER_RIGHTS.openRightsEditor = function (username) {
         $("#aur-filter-methods").val('').trigger('keyup');
-        const data = JSON.parse($('#aur_' + username).data('rights'));
+        const data = JSON.parse($('#aur_' + API_USER_RIGHTS.encodeUsername(username)).data('rights'));
         $('#editorForm').find('input[type="checkbox"]').each(function (i, el) {
             const checked = data[$(el).attr('name')] ? true : false;
             $(el).prop('checked', checked);

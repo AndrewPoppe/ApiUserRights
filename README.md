@@ -25,6 +25,7 @@ No system or project configuration is required. Once installed and enabled in a 
 
 | Version | Release Date | Description                                 |
 | ------- | ------------ | ------------------------------------------- |
+| 1.1.1   | 2023-12-09   | Bug fix                                     |
 | 1.1.0   | 2023-12-07   | Added ability to import/export CSV files    |
 | 1.0.4   | 2023-12-04   | Bug fix and aesthetic changes to the editor |
 | 1.0.3   | 2023-10-17   | Bug fix and aesthetic changes to the editor |
