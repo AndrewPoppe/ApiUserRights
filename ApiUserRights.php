@@ -532,6 +532,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
                 if ( filter_var($payload['confirm'], FILTER_VALIDATE_BOOL) ) {
                     $this->saveSnapshot($project_id);
+                    $this->logEvent('API User Rights Imported');
                     return [
                         'status' => 'ok',
                         'data'   => $importer->import()
@@ -825,7 +826,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             $defaultRights = $this->getDefaultApiRightsFromFile($defaultFile, $pid);
         }
         foreach ( $defaultRights as $method => $value ) {
-            $result[$method] = $value ?? false;
+            $result[$method] = $value ?? 0;
         }
         return $result;
     }
@@ -845,7 +846,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $blankRights = [];
         foreach ( ApiUserRights::$methods as $method ) {
-            $blankRights[$method['method'] ?? ''] = false;
+            $blankRights[$method['method'] ?? ''] = 0;
         }
         return $blankRights;
     }
@@ -881,7 +882,14 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function saveRights($userToSet, $rights, $project_id)
     {
-        $settingKey = 'allowed-api-methods-' . $userToSet;
+        $settingKey     = 'allowed-api-methods-' . $userToSet;
+        $existingRights = $this->framework->getProjectSetting($settingKey, $project_id) ?? [];
+        $changes        = array_diff_assoc($rights ?? [], $existingRights);
+        if ( !empty($changes) ) {
+            $changes['user'] = $userToSet;
+            $this->framework->log('API User Rights Changes', [ 'changes' => json_encode($changes, JSON_PRETTY_PRINT) ]);
+            \REDCap::logEvent('API User Rights Changed', json_encode($changes, JSON_PRETTY_PRINT));
+        }
         $this->framework->setProjectSetting($settingKey, $rights, $project_id);
     }
 
@@ -1001,5 +1009,11 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             'tsFormatted' => $this->formatDate($row['timestamp'], true),
             'snapshot'    => json_decode($row['rights'], true)
         ];
+    }
+
+    public function logEvent($message)
+    {
+        $this->framework->log($message);
+        \REDCap::logEvent($message);
     }
 }

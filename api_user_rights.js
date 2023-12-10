@@ -145,7 +145,7 @@ API_USER_RIGHTS.openRightsEditor = function (username) {
 API_USER_RIGHTS.submitForm = function () {
     const formData = {};
     $('form#editorForm input:checkbox').each((i, el) => {
-        formData[el.name] = el.checked;
+        formData[el.name] = el.checked ? 1 : 0;
     });
     API_USER_RIGHTS.ajax('saveApiUserRights', {
         user: $('form#editorForm').data('user'),
