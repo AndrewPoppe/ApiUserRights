@@ -12,14 +12,14 @@
     "system-settings": [
         {
             "key": "default-rights-csv",
-            "name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in a project. It should only have one row besides the header row (and no username column is required). If neither a project-specific default nor a system-level default is defined, then no API User Rights will be granted by default.",
+            "name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in a project. It should only have one row besides the header row (and no username column is required). If neither a project-specific default nor a system-level default is defined, then no API User Rights will be granted by default.<br>A template file can be downloaded <a href='https://raw.githubusercontent.com/AndrewPoppe/ApiUserRights/main/files/API_User_Rights_Default_Template.csv'>here</a>",
             "type": "file"
         }
     ],
     "project-settings": [
         {
             "key": "default-rights-csv-project",
-            "name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in the project. It should only have one row besides the header row (and no username column is required). If no file is defined here, then the system-level default rights will be used.",
+            "name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in the project. It should only have one row besides the header row (and no username column is required). If no file is defined here, then the system-level default rights will be used.<br>A template file can be downloaded <a href='https://raw.githubusercontent.com/AndrewPoppe/ApiUserRights/main/files/API_User_Rights_Default_Template.csv'>here</a>",
             "type": "file"
         }
     ],
@@ -45,7 +45,7 @@
     "compatibility": {
         "php-version-min": "7.4.0",
         "php-version-max": "",
-        "redcap-version-min": "13.1.27",
+        "redcap-version-min": "13.1.37",
         "redcap-version-max": ""
     },
     "enable-every-page-hooks-on-system-pages": true
