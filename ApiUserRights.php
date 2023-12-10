@@ -515,7 +515,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                     return false;
                 }
             } elseif ( $action === 'importRightsCsv' ) {
-                $importer = new CsvImporter($this, $payload['data'] ?? '');
+                $importer = new CsvImporter($this, $payload['data'] ?? '', $project_id);
                 $importer->parseCsvString();
 
                 $contentsValid = $importer->contentsValid();
@@ -582,10 +582,13 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $projectId = $this->framework->getProjectId();
         if ( empty($projectId) ) {
             $docId = $this->framework->getSystemSetting('default-rights-csv');
-            if ( empty($docId) ) {
-
-            }
-            $this->log('ok', [ 'file' => $this->framework->getSystemSetting('default-rights-csv'), 'contents' => json_encode(\REDCap::getFile(64)) ]);
+        } else {
+            $docId = $this->framework->getProjectSetting('default-rights-csv-project', $projectId);
+        }
+        try {
+            $rights = $this->getDefaultApiRightsFromFile($docId);
+        } catch ( \Throwable $e ) {
+            return $e->getMessage();
         }
     }
 
@@ -658,7 +661,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 return;
             }
         } catch ( \Throwable $e ) {
-            $this->framework->log('error', [ 'error' => $e->getMessage() ]);
+            $this->framework->log('error', [ 'error' => $e->getMessage(), 'trace' => $e->getTraceAsString() ]);
         }
 
     }
@@ -767,20 +770,25 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     private function getAllowedMethods($username, $pid)
     {
         $settingKey = 'allowed-api-methods-' . $username;
-        return $this->framework->getProjectSetting($settingKey, $pid) ?? $this->getDefaultApiRights();
+        $settings   = $this->framework->getProjectSetting($settingKey, $pid);
+        if ( empty($settings) ) {
+            $settings = $this->getDefaultApiRights($pid);
+            $this->saveRights($username, $settings, $pid);
+        }
+        return $this->framework->getProjectSetting($settingKey, $pid) ?? $this->getDefaultApiRights($pid);
     }
 
 
 
     public function getAllUsers($pid)
     {
-        $settings = $this->framework->getProjectSettings($pid);
-        $users    = $this->framework->getProject($pid)->getUsers();
+        //$settings = $this->framework->getProjectSettings($pid);
+        $users = $this->framework->getProject($pid)->getUsers();
 
         $userRights = [];
         foreach ( $users as $user ) {
             $username           = $user->getUsername();
-            $result             = $settings['allowed-api-methods-' . $username] ?? $this->getDefaultApiRights() ?? [];
+            $result             = $this->getAllowedMethods($username, $pid) ?? [];
             $result['username'] = $username;
             $result['name']     = $this->getFullName($username);
             $userRights[]       = $result;
@@ -806,14 +814,15 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         }
     }
 
-    private function getDefaultApiRights()
+    private function getDefaultApiRights($pid)
     {
         $result      = $this->getBlankApiRights();
-        $defaultFile = $this->framework->getProjectSetting('default-rights-csv');
+        $defaultFile = empty($pid) ? null : $this->framework->getProjectSetting('default-rights-csv-project', $pid);
+        $defaultFile = empty($defaultFile) ? $this->framework->getSystemSetting('default-rights-csv') : $defaultFile;
         if ( empty($defaultFile) ) {
             $defaultRights = [];
         } else {
-            $defaultRights = $this->getDefaultApiRightsFromFile($defaultFile);
+            $defaultRights = $this->getDefaultApiRightsFromFile($defaultFile, $pid);
         }
         foreach ( $defaultRights as $method => $value ) {
             $result[$method] = $value ?? false;
@@ -821,13 +830,13 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return $result;
     }
 
-    private function getDefaultApiRightsFromFile($fileId)
+    private function getDefaultApiRightsFromFile($fileId, $project_id = null)
     {
         list( $mimeType, $docName, $fileContent ) = \REDCap::getFile($fileId);
-        $csvImporter                              = new CsvImporter($this, $fileContent, true);
+        $csvImporter                              = new CsvImporter($this, $fileContent, $project_id, true);
         $csvImporter->parseCsvString();
         if ( $csvImporter->contentsValid() !== true ) {
-            throw new \Exception('Invalid CSV file');
+            throw new \Exception('Invalid CSV file: ' . implode(', ', $csvImporter->errorMessages) ?? '');
         }
         return $csvImporter->cleanContents[0]['permissions'];
     }

@@ -21,11 +21,11 @@ class CsvImporter
     private int $projectId;
     private int $usernameIndex;
     private bool $default;
-    public function __construct(ApiUserRights $module, string $csvString, bool $default = false)
+    public function __construct(ApiUserRights $module, string $csvString, $projectId, bool $default = false)
     {
         $this->module    = $module;
         $this->csvString = $csvString;
-        $this->projectId = (int) $module->framework->getProject()->getProjectId();
+        $this->projectId = $default ? 0 : (int) ($projectId ?? $module->framework->getProjectId());
         $this->methods   = $this->module->getTableHeader()['methodOrder'];
         $this->default   = $default;
     }
@@ -150,8 +150,13 @@ class CsvImporter
             if ( $isMethod ) {
                 $intValue = filter_var($value, FILTER_VALIDATE_INT);
                 if ( !in_array($intValue, $validValues, true) ) {
-                    $username              = $this->default ? 'default' : $thesePermissions[$this->usernameIndex];
-                    $this->errorMessages[] = 'Invalid "' . $method . '" value for <strong>' . $username . '</strong>: ' . $this->module->framework->escape($value);
+                    if ( $this->default ) {
+                        $message = 'Acceptable values are 0 and 1';
+                    } else {
+                        $username = $thesePermissions[$this->usernameIndex];
+                        $message  = 'Invalid "' . $method . '" value for <strong>' . $username . '</strong>: ' . $this->module->framework->escape($value);
+                    }
+                    $this->errorMessages[] = $message;
                     $this->rowValid        = false;
                     $this->valid           = false;
                 }
