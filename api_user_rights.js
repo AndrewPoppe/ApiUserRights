@@ -151,7 +151,14 @@ API_USER_RIGHTS.submitForm = function () {
         user: $('form#editorForm').data('user'),
         rights: formData
     })
-        .then(response => {
+        .then(result => {
+            if (!result) {
+                Swal.fire({
+                    title: 'Error saving API user rights',
+                    icon: 'error'
+                });
+                return;
+            }
             $('#editor').modal('hide');
             Swal.fire({
                 title: 'Successfully updated API user rights',
@@ -160,7 +167,10 @@ API_USER_RIGHTS.submitForm = function () {
             $('#api_user_rights').DataTable().ajax.reload();
         })
         .catch(error => {
-            console.error(error);
+            Swal.fire({
+                title: 'Error saving API user rights',
+                icon: 'error'
+            });
         });
 }
 

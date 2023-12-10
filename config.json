@@ -9,7 +9,15 @@
             "institution": "Yale Center for Clinical Investigation"
         }
     ],
-    "system-settings": [],
+    "system-settings": [
+        {
+            "key": "default-rights-csv",
+            "name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in a project. It should only have one row besides the header row (and no username column is required). If neither a project-specific default nor a system-level default is defined, then no API User Rights will be granted by default.",
+            "type": "file",
+            "allow-project-overrides": true,
+            "project-name": "<strong>Upload a CSV file that defines the default API User Rights a user will have.</strong><br>The format of the file should match that obtained from an export of the API User Rights in the project. It should only have one row besides the header row (and no username column is required). If no file is defined here, then the system-level default rights will be used."
+        }
+    ],
     "links": {
         "project": [
             {
@@ -20,7 +28,6 @@
             }
         ]
     },
-    "no-auth-pages": [],
     "auth-ajax-actions": [
         "getApiUserRights",
         "saveApiUserRights",

@@ -20,12 +20,14 @@ class CsvImporter
     private $rowValid = true;
     private int $projectId;
     private int $usernameIndex;
-    public function __construct(ApiUserRights $module, string $csvString)
+    private bool $default;
+    public function __construct(ApiUserRights $module, string $csvString, bool $default = false)
     {
         $this->module    = $module;
         $this->csvString = $csvString;
         $this->projectId = (int) $module->framework->getProject()->getProjectId();
         $this->methods   = $this->module->getTableHeader()['methodOrder'];
+        $this->default   = $default;
     }
 
     public function parseCsvString()
@@ -88,12 +90,13 @@ class CsvImporter
     {
         $this->header = $this->csvContents[0];
 
-        $this->usernameIndex = array_search('username', $this->header, true);
-        if ( $this->usernameIndex === false ) {
-            $this->errorMessages[] = 'Missing username column';
-            return false;
+        if ( !$this->default ) {
+            $this->usernameIndex = array_search('username', $this->header, true);
+            if ( $this->usernameIndex === false ) {
+                $this->errorMessages[] = 'Missing username column';
+                return false;
+            }
         }
-
 
         foreach ( $this->csvContents as $key => $row ) {
             $this->rowValid = true;
@@ -105,8 +108,12 @@ class CsvImporter
             }
 
             // Data Row
-            $thisUsername = $this->checkUsername($row[$this->usernameIndex]);
-            $this->checkUser($thisUsername);
+            if ( !$this->default ) {
+                $thisUsername = $this->checkUsername($row[$this->usernameIndex]);
+                $this->checkUser($thisUsername);
+            } else {
+                $thisUsername = 'default';
+            }
 
             if ( !$this->rowValid ) {
                 $this->valid = false;
@@ -143,7 +150,8 @@ class CsvImporter
             if ( $isMethod ) {
                 $intValue = filter_var($value, FILTER_VALIDATE_INT);
                 if ( !in_array($intValue, $validValues, true) ) {
-                    $this->errorMessages[] = 'Invalid "' . $method . '" value for <strong>' . $thesePermissions[$this->usernameIndex] . '</strong>: ' . $this->module->framework->escape($value);
+                    $username              = $this->default ? 'default' : $thesePermissions[$this->usernameIndex];
+                    $this->errorMessages[] = 'Invalid "' . $method . '" value for <strong>' . $username . '</strong>: ' . $this->module->framework->escape($value);
                     $this->rowValid        = false;
                     $this->valid           = false;
                 }
