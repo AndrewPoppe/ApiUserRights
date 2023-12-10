@@ -742,7 +742,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         if ( empty($allowedMethods) ) {
             return false;
         }
-        return $allowedMethods[$method['method'] ?? ''] === true;
+        return (int) $allowedMethods[$method['method'] ?? ''] === 1;
     }
 
     private function getAllowedMethods($username, $pid)
