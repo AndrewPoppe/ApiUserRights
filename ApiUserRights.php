@@ -551,6 +551,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                     $this->framework->log('Error getting snapshots', [ 'error' => $e->getMessage() ]);
                     return [ "success" => false ];
                 }
+            } elseif ( $action === 'downloadSnapshot' ) {
+                $data = $this->downloadSnapshot($payload['snapshotId'] ?? '', $project_id);
+                return [ "success" => true, "snapshot" => $data['snapshot'], "tsFormatted" => $data['tsFormatted'] ];
             }
         } catch ( \Throwable $e ) {
             $this->framework->log('Ajax error', [ 'error' => $e->getMessage() ]);
@@ -887,10 +890,11 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $this->framework->log('rights snapshot', [ 'rights' => json_encode($rights), 'username' => $username ]);
     }
 
-    private function formatDate(string $timestampString)
+    private function formatDate(string $timestampString, bool $compact = false)
     {
         $dateTime = new \DateTime($timestampString);
-        return $dateTime->format('Y/m/d g:ia');
+        $format   = $compact ? 'Y-m-d_Hi' : 'Y/m/d g:ia';
+        return $dateTime->format($format);
     }
 
     public function getLastSnapshotText()
@@ -932,5 +936,16 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             ];
         }
         return $snapshots;
+    }
+
+    private function downloadSnapshot($snapshotId, $pid)
+    {
+        $sql = "SELECT rights, timestamp WHERE log_id = ? AND project_id = ?";
+        $q   = $this->framework->queryLogs($sql, [ $snapshotId, $pid ]);
+        $row = $q->fetch_assoc();
+        return [
+            'tsFormatted' => $this->formatDate($row['timestamp'], true),
+            'snapshot'    => json_decode($row['rights'], true)
+        ];
     }
 }

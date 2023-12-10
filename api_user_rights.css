@@ -1,0 +1,106 @@
+div#center,
+.modal,
+div.swal2-container,
+a {
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+mark {
+    padding: 0;
+    color: white;
+    background-color: #007BFF;
+}
+
+#changeInfo {
+    font-size: small;
+    margin-right: 10px;
+    color: var(--bs-danger, var(--danger));
+}
+
+.btn-filter-clear {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: .25rem .5rem;
+}
+
+.btn-filter-clear:hover {
+    color: white !important;
+}
+
+.filter-icon {
+    padding: .25rem .5rem;
+}
+
+div.table-container {
+    width: 100% !important;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+table.scroll-border tbody td:first-child {
+    border-left: none !important;
+}
+
+table.scroll-border tbody td:nth-child(2) {
+    border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+table.scroll-border tbody td {
+    border-left: 1px solid #dee2e6;
+}
+
+table.scroll-border tbody tr:first-child td {
+    border-top: none !important;
+}
+
+table.scroll-border thead tr th {
+    border-top: none !important;
+}
+
+table.scroll-border thead th:first-child {
+    border-left: none !important;
+}
+
+table.scroll-border tbody tr {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+table.scroll-border thead tr:first-child th:nth-child(2),
+table.scroll-border thead tr:nth-child(2) th:first-child {
+    border-left: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+table.scroll-border thead th {
+    border-left: 1px solid #dee2e6;
+}
+
+table.scroll-border thead th.even {
+    background-color: #eeeeee;
+}
+
+table.scroll-border thead th.odd {
+    background-color: #fcfef5;
+}
+
+div.dataTables_scroll {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+div.dataTables_scrollBody {
+    border: none !important;
+}
+
+@media screen and (min-width: 767px) {
+    div#center {
+        width: calc(100% - 305px);
+    }
+}
+
+.form-check-input,
+.form-check-label {
+    cursor: pointer;
+}
+
+.modal table#api_user_rights_snapshots tr.odd td {
+    background-color: white !important;
+}
