@@ -560,7 +560,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                     return [ "success" => false ];
                 }
             } elseif ( $action === 'downloadSnapshot' ) {
-                $data = $this->downloadSnapshot($payload['snapshotId'] ?? '', $project_id);
+                $snapshotId = $payload['snapshotId'] ?? '';
+                $data       = $this->downloadSnapshot($snapshotId, $project_id);
+                $this->logEvent('API User Rights Snapshot Downloaded', $snapshotId);
                 return [ "success" => true, "snapshot" => $data['snapshot'], "tsFormatted" => $data['tsFormatted'] ];
             }
         } catch ( \Throwable $e ) {
@@ -887,8 +889,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $changes        = array_diff_assoc($rights ?? [], $existingRights);
         if ( !empty($changes) ) {
             $changes['user'] = $userToSet;
-            $this->framework->log('API User Rights Changes', [ 'changes' => json_encode($changes, JSON_PRETTY_PRINT) ]);
-            \REDCap::logEvent('API User Rights Changed', json_encode($changes, JSON_PRETTY_PRINT));
+            $this->logEvent('API User Rights Changed', [ 'changes' => json_encode($changes, JSON_PRETTY_PRINT) ]);
         }
         $this->framework->setProjectSetting($settingKey, $rights, $project_id);
     }
@@ -1011,9 +1012,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         ];
     }
 
-    public function logEvent($message)
+    public function logEvent($message, $params = [])
     {
-        $this->framework->log($message);
-        \REDCap::logEvent($message);
+        $this->framework->log($message, $params);
+        \REDCap::logEvent($message, array_values($params)[0]);
     }
 }
