@@ -15,6 +15,9 @@ This external module allows users with User Rights permission in a project to co
 ![Example4](images/api_user_rights_csv_import.gif)
 *Importing a CSV file*
 
+![Example5](images/api_user_rights_snapshots_modal.png)
+***History snapshots*** - *Snapshots are automatically taken when user rights are updated via CSV import and can manually be taken at any time.*
+
 ## Installation
 Install through the REDCap Repo
 
