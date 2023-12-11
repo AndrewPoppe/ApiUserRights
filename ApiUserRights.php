@@ -562,7 +562,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             } elseif ( $action === 'downloadSnapshot' ) {
                 $snapshotId = $payload['snapshotId'] ?? '';
                 $data       = $this->downloadSnapshot($snapshotId, $project_id);
-                $this->logEvent('API User Rights Snapshot Downloaded', $snapshotId);
+                $this->logEvent('API User Rights Snapshot Downloaded', [ 'Snapshot Timestamp' => $data['ts'] ]);
                 return [ "success" => true, "snapshot" => $data['snapshot'], "tsFormatted" => $data['tsFormatted'] ];
             }
         } catch ( \Throwable $e ) {
@@ -1007,6 +1007,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         $q   = $this->framework->queryLogs($sql, [ $snapshotId, $pid ]);
         $row = $q->fetch_assoc();
         return [
+            'ts'          => $row['timestamp'],
             'tsFormatted' => $this->formatDate($row['timestamp'], true),
             'snapshot'    => json_decode($row['rights'], true)
         ];
@@ -1015,6 +1016,11 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     public function logEvent($message, $params = [])
     {
         $this->framework->log($message, $params);
-        \REDCap::logEvent($message, array_values($params)[0]);
+        $paramsString = '';
+        foreach ( $params as $key => $value ) {
+            $paramsString .= $key . ': ' . $value . "
+            ";
+        }
+        \REDCap::logEvent($message, $paramsString);
     }
 }
