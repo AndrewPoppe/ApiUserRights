@@ -588,6 +588,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         } else {
             $docId = $this->framework->getProjectSetting('default-rights-csv-project', $projectId);
         }
+        if ( empty($docId) ) {
+            return;
+        }
         try {
             $rights = $this->getDefaultApiRightsFromFile($docId);
         } catch ( \Throwable $e ) {
