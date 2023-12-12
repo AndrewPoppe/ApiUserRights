@@ -499,4 +499,13 @@ $(document).ready(function () {
             $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
         });
     });
+    $("#aur-filter-methods").on("blur", function () {
+        const markRegex = new RegExp('<mark>(.*?)</mark>', 'gi');
+        $('#editorForm label').each((i, el) => {
+            $(el).html($(el).text().replace(markRegex, '$1'));
+        });
+        $('#editorForm .card-header').each((i, el) => {
+            $(el).html($(el).text().replace(markRegex, '$1'));
+        });
+    });
 });
