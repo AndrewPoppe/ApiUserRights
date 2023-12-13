@@ -8,7 +8,8 @@ class CsvImporter
     private ApiUserRights $module;
     public $csvContents;
     public $cleanContents;
-    private array $methods;
+    private array $methodNames;
+    private array $methodCodes;
     public $badMethods = [];
     public $goodUsers = [];
     public $goodMethods = [];
@@ -23,11 +24,13 @@ class CsvImporter
     private bool $default;
     public function __construct(ApiUserRights $module, string $csvString, $projectId, bool $default = false)
     {
-        $this->module    = $module;
-        $this->csvString = $csvString;
-        $this->projectId = $default ? 0 : (int) ($projectId ?? $module->framework->getProjectId());
-        $this->methods   = $this->module->getTableHeader()['methodOrder'];
-        $this->default   = $default;
+        $this->module      = $module;
+        $this->csvString   = $csvString;
+        $this->projectId   = $default ? 0 : (int) ($projectId ?? $module->framework->getProjectId());
+        $header            = $this->module->getTableHeader();
+        $this->methodNames = $header['methodOrder'];
+        $this->methodCodes = $header['methodCodes'];
+        $this->default     = $default;
     }
 
     public function parseCsvString()
@@ -46,7 +49,7 @@ class CsvImporter
             if ( $method === 'username' ) {
                 continue;
             }
-            if ( !in_array($method, $this->methods, true) ) {
+            if ( !in_array($method, $this->methodCodes, true) ) {
                 $this->badMethods[] = $this->module->framework->escape($method);
                 $this->rowValid     = false;
                 $this->valid        = false;
@@ -146,7 +149,7 @@ class CsvImporter
         $result = [];
         foreach ( $thesePermissions as $index => $value ) {
             $method   = $this->header[$index];
-            $isMethod = in_array($method, $this->methods, true);
+            $isMethod = in_array($method, $this->methodCodes, true);
             if ( $isMethod ) {
                 $intValue = filter_var($value, FILTER_VALIDATE_INT);
                 if ( !in_array($intValue, $validValues, true) ) {
@@ -183,7 +186,7 @@ class CsvImporter
             $thisResult['user']        = $username;
             $thisResult['name']        = $userFullname;
             $thisResult['permissions'] = [];
-            foreach ( $this->methods as $method ) {
+            foreach ( $this->methodCodes as $method ) {
                 $current  = (int) $userCurrentRights[$method];
                 $proposed = (int) $row['permissions'][$method];
                 if ( $current == $proposed ) {
@@ -228,8 +231,8 @@ class CsvImporter
                             <tr>
                                 <th>User</th>
                                 <th>Name</th>';
-        foreach ( $this->methods as $method ) {
-            $html .= '<th>' . $method . '</th>';
+        foreach ( $this->methodNames as $index => $method ) {
+            $html .= '<th>' . $method . ' (' . $this->methodCodes[$index] . ')</th>';
         }
         $html .= '</tr>
                         </thead>
@@ -242,7 +245,7 @@ class CsvImporter
             $html .= '<tr class="' . $rowClass . '">' .
                 $this->formatCell($row['user'], false) .
                 $this->formatCell($row['name'], false);
-            foreach ( $this->methods as $method ) {
+            foreach ( $this->methodCodes as $method ) {
                 $value = $row['permissions'][$method];
                 $html .= $this->formatCell($value);
             }

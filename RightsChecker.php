@@ -6,7 +6,7 @@ class RightsChecker
 {
     private ApiUserRights $module;
     private string $username;
-    private array $methods;
+    private array $methodCodes;
     private array $rightsToCheck;
     public $badMethods = [];
     public $goodUsers = [];
@@ -14,22 +14,20 @@ class RightsChecker
     public $badUsers = [];
     public $errorMessages = [];
     private $valid = true;
-    private int $projectId;
     private bool $default;
-    public function __construct(ApiUserRights $module, string $username, array $rightsToCheck, $projectId = null, $default = false)
+    public function __construct(ApiUserRights $module, string $username, array $rightsToCheck, $default = false)
     {
         $this->module        = $module;
         $this->username      = $username;
         $this->rightsToCheck = $rightsToCheck;
-        $this->projectId     = (int) ($projectId ?? $module->framework->getProject()->getProjectId());
-        $this->methods       = $this->module->getTableHeader()['methodOrder'];
+        $this->methodCodes   = $this->module->getTableHeader()['methodCodes'];
         $this->default       = $default;
     }
 
     private function verifyMethods()
     {
         foreach ( $this->rightsToCheck as $method => $value ) {
-            if ( !in_array($method, $this->methods, true) ) {
+            if ( !in_array($method, $this->methodCodes, true) ) {
                 $this->badMethods[] = $this->module->framework->escape($method);
                 $this->valid        = false;
             } elseif ( in_array($method, $this->goodMethods, true) ) {

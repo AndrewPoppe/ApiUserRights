@@ -90,8 +90,8 @@ $headerInfo = $module->getTableHeader();
                                         <?php foreach ( $methods as $method ) { ?>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="1"
-                                                    id="<?= $method["method"] ?>" name="<?= $method["method"] ?>">
-                                                <label class="form-check-label mb-2" for="<?= $method["method"] ?>">
+                                                    id="<?= $method["methodCode"] ?>" name="<?= $method["methodCode"] ?>">
+                                                <label class="form-check-label mb-2" for="<?= $method["methodCode"] ?>">
                                                     <?= $method["method"] ?>
                                                 </label>
                                             </div>

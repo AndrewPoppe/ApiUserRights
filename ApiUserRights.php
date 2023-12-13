@@ -25,200 +25,228 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
      */
     static array $methods = [
         [
-            "area"    => "Arms",
-            "method"  => "Export Arms",
-            "content" => "arm",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Arms",
+            "method"     => "Export Arms",
+            "content"    => "arm",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "arm_export"
         ],
         [
-            "area"    => "Arms",
-            "method"  => "Import Arms",
-            "content" => "arm",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "Arms",
+            "method"     => "Import Arms",
+            "content"    => "arm",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "arm_import"
         ],
         [
-            "area"    => "Arms",
-            "method"  => "Delete Arms",
-            "content" => "arm",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Arms",
+            "method"     => "Delete Arms",
+            "content"    => "arm",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "arm_delete"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Export DAGs",
-            "content" => "dag",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Data Access Groups",
+            "method"     => "Export DAGs",
+            "content"    => "dag",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "dag_export"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Import DAGs",
-            "content" => "dag",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "Data Access Groups",
+            "method"     => "Import DAGs",
+            "content"    => "dag",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "dag_import"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Delete DAGs",
-            "content" => "dag",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Data Access Groups",
+            "method"     => "Delete DAGs",
+            "content"    => "dag",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "dag_delete"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Switch DAGs",
-            "content" => "dag",
-            "action"  => "switch",
-            "data"    => ""
+            "area"       => "Data Access Groups",
+            "method"     => "Switch DAGs",
+            "content"    => "dag",
+            "action"     => "switch",
+            "data"       => "",
+            "methodCode" => "dag_switch"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Export User-DAG Assignment",
-            "content" => "userDagMapping",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Data Access Groups",
+            "method"     => "Export User-DAG Assignment",
+            "content"    => "userDagMapping",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "userDagMapping_export"
         ],
         [
-            "area"    => "Data Access Groups",
-            "method"  => "Import User-DAG Assignment",
-            "content" => "userDagMapping",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Data Access Groups",
+            "method"     => "Import User-DAG Assignment",
+            "content"    => "userDagMapping",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "userDagMapping_import"
         ],
         [
-            "area"    => "Events",
-            "method"  => "Export Events",
-            "content" => "event",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Events",
+            "method"     => "Export Events",
+            "content"    => "event",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "event_export"
         ],
         [
-            "area"    => "Events",
-            "method"  => "Import Events",
-            "content" => "event",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "Events",
+            "method"     => "Import Events",
+            "content"    => "event",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "event_import"
         ],
         [
-            "area"    => "Events",
-            "method"  => "Delete Events",
-            "content" => "event",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Events",
+            "method"     => "Delete Events",
+            "content"    => "event",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "event_delete"
         ],
         [
-            "area"    => "Field Names",
-            "method"  => "Export List of Export Field Names",
-            "content" => "exportFieldNames",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Field Names",
+            "method"     => "Export List of Export Field Names",
+            "content"    => "exportFieldNames",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "exportFieldNames_export"
         ],
         [
-            "area"    => "Files",
-            "method"  => "Export a File",
-            "content" => "file",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Files",
+            "method"     => "Export a File",
+            "content"    => "file",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "file_export"
         ],
         [
-            "area"    => "Files",
-            "method"  => "Import a File",
-            "content" => "file",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "Files",
+            "method"     => "Import a File",
+            "content"    => "file",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "file_import"
         ],
         [
-            "area"    => "Files",
-            "method"  => "Delete a File",
-            "content" => "file",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Files",
+            "method"     => "Delete a File",
+            "content"    => "file",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "file_delete"
         ],
         [
-            "area"    => "File Repository",
-            "method"  => "Create a New Folder in the File Repository",
-            "content" => "fileRepository",
-            "action"  => "createFolder",
-            "data"    => ""
+            "area"       => "File Repository",
+            "method"     => "Create a New Folder in the File Repository",
+            "content"    => "fileRepository",
+            "action"     => "createFolder",
+            "data"       => "",
+            "methodCode" => "fileRepository_createFolder"
         ],
         [
-            "area"    => "File Repository",
-            "method"  => "Export a List of Files/Folders from the File Repository",
-            "content" => "fileRepository",
-            "action"  => "list",
-            "data"    => ""
+            "area"       => "File Repository",
+            "method"     => "Export a List of Files/Folders from the File Repository",
+            "content"    => "fileRepository",
+            "action"     => "list",
+            "data"       => "",
+            "methodCode" => "fileRepository_list"
         ],
         [
-            "area"    => "File Repository",
-            "method"  => "Export a File from the File Repository",
-            "content" => "fileRepository",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "File Repository",
+            "method"     => "Export a File from the File Repository",
+            "content"    => "fileRepository",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "fileRepository_export"
         ],
         [
-            "area"    => "File Repository",
-            "method"  => "Import a File into the File Repository",
-            "content" => "fileRepository",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "File Repository",
+            "method"     => "Import a File into the File Repository",
+            "content"    => "fileRepository",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "fileRepository_import"
         ],
         [
-            "area"    => "File Repository",
-            "method"  => "Delete a File from the File Repository",
-            "content" => "fileRepository",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "File Repository",
+            "method"     => "Delete a File from the File Repository",
+            "content"    => "fileRepository",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "fileRepository_delete"
         ],
         [
-            "area"    => "Instruments",
-            "method"  => "Export Instruments (Data Entry Forms)",
-            "content" => "instrument",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Instruments",
+            "method"     => "Export Instruments (Data Entry Forms)",
+            "content"    => "instrument",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "instrument_export"
         ],
         [
-            "area"    => "Instruments",
-            "method"  => "Export PDF file of Instruments",
-            "content" => "pdf",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Instruments",
+            "method"     => "Export PDF file of Instruments",
+            "content"    => "pdf",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "pdf_export"
         ],
         [
-            "area"    => "Instruments",
-            "method"  => "Export Instrument-Event Mappings",
-            "content" => "formEventMapping",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Instruments",
+            "method"     => "Export Instrument-Event Mappings",
+            "content"    => "formEventMapping",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "formEventMapping_export"
         ],
         [
-            "area"    => "Instruments",
-            "method"  => "Import Instrument-Event Mappings",
-            "content" => "formEventMapping",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Instruments",
+            "method"     => "Import Instrument-Event Mappings",
+            "content"    => "formEventMapping",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "formEventMapping_import"
         ],
         [
-            "area"    => "Logging",
-            "method"  => "Export Logging",
-            "content" => "log",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Logging",
+            "method"     => "Export Logging",
+            "content"    => "log",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "log_export"
         ],
         [
-            "area"    => "Metadata",
-            "method"  => "Export Metadata (Data Dictionary)",
-            "content" => "metadata",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Metadata",
+            "method"     => "Export Metadata (Data Dictionary)",
+            "content"    => "metadata",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "metadata_export"
         ],
         [
-            "area"    => "Metadata",
-            "method"  => "Import Metadata (Data Dictionary)",
-            "content" => "metadata",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Metadata",
+            "method"     => "Import Metadata (Data Dictionary)",
+            "content"    => "metadata",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "metadata_import"
         ],
         // [
         //     "area"    => "Projects",
@@ -228,172 +256,196 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         //     "data"    => true
         // ],
         [
-            "area"    => "Projects",
-            "method"  => "Import Project Info",
-            "content" => "project_settings",
-            "action"  => "import",
-            "data"    => ""
+            "area"       => "Projects",
+            "method"     => "Import Project Info",
+            "content"    => "project_settings",
+            "action"     => "import",
+            "data"       => "",
+            "methodCode" => "project_settings_import"
         ],
         [
-            "area"    => "Projects",
-            "method"  => "Export Project Info",
-            "content" => "project",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Projects",
+            "method"     => "Export Project Info",
+            "content"    => "project",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "project_export"
         ],
         [
-            "area"    => "Projects",
-            "method"  => "Export Project XML",
-            "content" => "project_xml",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Projects",
+            "method"     => "Export Project XML",
+            "content"    => "project_xml",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "project_xml_export"
         ],
         [
-            "area"    => "Records",
-            "method"  => "Export Records",
-            "content" => "record",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Records",
+            "method"     => "Export Records",
+            "content"    => "record",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "record_export"
         ],
         [
-            "area"    => "Records",
-            "method"  => "Import Records",
-            "content" => "record",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Records",
+            "method"     => "Import Records",
+            "content"    => "record",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "record_import"
         ],
         [
-            "area"    => "Records",
-            "method"  => "Delete Records",
-            "content" => "record",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Records",
+            "method"     => "Delete Records",
+            "content"    => "record",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "record_delete"
         ],
         [
-            "area"    => "Records",
-            "method"  => "Rename Record",
-            "content" => "record",
-            "action"  => "rename",
-            "data"    => ""
+            "area"       => "Records",
+            "method"     => "Rename Record",
+            "content"    => "record",
+            "action"     => "rename",
+            "data"       => "",
+            "methodCode" => "record_rename"
         ],
         [
-            "area"    => "Records",
-            "method"  => "Generate Next Record Name",
-            "content" => "generateNextRecordName",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Records",
+            "method"     => "Generate Next Record Name",
+            "content"    => "generateNextRecordName",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "generateNextRecordName_export"
         ],
         [
-            "area"    => "Repeating Instruments and Events",
-            "method"  => "Export Repeating Instruments and Events",
-            "content" => "repeatingFormsEvents",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Repeating Instruments and Events",
+            "method"     => "Export Repeating Instruments and Events",
+            "content"    => "repeatingFormsEvents",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "repeatingFormsEvents_export"
         ],
         [
-            "area"    => "Repeating Instruments and Events",
-            "method"  => "Import Repeating Instruments and Events",
-            "content" => "repeatingFormsEvents",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Repeating Instruments and Events",
+            "method"     => "Import Repeating Instruments and Events",
+            "content"    => "repeatingFormsEvents",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "repeatingFormsEvents_import"
         ],
         [
-            "area"    => "Reports",
-            "method"  => "Export Reports",
-            "content" => "report",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Reports",
+            "method"     => "Export Reports",
+            "content"    => "report",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "report_export"
         ],
         [
-            "area"    => "REDCap",
-            "method"  => "Export REDCap Version",
-            "content" => "version",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "REDCap",
+            "method"     => "Export REDCap Version",
+            "content"    => "version",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "version_export"
         ],
         [
-            "area"    => "Surveys",
-            "method"  => "Export a Survey Link",
-            "content" => "surveyLink",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Surveys",
+            "method"     => "Export a Survey Link",
+            "content"    => "surveyLink",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "surveyLink_export"
         ],
         [
-            "area"    => "Surveys",
-            "method"  => "Export Survey Participants",
-            "content" => "participantList",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Surveys",
+            "method"     => "Export Survey Participants",
+            "content"    => "participantList",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "participantList_export"
         ],
         [
-            "area"    => "Surveys",
-            "method"  => "Export a Survey Queue Link",
-            "content" => "surveyQueueLink",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Surveys",
+            "method"     => "Export a Survey Queue Link",
+            "content"    => "surveyQueueLink",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "surveyQueueLink_export"
         ],
         [
-            "area"    => "Surveys",
-            "method"  => "Export a Survey Return Code",
-            "content" => "surveyReturnCode",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Surveys",
+            "method"     => "Export a Survey Return Code",
+            "content"    => "surveyReturnCode",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "surveyReturnCode_export"
         ],
         [
-            "area"    => "Users & User Privileges",
-            "method"  => "Export Users",
-            "content" => "user",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "Users & User Privileges",
+            "method"     => "Export Users",
+            "content"    => "user",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "user_export"
         ],
         [
-            "area"    => "Users & User Privileges",
-            "method"  => "Import Users",
-            "content" => "user",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "Users & User Privileges",
+            "method"     => "Import Users",
+            "content"    => "user",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "user_import"
         ],
         [
-            "area"    => "Users & User Privileges",
-            "method"  => "Delete Users",
-            "content" => "user",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "Users & User Privileges",
+            "method"     => "Delete Users",
+            "content"    => "user",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "user_delete"
         ],
         [
-            "area"    => "User Roles",
-            "method"  => "Export User Roles",
-            "content" => "userRole",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "User Roles",
+            "method"     => "Export User Roles",
+            "content"    => "userRole",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "userRole_export"
         ],
         [
-            "area"    => "User Roles",
-            "method"  => "Import User Roles",
-            "content" => "userRole",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "User Roles",
+            "method"     => "Import User Roles",
+            "content"    => "userRole",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "userRole_import"
         ],
         [
-            "area"    => "User Roles",
-            "method"  => "Delete User Roles",
-            "content" => "userRole",
-            "action"  => "delete",
-            "data"    => ""
+            "area"       => "User Roles",
+            "method"     => "Delete User Roles",
+            "content"    => "userRole",
+            "action"     => "delete",
+            "data"       => "",
+            "methodCode" => "userRole_delete"
         ],
         [
-            "area"    => "User Roles",
-            "method"  => "Export User-Role Assignment",
-            "content" => "userRoleMapping",
-            "action"  => "export",
-            "data"    => ""
+            "area"       => "User Roles",
+            "method"     => "Export User-Role Assignment",
+            "content"    => "userRoleMapping",
+            "action"     => "export",
+            "data"       => "",
+            "methodCode" => "userRoleMapping_export"
         ],
         [
-            "area"    => "User Roles",
-            "method"  => "Import User-Role Assignment",
-            "content" => "userRoleMapping",
-            "action"  => "import",
-            "data"    => true
+            "area"       => "User Roles",
+            "method"     => "Import User-Role Assignment",
+            "content"    => "userRoleMapping",
+            "action"     => "import",
+            "data"       => true,
+            "methodCode" => "userRoleMapping_import"
         ]
     ];
 
@@ -502,12 +554,13 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 $users      = $this->getAllUsers($project_id);
                 return [
                     'methodOrder' => $headerInfo['methodOrder'],
+                    'methodCodes' => $headerInfo['methodCodes'],
                     'users'       => $users
                 ];
             } elseif ( $action === 'saveApiUserRights' ) {
                 $userToSet     = $payload['user'] ?? '';
                 $rights        = $payload['rights'] ?? [];
-                $rightsChecker = new RightsChecker($this, $userToSet, $rights, $project_id);
+                $rightsChecker = new RightsChecker($this, $userToSet, $rights);
                 if ( $rightsChecker->isValid() ) {
                     $this->saveRights($userToSet, $rights, $project_id);
                     return true;
@@ -572,32 +625,59 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function redcap_module_configuration_settings($project_id, $settings)
     {
-        $this->framework->log('ok', [ 'settings' => json_encode($settings, JSON_PRETTY_PRINT) ]);
-        if ( !empty($project_id) ) {
-            $headerInfo = $this->getTableHeader();
-            $odd        = false;
-            $nameData   = '';
+        try {
+            if ( empty($project_id) ) {
+                $settingName                = 'default-rights-json-system';
+                $currentDefaultRightsString = $this->framework->getSystemSetting($settingName) ?? '{}';
+                $defaultRightsTitle         = "Define the set of default API User Rights for the system";
+                $defaultRightsDesc          = "These rights will be applied to all users who have not been assigned specific rights. These can be overridden in each project.";
+            } else {
+                $settingName                = 'default-rights-json-project';
+                $currentDefaultRightsString = $this->framework->getProjectSetting($settingName, $project_id) ?? '{}';
+                $defaultRightsTitle         = "Define the set of default API User Rights for this project";
+                $defaultRightsDesc          = "These rights will be applied to all users who have not been assigned specific rights in this project.";
+            }
+            $currentDefaultRights = json_decode($currentDefaultRightsString, true);
+            $headerInfo           = $this->getTableHeader();
+            $odd                  = false;
+            $nameData             = "<tr id='default-rights-field'>
+                                <td colspan='3'>
+                                    <p><span class='font-weight-bold'>" . $defaultRightsTitle . "</span><br>" . $defaultRightsDesc . "</p>
+                                    <div class='row row-cols-1 row-cols-sm-2 row-cols-lg-3'>";
             foreach ( $headerInfo['sections'] as $section => $methods ) {
                 $odd       = !$odd;
                 $cardClass = $odd ? 'odd' : 'even';
-                $nameData .= "<div class='card " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
+                $nameData .= "<div class='col card-container g-2'><div class='card " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
                 foreach ( $methods as $method ) {
                     $name     = $method["content"] . "_" . $method['action'];
-                    $nameData .= "<div class='form-check'><input class='form-check-input' type='checkbox' id='" . $name . "' name='" . $name . "' value='' ><label class='form-check-label' for='" . $name . "'>" . $method['method'] . "</label></div>";
+                    $checked  = ($currentDefaultRights[$name] ?? '') == '1' ? 'checked' : '';
+                    $nameData .= "<div class='form-check'><input class='form-check-input default-api-rights-input' type='checkbox' id='" . $name . "' name='" . $name . "' value='' " . $checked . "><label class='form-check-label' for='" . $name . "'>" . $method['method'] . "</label></div>";
                 }
-                $nameData .= "</div></div>";
+                $nameData .= "</div></div></div>";
             }
-            $nameData .= "<script>$('tr[field=\'default-rights\']').one('click', event => {
-                console.log('clicked'); 
-                $('tr[field=\'default-rights\'] input').each((i, el) => $(el).attr('name', $(el).attr('id')))
-            });</script><style>tr[field='default-rights'] label {width: 100%;} div.card.odd {background-color: #eee;} div.card.even {background-color: #fcfef5;}</style>";
+            $nameData .= "</div></td></tr>";
+            $scriptData = "<script>\$('tr[field=\'" . $settingName . "\']').after(\$(`" . $nameData . "`));
+            $('tr[field=\'" . $settingName . "\']').hide();
+            $('input.default-api-rights-input').change(saveDefaultRights);
+            function saveDefaultRights() {
+                const rights = {};
+                $('input.default-api-rights-input').each(function() {
+                    rights[this.id] = this.checked ? 1 : 0;
+                });
+                var rightsJson = JSON.stringify(rights);
+                $('input[name=\'" . $settingName . "\']').val(rightsJson);
+            }
+            </script><style> div.card.odd {background-color: #eee;} div.card.even {background-color: #fcfef5;}</style>";
             $settings[] = [
-                'key'  => "default-rights",
-                'name' => $nameData,
-                'type' => 'descriptive'
+                'key'  => $settingName,
+                'name' => $scriptData,
+                'type' => 'json'
             ];
+        } catch ( \Throwable $e ) {
+            $this->framework->log('Error adding default rights config', [ 'error' => $e->getMessage() ]);
+        } finally {
+            return $settings;
         }
-        return $settings;
     }
 
     public function redcap_module_link_check_display($project_id, $link)
@@ -610,23 +690,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return $link;
     }
 
-    public function validateSettings($settings)
-    {
-        $projectId = $this->framework->getProjectId();
-        if ( empty($projectId) ) {
-            $docId = $this->framework->getSystemSetting('default-rights-csv');
-        } else {
-            $docId = $this->framework->getProjectSetting('default-rights-csv-project', $projectId);
-        }
-        if ( empty($docId) ) {
-            return;
-        }
-        try {
-            $rights = $this->getDefaultApiRightsFromFile($docId);
-        } catch ( \Throwable $e ) {
-            return $e->getMessage();
-        }
-    }
+
 
     public function redcap_every_page_before_render($project_id = null) : void
     {
@@ -689,7 +753,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             // Check if the user has permission to use this method
             $methodAllowed = $this->isMethodAllowed($method, $username, $pid);
             if ( !$methodAllowed ) {
-                $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'method' => $method['method'] ?? '' ]);
+                $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'methodCode' => $method['methodCode'] ?? '', 'method' => $method['method'] ?? '' ]);
                 http_response_code(403);
                 header('Content-Type: application/json');
                 echo json_encode([ 'error' => 'You do not have permissions to use this API method.' ]);
@@ -800,25 +864,28 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         if ( empty($allowedMethods) ) {
             return false;
         }
-        return (int) $allowedMethods[$method['method'] ?? ''] === 1;
+        return (int) $allowedMethods[$method['methodCode'] ?? ''] === 1;
     }
 
     private function getAllowedMethods($username, $pid)
     {
-        $settingKey = 'allowed-api-methods-' . $username;
-        $settings   = $this->framework->getProjectSetting($settingKey, $pid);
-        if ( empty($settings) ) {
-            $settings = $this->getDefaultApiRights($pid);
-            $this->saveRights($username, $settings, $pid);
+        $settingKey     = 'allowed-api-methods-' . $username;
+        $allowedMethods = $this->framework->getProjectSetting($settingKey, $pid);
+        if ( empty($allowedMethods) ) {
+            $allowedMethods = $this->getDefaultApiRights($pid);
+            $this->saveRights($username, $allowedMethods, $pid);
         }
-        return $this->framework->getProjectSetting($settingKey, $pid) ?? $this->getDefaultApiRights($pid);
+        if ( $this->needsConversion($allowedMethods) ) {
+            $allowedMethods = $this->convertRightsFromNamesToCodes($allowedMethods);
+            $this->saveRights($username, $allowedMethods, $pid);
+        }
+        return $allowedMethods;
     }
 
 
 
     public function getAllUsers($pid)
     {
-        //$settings = $this->framework->getProjectSettings($pid);
         $users = $this->framework->getProject($pid)->getUsers();
 
         $userRights = [];
@@ -850,20 +917,18 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         }
     }
 
-    private function getDefaultApiRights($pid)
+    public function getDefaultApiRights($pid)
     {
-        $result      = $this->getBlankApiRights();
-        $defaultFile = empty($pid) ? null : $this->framework->getProjectSetting('default-rights-csv-project', $pid);
-        $defaultFile = empty($defaultFile) ? $this->framework->getSystemSetting('default-rights-csv') : $defaultFile;
-        if ( empty($defaultFile) ) {
-            $defaultRights = [];
-        } else {
-            $defaultRights = $this->getDefaultApiRightsFromFile($defaultFile, $pid);
+        $defaultRights              = $this->getBlankApiRights();
+        $defaultRightsStringProject = $this->framework->getProjectSetting('default-rights-json-project', $pid);
+        $defaultRightsStringSystem  = $this->framework->getSystemSetting('default-rights-json-system');
+        $defaultRightsProject       = json_decode($defaultRightsStringProject, true);
+        $defaultRightsSystem        = json_decode($defaultRightsStringSystem, true);
+
+        foreach ( $defaultRights as $methodCode => $value ) {
+            $defaultRights[$methodCode] = $defaultRightsProject[$methodCode] ?? $defaultRightsSystem[$methodCode] ?? $value ?? 0;
         }
-        foreach ( $defaultRights as $method => $value ) {
-            $result[$method] = $value ?? 0;
-        }
-        return $result;
+        return $defaultRights;
     }
 
     private function getDefaultApiRightsFromFile($fileId, $project_id = null)
@@ -881,18 +946,19 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
     {
         $blankRights = [];
         foreach ( ApiUserRights::$methods as $method ) {
-            $blankRights[$method['method'] ?? ''] = 0;
+            $blankRights[$method['methodCode'] ?? ''] = 0;
         }
         return $blankRights;
     }
 
     public function getTableHeader()
     {
-        $header     = "<thead><tr><th rowspan='2'>Username</th>";
-        $header2    = "";
-        $sections   = [];
-        $allMethods = [];
-        $even       = true;
+        $header         = "<thead><tr><th rowspan='2'>Username</th>";
+        $header2        = "";
+        $sections       = [];
+        $allMethods     = [];
+        $allMethodCodes = [];
+        $even           = true;
         foreach ( ApiUserRights::$methods as $method ) {
             $sections[$method['area']][] = $method;
         }
@@ -901,7 +967,8 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             $even      = !$even;
             $header .= "<th colspan='" . count($methods) . "' class='" . $thisClass . "'>" . $section . "</th>";
             foreach ( $methods as $method ) {
-                $allMethods[] = $method['method'];
+                $allMethods[]     = $method['method'];
+                $allMethodCodes[] = $method['methodCode'];
                 $header2 .= "<th class='" . $thisClass . " dt-center'>" . $method['method'] . "</th>";
             }
         }
@@ -911,6 +978,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return [
             "header"      => $header,
             "methodOrder" => $allMethods,
+            "methodCodes" => $allMethodCodes,
             "sections"    => $sections
         ];
     }
@@ -1055,5 +1123,34 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             ";
         }
         \REDCap::logEvent($message, $paramsString);
+    }
+
+    public function convertRightsFromNamesToCodes($rightsToConvert)
+    {
+        $rights = [];
+        foreach ( $rightsToConvert as $rightName => $value ) {
+            $rights[$this->convertRightNameToCode($rightName)] = $value;
+        }
+        return $rights;
+    }
+
+    public function convertRightNameToCode($rightName)
+    {
+        $method = array_filter(ApiUserRights::$methods, function ($method) use ($rightName) {
+            return $method['method'] === $rightName;
+        });
+        $method = reset($method);
+        return $method['methodCode'] ?? '';
+    }
+
+    public function needsConversion($rights)
+    {
+        $methodNames = array_filter($rights, function ($key) {
+            $methodMatches = array_filter(ApiUserRights::$methods, function ($method) use ($key) {
+                return $method['method'] === $key;
+            });
+            return sizeof($methodMatches) > 0;
+        }, ARRAY_FILTER_USE_KEY);
+        return sizeof($methodNames) > 0;
     }
 }
