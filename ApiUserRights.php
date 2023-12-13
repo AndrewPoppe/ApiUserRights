@@ -647,7 +647,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             foreach ( $headerInfo['sections'] as $section => $methods ) {
                 $odd       = !$odd;
                 $cardClass = $odd ? 'odd' : 'even';
-                $nameData .= "<div class='col card-container g-2'><div class='card " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
+                $nameData .= "<div class='col card-container g-2'><div class='card h-100 " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
                 foreach ( $methods as $method ) {
                     $name     = $method["content"] . "_" . $method['action'];
                     $checked  = ($currentDefaultRights[$name] ?? '') == '1' ? 'checked' : '';
