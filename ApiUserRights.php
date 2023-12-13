@@ -570,6 +570,36 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         }
     }
 
+    public function redcap_module_configuration_settings($project_id, $settings)
+    {
+        $this->framework->log('ok', [ 'settings' => json_encode($settings, JSON_PRETTY_PRINT) ]);
+        if ( !empty($project_id) ) {
+            $headerInfo = $this->getTableHeader();
+            $odd        = false;
+            $nameData   = '';
+            foreach ( $headerInfo['sections'] as $section => $methods ) {
+                $odd       = !$odd;
+                $cardClass = $odd ? 'odd' : 'even';
+                $nameData .= "<div class='card " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
+                foreach ( $methods as $method ) {
+                    $name     = $method["content"] . "_" . $method['action'];
+                    $nameData .= "<div class='form-check'><input class='form-check-input' type='checkbox' id='" . $name . "' name='" . $name . "' value='' ><label class='form-check-label' for='" . $name . "'>" . $method['method'] . "</label></div>";
+                }
+                $nameData .= "</div></div>";
+            }
+            $nameData .= "<script>$('tr[field=\'default-rights\']').one('click', event => {
+                console.log('clicked'); 
+                $('tr[field=\'default-rights\'] input').each((i, el) => $(el).attr('name', $(el).attr('id')))
+            });</script><style>tr[field='default-rights'] label {width: 100%;} div.card.odd {background-color: #eee;} div.card.even {background-color: #fcfef5;}</style>";
+            $settings[] = [
+                'key'  => "default-rights",
+                'name' => $nameData,
+                'type' => 'descriptive'
+            ];
+        }
+        return $settings;
+    }
+
     public function redcap_module_link_check_display($project_id, $link)
     {
         $user   = $this->framework->getUser();
