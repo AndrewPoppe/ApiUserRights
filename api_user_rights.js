@@ -95,11 +95,11 @@ API_USER_RIGHTS.downloadSnapshot = function (id) {
                 });
                 return;
             }
-            const header = Array.concat(['username'], API_USER_RIGHTS.methodOrder);
+            const header = Array.concat(['username'], API_USER_RIGHTS.methodCodes);
             const data = response.snapshot.map((row, i) => {
                 const newRow = [];
                 newRow.push(row['username']);
-                API_USER_RIGHTS.methodOrder.forEach(method => {
+                API_USER_RIGHTS.methodCodes.forEach(method => {
                     newRow.push(row[method] ? 1 : 0);
                 });
                 return newRow;
@@ -240,12 +240,12 @@ API_USER_RIGHTS.saveUsersCsv = function () {
     const data = $('#api_user_rights').DataTable().data().map((row, i) => {
         const newRow = [];
         newRow.push(row['username']);
-        API_USER_RIGHTS.methodOrder.forEach(method => {
+        API_USER_RIGHTS.methodCodes.forEach(method => {
             newRow.push(row[method] ? 1 : 0);
         });
         return newRow;
     });
-    const header = Array.concat(['username'], API_USER_RIGHTS.methodOrder);
+    const header = Array.concat(['username'], API_USER_RIGHTS.methodCodes);
     const csvData = {
         header: header,
         rows: data
@@ -389,6 +389,7 @@ $(document).ready(function () {
             API_USER_RIGHTS.ajax('getApiUserRights', {})
                 .then(response => {
                     API_USER_RIGHTS.methodOrder = response.methodOrder;
+                    API_USER_RIGHTS.methodCodes = response.methodCodes;
                     callback({
                         data: response.users
                     });
@@ -417,12 +418,12 @@ $(document).ready(function () {
             targets: '_all',
             className: 'dt-center',
             data: function (row, type, val, meta) {
-                const method = API_USER_RIGHTS.methodOrder[meta.col - 1];
+                const methodCode = API_USER_RIGHTS.methodCodes[meta.col - 1];
                 if (type === 'display') {
-                    return row[method] ? '<i class="fa-solid fa-check fa-xl text-success"></i>' :
+                    return row[methodCode] ? '<i class="fa-solid fa-check fa-xl text-success"></i>' :
                         '<i class="fa-solid fa-xmark fa-sm text-danger"></i>';
                 }
-                return row[method];
+                return row[methodCode];
             },
             createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
                 $(cell).attr('data-value', cellData ? 1 : 0);

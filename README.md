@@ -27,7 +27,7 @@ Install through the REDCap Repo
 
 ### Default Rights
 
-There is both a system-level and project-level configuration for the set of API User Rights that will be applied to users in a project by default. The base level default is to disallow any access to the API by default. However, this can be changed by uploading a CSV file with the API methods that should be allowed by default. An example of such a file can be found [here](files/API_User_Rights_Default_Template.csv).
+There is both a system-level and project-level configuration for the set of API User Rights that will be applied to users in a project by default. The base level default is to disallow any access to the API by default. However, this can be changed by selecting the API methods that should be allowed by default.
 
 There is a corresponding project-level configuration that allows you to override the system-level default. This lets individual projects define the set of API methods they want to allow by default.
 
@@ -38,6 +38,7 @@ See the Releases page for full descriptions of changes.
 
 | Version | Release Date | Description                                                      |
 | ------- | ------------ | ---------------------------------------------------------------- |
+| 2.0.0   | 2023-12-13   | Breaking change in how rights are represented internally.        |
 | 1.2.0   | 2023-12-11   | History snapshots, New default rights configuration, and Bug fix |
 | 1.1.1   | 2023-12-09   | Bug fix                                                          |
 | 1.1.0   | 2023-12-07   | Added ability to import/export CSV files                         |
