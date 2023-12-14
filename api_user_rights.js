@@ -364,6 +364,15 @@ API_USER_RIGHTS.confirmImport = function () {
 
 $(document).ready(function () {
 
+    function colorCards() {
+        $('.card-container:visible').each(function (i, el) {
+            const card = $(el).find('.card');
+            console.log(i, el, card);
+            $(card).toggleClass('odd', i % 2 == 0);
+            $(card).toggleClass('even', i % 2 == 1);
+        });
+    }
+
     window.Toast = Swal.mixin({
         toast: true,
         position: 'middle',
@@ -477,6 +486,7 @@ $(document).ready(function () {
             $('#editorForm .card-container').each(function (i, el) {
                 $(el).toggle(true);
             });
+            colorCards();
             return;
         }
         $('#filter-icon').hide();
@@ -499,5 +509,6 @@ $(document).ready(function () {
         $('#editorForm .card-header').each((i, el) => {
             $(el).html($(el).text().replace(regex, '<mark>$1</mark>'));
         });
+        colorCards();
     });
 });

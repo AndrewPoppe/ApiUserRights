@@ -639,14 +639,14 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             }
             $currentDefaultRights = json_decode($currentDefaultRightsString, true);
             $headerInfo           = $this->getTableHeader();
-            $odd                  = false;
+            $odd                  = true;
             $nameData             = "<tr id='default-rights-field'>
                                 <td colspan='3'>
                                     <p><span class='font-weight-bold'>" . $defaultRightsTitle . "</span><br>" . $defaultRightsDesc . "</p>
                                     <div class='row row-cols-1 row-cols-sm-2 row-cols-lg-3'>";
             foreach ( $headerInfo['sections'] as $section => $methods ) {
-                $odd       = !$odd;
                 $cardClass = $odd ? 'odd' : 'even';
+                $odd       = !$odd;
                 $nameData .= "<div class='col card-container g-2'><div class='card h-100 " . $cardClass . "'><div class='card-body'><h5 class='card-title'>" . $section . "</h5>";
                 foreach ( $methods as $method ) {
                     $name     = $method["content"] . "_" . $method['action'];

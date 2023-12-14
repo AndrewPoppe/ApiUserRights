@@ -104,3 +104,11 @@ div.dataTables_scrollBody {
 .modal table#api_user_rights_snapshots tr.odd td {
     background-color: white !important;
 }
+
+div.card.odd {
+    background-color: #eee;
+}
+
+div.card.even {
+    background-color: #fcfef5;
+}

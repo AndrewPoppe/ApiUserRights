@@ -80,10 +80,15 @@ $headerInfo = $module->getTableHeader();
                 <form id="editorForm">
                     <div
                         class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
-                        <?php foreach ( $headerInfo["sections"] as $section => $methods ) { ?>
-                            <div class="col card-container px-2">
-                                <div class="card mb-3">
-                                    <h5 class="card-header bg-light">
+                        <?php
+                        $odd = true;
+                        foreach ( $headerInfo["sections"] as $section => $methods ) {
+                            $cardClass = $odd ? "odd" : "even";
+                            $odd       = !$odd;
+                            ?>
+                            <div class="col card-container g-2">
+                                <div class="card h-100 <?= $cardClass ?>">
+                                    <h5 class="card-header">
                                         <?= $section ?>
                                     </h5>
                                     <div class="card-body">
