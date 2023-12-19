@@ -22,6 +22,7 @@ $headerInfo = $module->getTableHeader();
         API User Rights
     </span>
 </div>
+<?php var_dump(\APIPlayground::getAPIsArray()); ?>
 <div class="table-container">
     <div class="info">
         <p>

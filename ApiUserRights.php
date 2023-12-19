@@ -17,435 +17,665 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
      * All API methods
      * @var array<int, array{
      * area: string,
+     * langCodeArea: string,
      * method: string,
      * content: string,
      * action: string,
      * data: string|bool
+     * methodCode: string,
+     * methodCodeRC: string,
+     * langCode: string,
+     * langCodeInternal: string
      * }>
      */
     static array $methods = [
+        // Arms
         [
-            "area"       => "Arms",
-            "method"     => "Export Arms",
-            "content"    => "arm",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "arm_export"
+            "area"             => "Arms",
+            "langCodeArea"     => "api_97",
+            "method"           => "Export Arms",
+            "content"          => "arm",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "arm_export",
+            "methodCodeRC"     => "exp_arms",
+            "langCode"         => "api_63",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Arms",
-            "method"     => "Import Arms",
-            "content"    => "arm",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "arm_import"
+            "area"             => "Arms",
+            "langCodeArea"     => "api_97",
+            "method"           => "Import Arms",
+            "content"          => "arm",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "arm_import",
+            "methodCodeRC"     => "imp_arms",
+            "langCode"         => "api_82",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Arms",
-            "method"     => "Delete Arms",
-            "content"    => "arm",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "arm_delete"
+            "area"             => "Arms",
+            "langCodeArea"     => "api_97",
+            "method"           => "Delete Arms",
+            "content"          => "arm",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "arm_delete",
+            "methodCodeRC"     => "del_arms",
+            "langCode"         => "api_82",
+            "langCodeInternal" => ""
+        ],
+        // Data Access Groups
+        [
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Export DAGs",
+            "content"          => "dag",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "dag_export",
+            "methodCodeRC"     => "exp_dags",
+            "langCode"         => "api_152",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Export DAGs",
-            "content"    => "dag",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "dag_export"
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Import DAGs",
+            "content"          => "dag",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "dag_import",
+            "methodCodeRC"     => "imp_dags",
+            "langCode"         => "api_153",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Import DAGs",
-            "content"    => "dag",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "dag_import"
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Delete DAGs",
+            "content"          => "dag",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "dag_delete",
+            "methodCodeRC"     => "del_dags",
+            "langCode"         => "api_154",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Delete DAGs",
-            "content"    => "dag",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "dag_delete"
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Switch DAGs",
+            "content"          => "dag",
+            "action"           => "switch",
+            "data"             => "",
+            "methodCode"       => "dag_switch",
+            "methodCodeRC"     => "switch_dag",
+            "langCode"         => "api_186",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Switch DAGs",
-            "content"    => "dag",
-            "action"     => "switch",
-            "data"       => "",
-            "methodCode" => "dag_switch"
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Export User-DAG Assignment",
+            "content"          => "userDagMapping",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "userDagMapping_export",
+            "methodCodeRC"     => "exp_user_dag_maps",
+            "langCode"         => "api_155",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Export User-DAG Assignment",
-            "content"    => "userDagMapping",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "userDagMapping_export"
+            "area"             => "Data Access Groups",
+            "langCodeArea"     => "global_22",
+            "method"           => "Import User-DAG Assignment",
+            "content"          => "userDagMapping",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "userDagMapping_import",
+            "methodCodeRC"     => "imp_user_dag_maps",
+            "langCode"         => "api_156",
+            "langCodeInternal" => ""
+        ],
+        // Events
+        [
+            "area"             => "Events",
+            "langCodeArea"     => "global_45",
+            "method"           => "Export Events",
+            "content"          => "event",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "event_export",
+            "methodCodeRC"     => "exp_events",
+            "langCode"         => "api_62",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Data Access Groups",
-            "method"     => "Import User-DAG Assignment",
-            "content"    => "userDagMapping",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "userDagMapping_import"
+            "area"             => "Events",
+            "langCodeArea"     => "global_45",
+            "method"           => "Import Events",
+            "content"          => "event",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "event_import",
+            "methodCodeRC"     => "imp_events",
+            "langCode"         => "api_84",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Events",
-            "method"     => "Export Events",
-            "content"    => "event",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "event_export"
+            "area"             => "Events",
+            "langCodeArea"     => "global_45",
+            "method"           => "Delete Events",
+            "content"          => "event",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "event_delete",
+            "methodCodeRC"     => "del_events",
+            "langCode"         => "api_85",
+            "langCodeInternal" => ""
+        ],
+        // Field Names
+        [
+            "area"             => "Field Names",
+            "langCodeArea"     => "api_98",
+            "method"           => "Export List of Export Field Names",
+            "content"          => "exportFieldNames",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "exportFieldNames_export",
+            "methodCodeRC"     => "exp_field_names",
+            "langCode"         => "api_52",
+            "langCodeInternal" => ""
+        ],
+        // Files
+        [
+            "area"             => "Files",
+            "langCodeArea"     => "api_99",
+            "method"           => "Export a File",
+            "content"          => "file",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "file_export",
+            "methodCodeRC"     => "exp_file",
+            "langCode"         => "api_53",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Events",
-            "method"     => "Import Events",
-            "content"    => "event",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "event_import"
+            "area"             => "Files",
+            "langCodeArea"     => "",
+            "method"           => "Import a File",
+            "content"          => "file",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "file_import",
+            "methodCodeRC"     => "imp_file",
+            "langCode"         => "api_54",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Events",
-            "method"     => "Delete Events",
-            "content"    => "event",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "event_delete"
+            "area"             => "Files",
+            "langCodeArea"     => "",
+            "method"           => "Delete a File",
+            "content"          => "file",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "file_delete",
+            "methodCodeRC"     => "del_file",
+            "langCode"         => "api_55",
+            "langCodeInternal" => ""
+        ],
+        // File Repository
+        [
+            "area"             => "File Repository",
+            "langCodeArea"     => "app_04",
+            "method"           => "Create a New Folder in the File Repository",
+            "content"          => "fileRepository",
+            "action"           => "createFolder",
+            "data"             => "",
+            "methodCode"       => "fileRepository_createFolder",
+            "methodCodeRC"     => "create_folder_file_repo",
+            "langCode"         => "api_209",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Field Names",
-            "method"     => "Export List of Export Field Names",
-            "content"    => "exportFieldNames",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "exportFieldNames_export"
+            "area"             => "File Repository",
+            "langCodeArea"     => "app_04",
+            "method"           => "Export a List of Files/Folders from the File Repository",
+            "content"          => "fileRepository",
+            "action"           => "list",
+            "data"             => "",
+            "methodCode"       => "fileRepository_list",
+            "methodCodeRC"     => "exp_list_file_repo",
+            "langCode"         => "api_204",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Files",
-            "method"     => "Export a File",
-            "content"    => "file",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "file_export"
+            "area"             => "File Repository",
+            "langCodeArea"     => "app_04",
+            "method"           => "Export a File from the File Repository",
+            "content"          => "fileRepository",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "fileRepository_export",
+            "methodCodeRC"     => "exp_file_repo",
+            "langCode"         => "api_193",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Files",
-            "method"     => "Import a File",
-            "content"    => "file",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "file_import"
+            "area"             => "File Repository",
+            "langCodeArea"     => "app_04",
+            "method"           => "Import a File into the File Repository",
+            "content"          => "fileRepository",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "fileRepository_import",
+            "methodCodeRC"     => "imp_file_repo",
+            "langCode"         => "api_194",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Files",
-            "method"     => "Delete a File",
-            "content"    => "file",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "file_delete"
+            "area"             => "File Repository",
+            "langCodeArea"     => "app_04",
+            "method"           => "Delete a File from the File Repository",
+            "content"          => "fileRepository",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "fileRepository_delete",
+            "methodCodeRC"     => "del_file_repo",
+            "langCode"         => "api_195",
+            "langCodeInternal" => ""
+        ],
+        // Instruments
+        [
+            "area"             => "Instruments",
+            "langCodeArea"     => "global_110",
+            "method"           => "Export Instruments (Data Entry Forms)",
+            "content"          => "instrument",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "instrument_export",
+            "methodCodeRC"     => "exp_instr",
+            "langCode"         => "api_56",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "File Repository",
-            "method"     => "Create a New Folder in the File Repository",
-            "content"    => "fileRepository",
-            "action"     => "createFolder",
-            "data"       => "",
-            "methodCode" => "fileRepository_createFolder"
+            "area"             => "Instruments",
+            "langCodeArea"     => "global_110",
+            "method"           => "Export PDF file of Instruments",
+            "content"          => "pdf",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "pdf_export",
+            "methodCodeRC"     => "exp_instr_pdf",
+            "langCode"         => "api_57",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "File Repository",
-            "method"     => "Export a List of Files/Folders from the File Repository",
-            "content"    => "fileRepository",
-            "action"     => "list",
-            "data"       => "",
-            "methodCode" => "fileRepository_list"
+            "area"             => "Instruments",
+            "langCodeArea"     => "global_110",
+            "method"           => "Export Instrument-Event Mappings",
+            "content"          => "formEventMapping",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "formEventMapping_export",
+            "methodCodeRC"     => "exp_inst_event_maps",
+            "langCode"         => "api_64",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "File Repository",
-            "method"     => "Export a File from the File Repository",
-            "content"    => "fileRepository",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "fileRepository_export"
+            "area"             => "Instruments",
+            "langCodeArea"     => "global_110",
+            "method"           => "Import Instrument-Event Mappings",
+            "content"          => "formEventMapping",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "formEventMapping_import",
+            "methodCodeRC"     => "imp_inst_event_maps",
+            "langCode"         => "api_81",
+            "langCodeInternal" => ""
+        ],
+        // Logging
+        [
+            "area"             => "Logging",
+            "langCodeArea"     => "app_07",
+            "method"           => "Export Logging",
+            "content"          => "log",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "log_export",
+            "methodCodeRC"     => "exp_logging",
+            "langCode"         => "api_158",
+            "langCodeInternal" => ""
+        ],
+        // Metadata
+        [
+            "area"             => "Metadata",
+            "langCodeArea"     => "api_100",
+            "method"           => "Export Metadata (Data Dictionary)",
+            "content"          => "metadata",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "metadata_export",
+            "methodCodeRC"     => "exp_metadata",
+            "langCode"         => "api_51",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "File Repository",
-            "method"     => "Import a File into the File Repository",
-            "content"    => "fileRepository",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "fileRepository_import"
+            "area"             => "Metadata",
+            "langCodeArea"     => "api_100",
+            "method"           => "Import Metadata (Data Dictionary)",
+            "content"          => "metadata",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "metadata_import",
+            "methodCodeRC"     => "imp_metadata",
+            "langCode"         => "api_79",
+            "langCodeInternal" => ""
+        ],
+        // Projects
+        /**[
+            "area"    => "Projects",
+            "method"  => "Create Project",
+            "content" => "project",
+            "action"  => "import",
+            "data"    => true
+        ],*/
+        [
+            "area"             => "Projects",
+            "langCodeArea"     => "control_center_134",
+            "method"           => "Import Project Info",
+            "content"          => "project_settings",
+            "action"           => "import",
+            "data"             => "",
+            "methodCode"       => "project_settings_import",
+            "methodCodeRC"     => "imp_proj_sett",
+            "langCode"         => "api_133",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "File Repository",
-            "method"     => "Delete a File from the File Repository",
-            "content"    => "fileRepository",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "fileRepository_delete"
+            "area"             => "Projects",
+            "langCodeArea"     => "control_center_134",
+            "method"           => "Export Project Info",
+            "content"          => "project",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "project_export",
+            "methodCodeRC"     => "exp_proj",
+            "langCode"         => "api_66",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Instruments",
-            "method"     => "Export Instruments (Data Entry Forms)",
-            "content"    => "instrument",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "instrument_export"
+            "area"             => "Projects",
+            "langCodeArea"     => "control_center_134",
+            "method"           => "Export Project XML",
+            "content"          => "project_xml",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "project_xml_export",
+            "methodCodeRC"     => "exp_proj_xml",
+            "langCode"         => "api_docs_252",
+            "langCodeInternal" => ""
+        ],
+        // Records
+        [
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Export Records",
+            "content"          => "record",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "record_export",
+            "methodCodeRC"     => "exp_records",
+            "langCode"         => "api_48",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Instruments",
-            "method"     => "Export PDF file of Instruments",
-            "content"    => "pdf",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "pdf_export"
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Import Records",
+            "content"          => "record",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "record_import",
+            "methodCodeRC"     => "imp_records",
+            "langCode"         => "api_50",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Instruments",
-            "method"     => "Export Instrument-Event Mappings",
-            "content"    => "formEventMapping",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "formEventMapping_export"
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Delete Records",
+            "content"          => "record",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "record_delete",
+            "methodCodeRC"     => "del_records",
+            "langCode"         => "api_130",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Instruments",
-            "method"     => "Import Instrument-Event Mappings",
-            "content"    => "formEventMapping",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "formEventMapping_import"
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Rename Record",
+            "content"          => "record",
+            "action"           => "rename",
+            "data"             => "",
+            "methodCode"       => "record_rename",
+            "methodCodeRC"     => "rename_record",
+            "langCode"         => "api_190",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Logging",
-            "method"     => "Export Logging",
-            "content"    => "log",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "log_export"
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Generate Next Record Name",
+            "content"          => "generateNextRecordName",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "generateNextRecordName_export",
+            "methodCodeRC"     => "exp_next_id",
+            "langCode"         => "api_134",
+            "langCodeInternal" => ""
+        ],
+        // Repeating Instruments and Events
+        [
+            "area"             => "Repeating Instruments and Events",
+            "langCodeArea"     => "rep_forms_events_01",
+            "method"           => "Export Repeating Instruments and Events",
+            "content"          => "repeatingFormsEvents",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "repeatingFormsEvents_export",
+            "methodCodeRC"     => "exp_repeating_forms_events",
+            "langCode"         => "rep_forms_events_02",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Metadata",
-            "method"     => "Export Metadata (Data Dictionary)",
-            "content"    => "metadata",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "metadata_export"
+            "area"             => "Repeating Instruments and Events",
+            "langCodeArea"     => "rep_forms_events_01",
+            "method"           => "Import Repeating Instruments and Events",
+            "content"          => "repeatingFormsEvents",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "repeatingFormsEvents_import",
+            "methodCodeRC"     => "imp_repeating_forms_events",
+            "langCode"         => "rep_forms_events_05",
+            "langCodeInternal" => ""
+        ],
+        // Reports
+        [
+            "area"             => "Reports",
+            "langCodeArea"     => "app_06",
+            "method"           => "Export Reports",
+            "content"          => "report",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "report_export",
+            "methodCodeRC"     => "exp_reports",
+            "langCode"         => "api_49",
+            "langCodeInternal" => ""
+        ],
+        // REDCap
+        [
+            "area"             => "REDCap",
+            "langCodeArea"     => "api_101",
+            "method"           => "Export REDCap Version",
+            "content"          => "version",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "version_export",
+            "methodCodeRC"     => "exp_rc_v",
+            "langCode"         => "api_67",
+            "langCodeInternal" => ""
+        ],
+        // Surveys
+        [
+            "area"             => "Surveys",
+            "langCodeArea"     => "dashboard_69",
+            "method"           => "Export a Survey Link",
+            "content"          => "surveyLink",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "surveyLink_export",
+            "methodCodeRC"     => "exp_surv_link",
+            "langCode"         => "api_58",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Metadata",
-            "method"     => "Import Metadata (Data Dictionary)",
-            "content"    => "metadata",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "metadata_import"
-        ],
-        // [
-        //     "area"    => "Projects",
-        //     "method"  => "Create Project",
-        //     "content" => "project",
-        //     "action"  => "import",
-        //     "data"    => true
-        // ],
-        [
-            "area"       => "Projects",
-            "method"     => "Import Project Info",
-            "content"    => "project_settings",
-            "action"     => "import",
-            "data"       => "",
-            "methodCode" => "project_settings_import"
+            "area"             => "Surveys",
+            "langCodeArea"     => "dashboard_69",
+            "method"           => "Export Survey Participants",
+            "content"          => "participantList",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "participantList_export",
+            "methodCodeRC"     => "exp_surv_parts",
+            "langCode"         => "api_61",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Projects",
-            "method"     => "Export Project Info",
-            "content"    => "project",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "project_export"
+            "area"             => "Surveys",
+            "langCodeArea"     => "dashboard_69",
+            "method"           => "Export a Survey Queue Link",
+            "content"          => "surveyQueueLink",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "surveyQueueLink_export",
+            "methodCodeRC"     => "exp_surv_queue_link",
+            "langCode"         => "api_59",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Projects",
-            "method"     => "Export Project XML",
-            "content"    => "project_xml",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "project_xml_export"
+            "area"             => "Surveys",
+            "langCodeArea"     => "dashboard_69",
+            "method"           => "Export a Survey Return Code",
+            "content"          => "surveyReturnCode",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "surveyReturnCode_export",
+            "methodCodeRC"     => "exp_surv_ret_code",
+            "langCode"         => "api_60",
+            "langCodeInternal" => ""
+        ],
+        // Users & User Privileges
+        [
+            "area"             => "Users & User Privileges",
+            "langCodeArea"     => "api_docs_228",
+            "method"           => "Export Users",
+            "content"          => "user",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "user_export",
+            "methodCodeRC"     => "exp_users",
+            "langCode"         => "api_65",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Records",
-            "method"     => "Export Records",
-            "content"    => "record",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "record_export"
+            "area"             => "Users & User Privileges",
+            "langCodeArea"     => "api_docs_228",
+            "method"           => "Import Users",
+            "content"          => "user",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "user_import",
+            "methodCodeRC"     => "imp_users",
+            "langCode"         => "api_80",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Records",
-            "method"     => "Import Records",
-            "content"    => "record",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "record_import"
+            "area"             => "Users & User Privileges",
+            "langCodeArea"     => "api_docs_228",
+            "method"           => "Delete Users",
+            "content"          => "user",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "user_delete",
+            "methodCodeRC"     => "del_users",
+            "langCode"         => "api_159",
+            "langCodeInternal" => ""
+        ],
+        // User Roles
+        [
+            "area"             => "User Roles",
+            "langCodeArea"     => "api_162",
+            "method"           => "Export User Roles",
+            "content"          => "userRole",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "userRole_export",
+            "methodCodeRC"     => "exp_user_roles",
+            "langCode"         => "api_163",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Records",
-            "method"     => "Delete Records",
-            "content"    => "record",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "record_delete"
+            "area"             => "User Roles",
+            "langCodeArea"     => "api_162",
+            "method"           => "Import User Roles",
+            "content"          => "userRole",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "userRole_import",
+            "methodCodeRC"     => "imp_user_roles",
+            "langCode"         => "api_164",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Records",
-            "method"     => "Rename Record",
-            "content"    => "record",
-            "action"     => "rename",
-            "data"       => "",
-            "methodCode" => "record_rename"
+            "area"             => "User Roles",
+            "langCodeArea"     => "api_162",
+            "method"           => "Delete User Roles",
+            "content"          => "userRole",
+            "action"           => "delete",
+            "data"             => "",
+            "methodCode"       => "userRole_delete",
+            "methodCodeRC"     => "del_user_roles",
+            "langCode"         => "api_165",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Records",
-            "method"     => "Generate Next Record Name",
-            "content"    => "generateNextRecordName",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "generateNextRecordName_export"
+            "area"             => "User Roles",
+            "langCodeArea"     => "api_162",
+            "method"           => "Export User-Role Assignment",
+            "content"          => "userRoleMapping",
+            "action"           => "export",
+            "data"             => "",
+            "methodCode"       => "userRoleMapping_export",
+            "methodCodeRC"     => "exp_user_role_maps",
+            "langCode"         => "api_172",
+            "langCodeInternal" => ""
         ],
         [
-            "area"       => "Repeating Instruments and Events",
-            "method"     => "Export Repeating Instruments and Events",
-            "content"    => "repeatingFormsEvents",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "repeatingFormsEvents_export"
-        ],
-        [
-            "area"       => "Repeating Instruments and Events",
-            "method"     => "Import Repeating Instruments and Events",
-            "content"    => "repeatingFormsEvents",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "repeatingFormsEvents_import"
-        ],
-        [
-            "area"       => "Reports",
-            "method"     => "Export Reports",
-            "content"    => "report",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "report_export"
-        ],
-        [
-            "area"       => "REDCap",
-            "method"     => "Export REDCap Version",
-            "content"    => "version",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "version_export"
-        ],
-        [
-            "area"       => "Surveys",
-            "method"     => "Export a Survey Link",
-            "content"    => "surveyLink",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "surveyLink_export"
-        ],
-        [
-            "area"       => "Surveys",
-            "method"     => "Export Survey Participants",
-            "content"    => "participantList",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "participantList_export"
-        ],
-        [
-            "area"       => "Surveys",
-            "method"     => "Export a Survey Queue Link",
-            "content"    => "surveyQueueLink",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "surveyQueueLink_export"
-        ],
-        [
-            "area"       => "Surveys",
-            "method"     => "Export a Survey Return Code",
-            "content"    => "surveyReturnCode",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "surveyReturnCode_export"
-        ],
-        [
-            "area"       => "Users & User Privileges",
-            "method"     => "Export Users",
-            "content"    => "user",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "user_export"
-        ],
-        [
-            "area"       => "Users & User Privileges",
-            "method"     => "Import Users",
-            "content"    => "user",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "user_import"
-        ],
-        [
-            "area"       => "Users & User Privileges",
-            "method"     => "Delete Users",
-            "content"    => "user",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "user_delete"
-        ],
-        [
-            "area"       => "User Roles",
-            "method"     => "Export User Roles",
-            "content"    => "userRole",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "userRole_export"
-        ],
-        [
-            "area"       => "User Roles",
-            "method"     => "Import User Roles",
-            "content"    => "userRole",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "userRole_import"
-        ],
-        [
-            "area"       => "User Roles",
-            "method"     => "Delete User Roles",
-            "content"    => "userRole",
-            "action"     => "delete",
-            "data"       => "",
-            "methodCode" => "userRole_delete"
-        ],
-        [
-            "area"       => "User Roles",
-            "method"     => "Export User-Role Assignment",
-            "content"    => "userRoleMapping",
-            "action"     => "export",
-            "data"       => "",
-            "methodCode" => "userRoleMapping_export"
-        ],
-        [
-            "area"       => "User Roles",
-            "method"     => "Import User-Role Assignment",
-            "content"    => "userRoleMapping",
-            "action"     => "import",
-            "data"       => true,
-            "methodCode" => "userRoleMapping_import"
+            "area"             => "User Roles",
+            "langCodeArea"     => "api_162",
+            "method"           => "Import User-Role Assignment",
+            "content"          => "userRoleMapping",
+            "action"           => "import",
+            "data"             => true,
+            "methodCode"       => "userRoleMapping_import",
+            "methodCodeRC"     => "imp_user_role_maps",
+            "langCode"         => "api_173",
+            "langCodeInternal" => ""
         ]
     ];
 
