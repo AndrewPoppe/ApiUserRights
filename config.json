@@ -1,7 +1,9 @@
 {
     "name": "API User Rights",
+    "tt_name": "module_title",
     "namespace": "YaleREDCap\\ApiUserRights",
     "description": "This external module allows users with User Rights permission in a project to control access to individual API methods. For example, you can allow a user to access the <code>Export Reports</code> method, but not the <code>Import Records</code> endpoint.",
+    "tt_description": "module_description",
     "authors": [
         {
             "name": "Andrew Poppe",
@@ -15,6 +17,7 @@
         "project": [
             {
                 "name": "API User Rights",
+                "tt_name": "module_title",
                 "url": "api_user_rights",
                 "icon": "fas fa-laptop-code",
                 "show-header-and-footer": true
@@ -29,12 +32,11 @@
         "getSnapshotsInfo",
         "downloadSnapshot"
     ],
-    "framework-version": 14,
+    "framework-version": 15,
     "compatibility": {
         "php-version-min": "7.4.0",
         "php-version-max": "",
-        "redcap-version-min": "13.7.0",
+        "redcap-version-min": "14.0.2",
         "redcap-version-max": ""
-    },
-    "enable-every-page-hooks-on-system-pages": true
+    }
 }

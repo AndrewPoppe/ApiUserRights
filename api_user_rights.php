@@ -4,8 +4,10 @@ namespace YaleREDCap\ApiUserRights;
 
 /** @var ApiUserRights $module */
 
+global $lang;
 $pid = $module->framework->getProjectId();
 $module->framework->initializeJavascriptModuleObject();
+$module->framework->tt_transferToJavascriptModuleObject();
 $headerInfo = $module->getTableHeader();
 
 ?>
@@ -19,26 +21,22 @@ $headerInfo = $module->getTableHeader();
 <link rel="stylesheet" href="<?= $module->framework->getUrl('api_user_rights.css') ?>">
 <div class="projhdr">
     <i class='fa-solid fa-laptop-code'></i>&nbsp;<span>
-        API User Rights
+        <?= $module->framework->tt('module_title') ?>
     </span>
 </div>
-<?php //var_dump(\APIPlayground::getAPIsArray()); ?>
 <div class="table-container">
     <div class="info">
-        <p>
-            This page allows you to manage API user rights for this project. You can edit rights for individual users
-            by clicking on their username. You can also import and export rights for all users in this project.
-        </p>
+        <p><?= $module->framework->tt('module_info') ?></p>
         <div class="container m-0 g-0">
             <div class="row align-items-center g-0">
                 <div class="col-auto">
                     <button class="btn btn-xs btn-outline-secondary" onclick="API_USER_RIGHTS.saveSnapshot();">
-                        <i class="fa-solid fa-camera"></i> Save snapshot of API user rights
+                        <i class="fa-solid fa-camera"></i> <?= $module->framework->tt('snapshot_button_text') ?>
                     </button>
                 </div>
                 <div class="col ml-1">
-                    <span style="font-size: smaller;">Latest snapshot: <a data-bs-toggle="tooltip"
-                            data-bs-title="Click to see all snapshots for this project" id="snapshotModalLink" href="#"
+                    <span style="font-size: smaller;"><?= $module->framework->tt('snapshot_label') ?> <a data-bs-toggle="tooltip"
+                            data-bs-title="<?= $module->framework->tt('snapshot_tooltip') ?>" id="snapshotModalLink" href="#"
                             onclick="API_USER_RIGHTS.openSnapshotModal();">
                             <?= $module->getLastSnapshotText(); ?>
                         </a>
@@ -62,13 +60,13 @@ $headerInfo = $module->getTableHeader();
                 <h5 class="modal-title nowrap"></h5>
                 <div class="d-flex justify-content-end w-100">
                     <div class="input-group input-group-sm mb-1 w-auto">
-                        <input class="form-control form-control-sm search" type="text" placeholder="Filter methods"
+                        <input class="form-control form-control-sm search" type="text" placeholder="<?= $module->framework->tt('filter_methods') ?>"
                             aria-label="Filter API Methods" id="aur-filter-methods">
                         <span class="input-group-text filter-icon fs12" id="filter-icon">
                             <i class="fa-solid fa-filter fa-fw"></i>
                         </span>
                         <button class="btn btn-sm btn-secondary btn-filter-clear fs12 text-danger" type="button"
-                            title="Clear filter" id="filter-clear-button" style="display: none;"
+                            title="<?= $module->framework->tt('clear_filter') ?>" id="filter-clear-button" style="display: none;"
                             onclick="API_USER_RIGHTS.clearFilter();">
                             <i class="fa-solid fa-filter-circle-xmark fa-fw"></i>
                     </div>
@@ -98,7 +96,7 @@ $headerInfo = $module->getTableHeader();
                                                 <input class="form-check-input" type="checkbox" value="1"
                                                     id="<?= $method["methodCode"] ?>" name="<?= $method["methodCode"] ?>">
                                                 <label class="form-check-label mb-2" for="<?= $method["methodCode"] ?>">
-                                                    <?= $method["method"] ?>
+                                                    <?= $lang[$method['langCode']] ?>
                                                 </label>
                                             </div>
                                         <?php } ?>
@@ -111,9 +109,9 @@ $headerInfo = $module->getTableHeader();
             </div>
             <div class="modal-footer">
                 <span id="changeInfo" class="changeInfo"></span>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $module->framework->tt('cancel') ?></button>
                 <button type="button" class="btn btn-primary" id="saveRightsButton"
-                    onclick="API_USER_RIGHTS.submitForm()">Save changes</button>
+                    onclick="API_USER_RIGHTS.submitForm()"><?= $module->framework->tt('save_changes') ?></button>
             </div>
         </div>
     </div>
@@ -122,7 +120,7 @@ $headerInfo = $module->getTableHeader();
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title nowrap">API User Rights Snapshots</h5>
+                <h5 class="modal-title nowrap"><?= $module->framework->tt('snapshots_title') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -131,9 +129,9 @@ $headerInfo = $module->getTableHeader();
                 <table width="100%" id="api_user_rights_snapshots" class="compact hover">
                     <thead>
                         <tr>
-                            <th>Snapshot taken at</th>
-                            <th>Snapshot taken by</th>
-                            <th>Download snapshot CSV</th>
+                            <th><?= $module->framework->tt('snapshot_taken_at') ?></th>
+                            <th><?= $module->framework->tt('snapshot_taken_by') ?></th>
+                            <th><?= $module->framework->tt('snapshot_download_csv') ?></th>
                         </tr>
                     </thead>
                     <tbody>

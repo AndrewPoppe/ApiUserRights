@@ -54,7 +54,7 @@ class CsvImporter
                 $this->rowValid     = false;
                 $this->valid        = false;
             } elseif ( in_array($method, $this->goodMethods, true) ) {
-                $this->errorMessages[] = 'Duplicate method: ' . $this->module->framework->escape($method);
+                $this->errorMessages[] = $this->module->framework->tt('duplicate_method') . ' ' . $this->module->framework->escape($method);
                 $this->rowValid        = false;
                 $this->valid           = false;
             } else {
@@ -70,7 +70,7 @@ class CsvImporter
             $this->rowValid   = false;
             $this->badUsers[] = $this->module->framework->escape($username);
         } elseif ( in_array($username, $this->goodUsers, true) ) {
-            $this->errorMessages[] = 'Duplicate username: ' . $this->module->framework->escape($username);
+            $this->errorMessages[] = $this->module->framework->tt('duplicate_username') . ' ' . $this->module->framework->escape($username);
             $this->rowValid        = false;
         } else {
             $this->goodUsers[] = $username;
@@ -96,7 +96,7 @@ class CsvImporter
         if ( !$this->default ) {
             $this->usernameIndex = array_search('username', $this->header, true);
             if ( $this->usernameIndex === false ) {
-                $this->errorMessages[] = 'Missing username column';
+                $this->errorMessages[] = $this->module->framework->tt('missing_username_column');
                 return false;
             }
         }
@@ -126,17 +126,17 @@ class CsvImporter
         }
 
         if ( !empty($this->badUsers) ) {
-            $this->errorMessages[] = 'Invalid usernames';
+            $this->errorMessages[] = $this->module->framework->tt('invalid_usernames');
             $this->valid           = false;
         }
 
         if ( !empty($this->badMethods) ) {
-            $this->errorMessages[] = 'Invalid API methods';
+            $this->errorMessages[] = $this->module->framework->tt('invalid_api_methods');
             $this->valid           = false;
         }
 
         if ( empty($this->cleanContents) ) {
-            $this->errorMessages[] = 'No valid rows were present in the CSV file';
+            $this->errorMessages[] = $this->module->framework->tt('no_valid_rows');
             $this->valid           = false;
         }
 
@@ -154,10 +154,10 @@ class CsvImporter
                 $intValue = filter_var($value, FILTER_VALIDATE_INT);
                 if ( !in_array($intValue, $validValues, true) ) {
                     if ( $this->default ) {
-                        $message = 'Acceptable values are 0 and 1';
+                        $message = $this->module->framework->tt('acceptable_values');
                     } else {
                         $username = $thesePermissions[$this->usernameIndex];
-                        $message  = 'Invalid "' . $method . '" value for <strong>' . $username . '</strong>: ' . $this->module->framework->escape($value);
+                        $message  = $this->module->framework->tt('invalid_value', $method, $username) . ': ' . $this->module->framework->escape($value);
                     }
                     $this->errorMessages[] = $message;
                     $this->rowValid        = false;
@@ -209,8 +209,8 @@ class CsvImporter
         if ( !is_array($cellValue) ) {
             return '<td class="' . ($centerText ? 'text-center' : '') . '">' . $cellValue . '</td>';
         }
-        return '<td class="table-warning">New: <span class="text-primary font-weight-bold">' . $cellValue['proposed'] .
-            '</span><br>Current: <span class="text-danger font-weight-bold">' .
+        return '<td class="table-warning">' . $this->module->framework->tt('new') . ': <span class="text-primary font-weight-bold">' . $cellValue['proposed'] .
+            '</span><br>' . $this->module->framework->tt('current') . ': <span class="text-danger font-weight-bold">' .
             $cellValue['current'] . '</span></td>';
     }
     public function getUpdateTable()
@@ -220,17 +220,16 @@ class CsvImporter
             <div class="modal-xl modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Confirm API Rights</h5>
+                        <h5 class="modal-title">' . $this->module->framework->tt('confirm_api_rights') . '</h5>
                         <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <div class="container mb-4 w-90" style="font-size:larger;">Examine the table of proposed changes below to verify it is correct. Only users in highlighted rows or with 
-                    highlighted cells will be affected.</div>
+                    <div class="container mb-4 w-90" style="font-size:larger;">' . $this->module->framework->tt('confirm_api_rights_description') . '</div>
                     <table class="table table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>User</th>
-                                <th>Name</th>';
+                                <th>' . $this->module->framework->tt('user') . '</th>
+                                <th>' . $this->module->framework->tt('name') . '</th>';
         foreach ( $this->methodNames as $index => $method ) {
             $html .= '<th>' . $method . ' (' . $this->methodCodes[$index] . ')</th>';
         }
@@ -256,10 +255,10 @@ class CsvImporter
                     </table>
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-bs-dismiss="modal">' . $this->module->framework->tt('cancel') . '</button>
                         <button type="button" class="btn btn-primary" onclick="API_USER_RIGHTS.confirmImport()" ' .
-            ($nothingToDo ? 'title="There are no changes to make" disabled' : '') .
-            '>Confirm</button>
+            ($nothingToDo ? 'title="' . $this->module->framework->tt('no_changes_to_make') . '" disabled' : '') .
+            '>' . $this->module->framework->tt('confirm') . '</button>
                     </div>
                 </div>
             </div>

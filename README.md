@@ -36,14 +36,15 @@ There is a corresponding project-level configuration that allows you to override
 
 See the Releases page for full descriptions of changes.
 
-| Version | Release Date | Description                                                      |
-| ------- | ------------ | ---------------------------------------------------------------- |
-| 2.0.0   | 2023-12-13   | Breaking change in how rights are represented internally.        |
-| 1.2.0   | 2023-12-11   | History snapshots, New default rights configuration, and Bug fix |
-| 1.1.1   | 2023-12-09   | Bug fix                                                          |
-| 1.1.0   | 2023-12-07   | Added ability to import/export CSV files                         |
-| 1.0.4   | 2023-12-04   | Bug fix and aesthetic changes to the editor                      |
-| 1.0.3   | 2023-10-17   | Bug fix and aesthetic changes to the editor                      |
-| 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor                       |
-| 1.0.0   | 2023-10-12   | Initial release                                                  |
+| Version | Release Date | Description                                                        |
+| ------- | ------------ | ------------------------------------------------------------------ |
+| 2.1.0   | 2024-10-18   | Support for new Randomization api method. Add translation ability. |
+| 2.0.0   | 2023-12-13   | Breaking change in how rights are represented internally.          |
+| 1.2.0   | 2023-12-11   | History snapshots, New default rights configuration, and Bug fix   |
+| 1.1.1   | 2023-12-09   | Bug fix                                                            |
+| 1.1.0   | 2023-12-07   | Added ability to import/export CSV files                           |
+| 1.0.4   | 2023-12-04   | Bug fix and aesthetic changes to the editor                        |
+| 1.0.3   | 2023-10-17   | Bug fix and aesthetic changes to the editor                        |
+| 1.0.2   | 2023-10-16   | Added filter bar to API User Rights editor                         |
+| 1.0.0   | 2023-10-12   | Initial release                                                    |
 

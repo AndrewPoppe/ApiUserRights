@@ -3,9 +3,9 @@ API_USER_RIGHTS.saveSnapshot = function () {
         .then(response => {
             if (!response.success) {
                 Swal.fire({
-                    title: 'Error saving snapshot',
+                    title: API_USER_RIGHTS.tt('error_saving_snapshot'),
                     icon: 'error',
-                    confirmButtonText: 'OK',
+                    confirmButtonText: API_USER_RIGHTS.tt('OK'),
                 });
                 return;
             }
@@ -13,9 +13,9 @@ API_USER_RIGHTS.saveSnapshot = function () {
         })
         .catch(error => {
             Swal.fire({
-                title: 'Error saving snapshot',
+                title: API_USER_RIGHTS.tt('error_saving_snapshot'),
                 icon: 'error',
-                confirmButtonText: 'OK',
+                confirmButtonText: API_USER_RIGHTS.tt('OK'),
             });
         });
 }
@@ -26,7 +26,7 @@ API_USER_RIGHTS.getSnapshotsTableData = function (snapshots) {
         tableData += `<tr>
         <td>${snapshot.tsFormatted}</td>
         <td>${snapshot.username} (${snapshot.name})</td>
-        <td><i class="fa-solid fa-file-arrow-down text-success"></i> <a href="#" onclick="API_USER_RIGHTS.downloadSnapshot(${snapshot.id})">Download CSV</a></td>
+        <td><i class="fa-solid fa-file-arrow-down text-success"></i> <a href="#" onclick="API_USER_RIGHTS.downloadSnapshot(${snapshot.id})">${API_USER_RIGHTS.tt('download_csv')}</a></td>
         </tr>`;
     });
     return tableData;
@@ -40,9 +40,9 @@ API_USER_RIGHTS.openSnapshotModal = function () {
         .then(response => {
             if (!response.success) {
                 Swal.fire({
-                    title: 'Error getting snapshots',
+                    title: API_USER_RIGHTS.tt('error_getting_snapshots'),
                     icon: 'error',
-                    confirmButtonText: 'OK',
+                    confirmButtonText: API_USER_RIGHTS.tt('OK'),
                 });
                 return;
             }
@@ -62,7 +62,7 @@ API_USER_RIGHTS.openSnapshotModal = function () {
                     {
                         data: function (row, type, val, meta) {
                             if (type === 'display') {
-                                return '<i class="fa-solid fa-file-arrow-down text-success"></i> <a href="#" onclick="API_USER_RIGHTS.downloadSnapshot(' + row["id"] + ')">Download CSV</a>';
+                                return `<i class="fa-solid fa-file-arrow-down text-success"></i> <a href="#" onclick="API_USER_RIGHTS.downloadSnapshot(${row["id"]})">${API_USER_RIGHTS.tt('download_csv')}</a>`;
                             }
                             return row["id"];
                         }
@@ -77,9 +77,9 @@ API_USER_RIGHTS.openSnapshotModal = function () {
         .catch(error => {
             console.error(error);
             Swal.fire({
-                title: 'Error getting snapshots',
+                title: API_USER_RIGHTS.tt('error_getting_snapshots'),
                 icon: 'error',
-                confirmButtonText: 'OK',
+                confirmButtonText: API_USER_RIGHTS.tt('OK'),
             });
         });
 }
@@ -89,9 +89,9 @@ API_USER_RIGHTS.downloadSnapshot = function (id) {
         .then(response => {
             if (!response.success) {
                 Swal.fire({
-                    title: 'Error downloading snapshot',
+                    title: API_USER_RIGHTS.tt('error_downloading_snapshot'),
                     icon: 'error',
-                    confirmButtonText: 'OK',
+                    confirmButtonText: API_USER_RIGHTS.tt('OK'),
                 });
                 return;
             }
@@ -113,9 +113,9 @@ API_USER_RIGHTS.downloadSnapshot = function (id) {
         })
         .catch(error => {
             Swal.fire({
-                title: 'Error downloading snapshot',
+                title: API_USER_RIGHTS.tt('error_downloading_snapshot'),
                 icon: 'error',
-                confirmButtonText: 'OK',
+                confirmButtonText: API_USER_RIGHTS.tt('OK'),
             });
         });
 }
@@ -135,7 +135,7 @@ API_USER_RIGHTS.openRightsEditor = function (username) {
         $(el).data('origChecked', checked);
         $(el).data('origText', $(el).siblings('label').eq(0).text());
     });
-    $('#editor').find('.modal-title').html('<i class="fa-solid fa-user-edit"></i> Editing ' + username);
+    $('#editor').find('.modal-title').html(`<i class="fa-solid fa-user-edit"></i> ${API_USER_RIGHTS.tt('editing')} ${username}`);
     $('#editor form#editorForm').data('user', username);
     $('#saveRightsButton').attr('disabled', true);
     API_USER_RIGHTS.updateChangeText();
@@ -154,21 +154,21 @@ API_USER_RIGHTS.submitForm = function () {
         .then(result => {
             if (!result) {
                 Swal.fire({
-                    title: 'Error saving API user rights',
+                    title: API_USER_RIGHTS.tt('error_saving_rights'),
                     icon: 'error'
                 });
                 return;
             }
             $('#editor').modal('hide');
             Swal.fire({
-                title: 'Successfully updated API user rights',
+                title: API_USER_RIGHTS.tt('successfully_saved_rights'),
                 icon: 'success'
             });
             $('#api_user_rights').DataTable().ajax.reload();
         })
         .catch(error => {
             Swal.fire({
-                title: 'Error saving API user rights',
+                title: API_USER_RIGHTS.tt('error_saving_rights'),
                 icon: 'error'
             });
         });
@@ -191,7 +191,7 @@ API_USER_RIGHTS.updateChangeText = function () {
     } else {
         $('#saveRightsButton').attr('disabled', false);
         const n = changed.length;
-        $('#changeInfo').text('* ' + n + ' change' + (n == 1 ? '' : 's') + ' pending');
+        $('#changeInfo').text('* ' + (n == 1 ? API_USER_RIGHTS.tt('change_pending') : API_USER_RIGHTS.tt('changes_pending', n)));
     }
 }
 
@@ -264,7 +264,7 @@ API_USER_RIGHTS.handleImportError = function (errorData) {
     if (errorData.badUsers.length) {
         body +=
             "<div class='row justify-content-center m-2'>" +
-            `<table><thead><tr><th>Username</th></tr></thead><tbody>`;
+            `<table><thead><tr><th>${API_USER_RIGHTS.tt('username')}</th></tr></thead><tbody>`;
         errorData.badUsers.forEach((user) => {
             body += `<tr><td>${user}</td></tr>`;
         });
@@ -273,7 +273,7 @@ API_USER_RIGHTS.handleImportError = function (errorData) {
     if (errorData.badMethods.length) {
         body +=
             "<div class='row justify-content-center m-2'>" +
-            `<table><thead><tr><th>API Method</th></tr></thead><tbody>`;
+            `<table><thead><tr><th>${API_USER_RIGHTS.tt('api_method')}</th></tr></thead><tbody>`;
         errorData.badMethods.forEach((method) => {
             body += `<tr><td>${method}</td></tr>`;
         });
@@ -281,10 +281,10 @@ API_USER_RIGHTS.handleImportError = function (errorData) {
     }
     body += "</div>";
     Swal.fire({
-        title: 'Error',
+        title: API_USER_RIGHTS.tt('error'),
         html: body,
         icon: 'error',
-        confirmButtonText: 'OK',
+        confirmButtonText: API_USER_RIGHTS.tt('OK'),
     });
 }
 
@@ -300,7 +300,7 @@ API_USER_RIGHTS.handleFiles = function () {
     }
 
     Swal.fire({
-        title: 'Loading...',
+        title: API_USER_RIGHTS.tt('loading'),
         onOpen: () => {
             Swal.showLoading();
         }
@@ -337,24 +337,24 @@ API_USER_RIGHTS.confirmImport = function () {
                 API_USER_RIGHTS.dt.ajax.reload();
                 Swal.fire({
                     icon: 'success',
-                    html: 'Successfully imported API User Rights',
+                    html: API_USER_RIGHTS.tt('successfully_imported_rights'),
                     customClass: {
                         confirmButton: 'btn btn-primary',
                     },
                     buttonsStyling: false,
-                    confirmButtonText: 'OK',
+                    confirmButtonText: API_USER_RIGHTS.tt('OK'),
                 });
             } else {
                 Toast.fire({
                     icon: 'error',
-                    html: 'Error importing CSV'
+                    html: API_USER_RIGHTS.tt('error_importing_csv')
                 });
             }
         })
         .catch((error) => {
             Toast.fire({
                 icon: 'error',
-                html: 'Error importing CSV'
+                html: API_USER_RIGHTS.tt('error_importing_csv')
             });
             console.error(error);
         });
@@ -413,8 +413,11 @@ $(document).ready(function () {
                 if (type === 'display') {
                     return '<a href="javascript:void(0)" onclick="API_USER_RIGHTS.openRightsEditor(\'' +
                         row["username"] +
-                        '\');"><span style="white-space: nowrap;"><strong>' + row[
-                        "username"] + '</strong> (' + row['name'] + ')</span></a>';
+                        '\');"><span style="white-space: nowrap;"><strong>' +
+                        row["username"] +
+                        '</strong> (' +
+                        row['name'] +
+                        ')</span></a>';
                 }
                 return row["username"];
             },
@@ -442,7 +445,7 @@ $(document).ready(function () {
         scrollX: true,
         buttons: [
             {
-                text: '<i class="fa-solid fa-file-arrow-up"></i> Import CSV',
+                text: `<i class="fa-solid fa-file-arrow-up"></i> ${API_USER_RIGHTS.tt('import_csv')}`,
                 className: 'btn btn-xs btn-primary',
                 action: function () {
                     API_USER_RIGHTS.importCsv();
@@ -454,7 +457,7 @@ $(document).ready(function () {
             },
             {
                 extend: 'csv',
-                text: '<i class="fa-solid fa-file-arrow-down"></i> Export CSV',
+                text: `<i class="fa-solid fa-file-arrow-down"></i> ${API_USER_RIGHTS.tt('export_csv')}`,
                 className: 'btn btn-xs btn-success mr-2',
                 action: function () {
                     API_USER_RIGHTS.saveUsersCsv();

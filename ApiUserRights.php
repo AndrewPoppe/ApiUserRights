@@ -1,8 +1,6 @@
 <?php
 namespace YaleREDCap\ApiUserRights;
 
-use DateTimeRC;
-
 /**
  * @property \ExternalModules\Framework $framework
  * @see Framework
@@ -204,7 +202,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         ],
         [
             "area"             => "Files",
-            "langCodeArea"     => "",
+            "langCodeArea"     => "api_99",
             "method"           => "Import a File",
             "content"          => "file",
             "action"           => "import",
@@ -216,7 +214,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         ],
         [
             "area"             => "Files",
-            "langCodeArea"     => "",
+            "langCodeArea"     => "api_99",
             "method"           => "Delete a File",
             "content"          => "file",
             "action"           => "delete",
@@ -477,6 +475,18 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             "methodCode"       => "generateNextRecordName_export",
             "methodCodeRC"     => "exp_next_id",
             "langCode"         => "api_134",
+            "langCodeInternal" => ""
+        ],
+        [
+            "area"             => "Records",
+            "langCodeArea"     => "dashboard_38",
+            "method"           => "Randomize Record",
+            "content"          => "record",
+            "action"           => "randomize",
+            "data"             => "",
+            "methodCode"       => "record_randomize",
+            "methodCodeRC"     => "randomize",
+            "langCode"         => "api_220",
             "langCodeInternal" => ""
         ],
         // Repeating Instruments and Events
@@ -755,22 +765,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         'userRole',
         'userRoleMapping'
     ];
-    // public function redcap_module_api_before($project_id, $content, $action)
-    // {
-    //     $this->framework->log('API Before', [
-    //         'project_id'  => $project_id,
-    //         'project_id2' => $this->framework->getProjectId(),
-    //         'project_id3' => $this->framework->getProject()->getProjectId(),
-    //         'user_id'     => $this->framework->getUser()->getUsername(),
-    //         'content'     => $content,
-    //         'action'      => $action,
-    //     ]);
-    //     ob_start(function ($str) {
-    //         $this->framework->log('API After', [ 'response' => $str ]);
-    //         return $str;
-    //     }, 0, PHP_OUTPUT_HANDLER_FLUSHABLE);
-    //     //$this->framework->exitAfterHook();
-    // }
+
     public function redcap_module_ajax($action, $payload, $project_id, $record, $instrument, $event_id, $repeat_instance, $survey_hash, $response_id, $survey_queue_hash, $page, $page_full, $user_id, $group_id)
     {
         try {
@@ -855,17 +850,18 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function redcap_module_configuration_settings($project_id, $settings)
     {
+        global $lang;
         try {
             if ( empty($project_id) ) {
                 $settingName                = 'default-rights-json-system';
                 $currentDefaultRightsString = $this->framework->getSystemSetting($settingName) ?? '{}';
-                $defaultRightsTitle         = "Define the set of default API User Rights for the system";
-                $defaultRightsDesc          = "These rights will be applied to all users who have not been assigned specific rights. These can be overridden in each project.";
+                $defaultRightsTitle         = $this->framework->tt('default_rights_title_system');
+                $defaultRightsDesc          = $this->framework->tt('default_rights_description_system');
             } else {
                 $settingName                = 'default-rights-json-project';
                 $currentDefaultRightsString = $this->framework->getProjectSetting($settingName, $project_id) ?? '{}';
-                $defaultRightsTitle         = "Define the set of default API User Rights for this project";
-                $defaultRightsDesc          = "These rights will be applied to all users who have not been assigned specific rights in this project.";
+                $defaultRightsTitle         = $this->framework->tt('default_rights_title_project');
+                $defaultRightsDesc          = $this->framework->tt('default_rights_description_project');
             }
             $currentDefaultRights = json_decode($currentDefaultRightsString, true);
             $headerInfo           = $this->getTableHeader();
@@ -881,7 +877,7 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 foreach ( $methods as $method ) {
                     $name     = $method["content"] . "_" . $method['action'];
                     $checked  = ($currentDefaultRights[$name] ?? '') == '1' ? 'checked' : '';
-                    $nameData .= "<div class='form-check'><input class='form-check-input default-api-rights-input' type='checkbox' id='" . $name . "' name='" . $name . "' value='' " . $checked . "><label class='form-check-label' for='" . $name . "'>" . $method['method'] . "</label></div>";
+                    $nameData .= "<div class='form-check'><input class='form-check-input default-api-rights-input' type='checkbox' id='" . $name . "' name='" . $name . "' value='' " . $checked . "><label class='form-check-label' for='" . $name . "'>" . $lang[$method['langCode']] . "</label></div>";
                 }
                 $nameData .= "</div></div></div>";
             }
@@ -920,22 +916,9 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         return $link;
     }
 
-
-
-    public function redcap_every_page_before_render($project_id = null) : void
+    public function redcap_module_api_before($project_id, $post) : void 
     {
-        // Only run on the pages we're interested in
-        if ( !defined('PAGE') || !isset($_SERVER) ) {
-            return;
-        }
-        if (
-            ($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' ||
-            (PAGE ?? '') !== 'api/index.php'
-        ) {
-            return;
-        }
         try {
-            $post = $this->framework->escape($_POST) ?? [];
 
             // If content is not valid, let REDCap handle it
             $contentValid = $this->validateContent($post);
@@ -943,27 +926,11 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 return;
             }
 
-            $user = $this->getApiUser($post);
+            $username = $post['username'] ?? '';
+            $pid      = $post['projectid'] ?? '';
 
             // Invalid token, let REDCap handle it
-            if ( empty($user) || empty($user['username'] || empty($user['$project_id'])) ) {
-                return;
-            }
-
-            $username = $user['username'];
-            $pid      = $user['project_id'];
-
-            // Module is not enabled for this project, don't do anything
-            if ( !in_array($pid, $this->getProjectsWithModuleEnabledIncludingByDefault() ?? []) ) {
-                return;
-            }
-
-            // Check for exceptions - situations where we want to allow the request to proceed
-            // even if the method is not defined in the API
-            $exempt = $this->checkForExceptions($post, $user);
-
-            // This is an exempt method, let REDCap handle it
-            if ( $exempt ) {
+            if ( empty($username) || empty($pid) ) {
                 return;
             }
 
@@ -986,106 +953,25 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
                 $this->framework->log('API Method Not Allowed', [ 'user' => $username, 'project_id' => $pid, 'methodCode' => $method['methodCode'] ?? '', 'method' => $method['method'] ?? '' ]);
                 http_response_code(403);
                 header('Content-Type: application/json');
-                echo json_encode([ 'error' => 'You do not have permissions to use this API method.' ]);
+                echo json_encode([ 'error' => $this->framework->tt('permission_denied') ]);
                 $this->framework->exitAfterHook();
                 return;
             }
         } catch ( \Throwable $e ) {
             $this->framework->log('error', [ 'error' => $e->getMessage(), 'trace' => $e->getTraceAsString() ]);
         }
-
     }
 
     public function determineApiMethod(array $data)
     {
         $content   = $data['content'] ?? '';
         $action    = $data['action'] ?? '';
-        $dataIsSet = isset($data['data']) ? true : '';
 
-        $result    = $this->getMethod($content, $action, $dataIsSet) ?? [];
-        $methodArr = array_filter(self::$methods, function ($method) use ($result) {
-            return ($method['content'] ?? '') === ($result["content"] ?? '')
-                && ($method['action'] ?? '') === ($result["action"] ?? '');
+        $methodArr = array_filter(self::$methods, function ($method) use ($content, $action): bool {
+            return ($method['content'] ?? '') === $content
+                && ($method['action'] ?? '') === $action;
         });
         return reset($methodArr);
-    }
-
-    /**
-     * Find situations in which non-standard requests should be allowed to progress
-     * @param array $data
-     * @return bool whether or not the request should be allowed to progress due to an exemption
-     */
-    private function checkForExceptions($data, $user)
-    {
-        return false;
-    }
-
-    /**
-     * Get the requested content and action based on parameters
-     *
-     * Note: REDCap's own API code does not properly handle several combinations here, resulting in undefined behavior.
-     * These are listed here:
-     *
-     * fileRepository:      switch is allowed as an action, but there is no associated method
-     * instrument:          import is allowed as an action, but there is no associated method
-     * event:               switch is allowed as an action, but there is no associated method
-     * event:               createFolder is allowed as an action, but there is no associated method
-     * event:               list is allowed as an action, but there is no associated method
-     * arm:                 switch is allowed as an action, but there is no associated method
-     * arm:                 createFolder is allowed as an action, but there is no associated method
-     * arm:                 list is allowed as an action, but there is no associated method
-     * user:                switch is allowed as an action, but there is no associated method
-     * user:                createFolder is allowed as an action, but there is no associated method
-     * user:                list is allowed as an action, but there is no associated method
-     * project_settings:    export is allowed as an action, but there is no associated method
-     * ... I stopped counting... there are a lot of these
-     */
-    public function getMethod($content, $action, $dataIsSet)
-    {
-
-        if ( !in_array($content, self::$content) ) {
-            return null;
-        }
-
-        // If invalid settings, return null
-        if ( in_array($content, [ 'file' ]) && in_array($action, [ 'export', 'import', 'import_app', 'delete' ]) === false ) {
-            return null;
-        }
-
-        if ( $content == 'project' && $dataIsSet ) {
-            return null;
-        }
-
-        // Set action as needed
-        if ( in_array($content, [ 'version', 'event', 'arm', 'repeatingFormsEvents', 'dag', 'user', 'userRole', 'userRoleMapping' ]) && empty($action) ) {
-            $action = 'export';
-        }
-        if ( in_array($content, [ 'user', 'userRole', 'userRoleMapping' ]) && $action != 'delete' && $dataIsSet ) {
-            $action = 'import';
-        }
-        if ( in_array($content, [ 'fileRepository', 'file', 'event', 'arm', 'dag', 'user', 'userRole' ]) ) {
-            if ( !in_array($action, [ 'export', 'import', 'delete', 'import_app', 'switch', 'createFolder', 'list' ]) ) {
-                return null;
-            }
-        } elseif ( !($content == 'record' && in_array($action, [ 'delete', 'rename' ])) ) {
-            $action = (!$dataIsSet || $content == 'version') ? 'export' : 'import';
-        }
-
-        return [
-            'content' => $content,
-            'action'  => $action
-        ];
-    }
-
-    private function getApiUser(array $data)
-    {
-        $token = $this->framework->sanitizeAPIToken($data['token'] ?? '');
-        if ( empty($token) ) {
-            return null;
-        }
-        $sql = "SELECT username, project_id, api_export, api_import, mobile_app FROM redcap_user_rights WHERE api_token = ?";
-        $q   = $this->framework->query($sql, [ $token ]);
-        return $q->fetch_assoc();
     }
 
     private function isMethodAllowed(array $method, $username, $pid)
@@ -1111,8 +997,6 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
         }
         return $allowedMethods;
     }
-
-
 
     public function getAllUsers($pid)
     {
@@ -1183,23 +1067,25 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
 
     public function getTableHeader()
     {
-        $header         = "<thead><tr><th rowspan='2'>Username</th>";
+        global $lang;
+        $header         = "<thead><tr><th rowspan='2'>".$this->framework->tt('username')."</th>";
         $header2        = "";
         $sections       = [];
         $allMethods     = [];
         $allMethodCodes = [];
         $even           = true;
         foreach ( ApiUserRights::$methods as $method ) {
-            $sections[$method['area']][] = $method;
+            $sections[$lang[$method['langCodeArea']]][] = $method;
         }
         foreach ( $sections as $section => $methods ) {
             $thisClass = $even ? 'even' : 'odd';
             $even      = !$even;
             $header .= "<th colspan='" . count($methods) . "' class='" . $thisClass . "'>" . $section . "</th>";
             foreach ( $methods as $method ) {
-                $allMethods[]     = $method['method'];
+                $thisMethod       = $lang[$method['langCode']];
+                $allMethods[]     = $thisMethod;
                 $allMethodCodes[] = $method['methodCode'];
-                $header2 .= "<th class='" . $thisClass . " dt-center'>" . $method['method'] . "</th>";
+                $header2 .= "<th class='" . $thisClass . " dt-center'>" . $thisMethod . "</th>";
             }
         }
         $header .= "</tr><tr>";
@@ -1223,53 +1109,6 @@ class ApiUserRights extends \ExternalModules\AbstractExternalModule
             $this->logEvent('API User Rights Changed', [ 'changes' => json_encode($changes, JSON_PRETTY_PRINT) ]);
         }
         $this->framework->setProjectSetting($settingKey, $rights, $project_id);
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getProjectsWithModuleEnabledIncludingByDefault()
-    {
-        if ( !$this->getSystemSetting('enabled') ) {
-            return $this->framework->getProjectsWithModuleEnabled();
-        }
-
-        $possibleProjectsResults = $this->query(
-            "SELECT CAST(p.project_id AS CHAR) AS project_id
-            FROM redcap_projects p
-            WHERE p.date_deleted IS NULL
-            AND p.status IN (0,1)
-            AND p.completed_time IS NULL",
-            []
-        );
-
-        $disabledProjectsResults = $this->query(
-            "SELECT CAST(s.project_id AS CHAR) AS project_id
-            FROM redcap_external_modules m
-            JOIN redcap_external_module_settings s
-            ON m.external_module_id = s.external_module_id
-            JOIN redcap_projects p
-            ON s.project_id = p.project_id
-            WHERE m.directory_prefix = ?
-            AND s.value = 'false'
-            AND s.key = ?",
-            [ $this->PREFIX, \ExternalModules\ExternalModules::KEY_ENABLED ]
-        );
-
-        $disabledPids = [];
-        while ( $row = $disabledProjectsResults->fetch_assoc() ) {
-            $disabledPids[] = $row['project_id'];
-        }
-
-        $pids = [];
-        while ( $row = $possibleProjectsResults->fetch_assoc() ) {
-            $pid = $row['project_id'] ?? '';
-            if ( !in_array($pid, $disabledPids, true) ) {
-                $pids[] = $pid;
-            }
-        }
-        return $pids;
     }
 
     private function validateContent($data)
